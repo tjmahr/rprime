@@ -9,15 +9,15 @@
 \alias{pluck_apply}
 \title{Higher-order functions for dealing with lists}
 \usage{
-pluck(key)
+pluck(key)(xs)
 
 pluck_apply(xss, key)
 
-pick(keys)
+pick(keys)(xs)
 
 pick_apply(xss, keys)
 
-omit(keys)
+omit(keys)(xs)
 
 omit_apply(xss, keys)
 }
@@ -28,15 +28,24 @@ omit_apply(xss, keys)
 
 \item{xs}{a list}
 
-\item{xss}{a list of lists
-
-\itemize{
-  \item \code{pluck}: Pluck a named value from a list
-  \item \code{pick}: Simplify a list by picking out whitelisted names
-  \item \code{omit}: Simplify a list by omitting blacklisted names.
-}}
+\item{xss}{a list of lists}
+}
+\value{
+\code{pluck} returns an unnamed value and \code{pluck_apply} returns
+  a list of unnamed values. \code{pick} and \code{omit} return a simplified
+  version of the original list. \code{pick_apply} and \code{omit_apply}
+  return a list of simplified lists.
 }
 \description{
 These functions were inspired by underscore.js.
+}
+\details{
+\itemize{ \item \code{pluck}: Pluck a named value from a list \item
+\code{pick}: Simplify a list by picking out whitelisted names \item
+\code{omit}: Simplify a list by omitting blacklisted names. }
+
+The simple versions of \code{pluck}, \code{pick}, and \code{omit} are curried
+functions, meaning that they return a function which can be applied to a
+list. See the syntax in the usage section.
 }
 
