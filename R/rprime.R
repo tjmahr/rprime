@@ -4,3 +4,5 @@
 #' @docType package
 #' @import stringr
 NULL
+
+require(stringr)
