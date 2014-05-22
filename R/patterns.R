@@ -9,4 +9,9 @@ patterns <- list(
   footer_end    = "^\\*{3} LogFrame End \\*{3}$"
 )
 
+rprime_cols <- list(
+  level_index = "Eprime.LevelIndex",
+  level = "Eprime.Level"
+)
+
 is_bracket <- function(xs) str_detect(xs, patterns$bracket)

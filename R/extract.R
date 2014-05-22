@@ -3,8 +3,8 @@ clean_up_list <- function(eprime_list) {
   level_name <- eprime_list[["Running"]]
   if (!is.null(level_name)) {
     # Remove the level name from the names in the list
-    eprime_list <- set_which_name(eprime_list, level_name, "Eprime.LevelIndex")
-    eprime_list[["Eprime.LevelIndex"]] <- paste0(level_name, "_", eprime_list[["Eprime.LevelIndex"]])
+    eprime_list <- set_which_name(eprime_list, level_name, rprime_cols$level_index)
+    eprime_list[[rprime_cols$level_index]] <- paste0(level_name, "_", eprime_list[[rprime_cols$level_index]])
     names(eprime_list) <- str_replace(names(eprime_list), paste0(level_name, "\\."), "")
   }
   eprime_list
@@ -40,7 +40,7 @@ listify <- function(colon_sep_values) {
   # Infer level of nesting by counting tabs
   tab_count <- str_count(colon_sep_values[1], "\\t")
   level <- tab_count + 1
-  colon_sep_values <- c(colon_sep_values, paste0("Eprime.Level: ", level))
+  colon_sep_values <- c(colon_sep_values, paste0(rprime_cols$level, ": ", level))
 
   # Clean up the lines and listify
   colon_sep_values <- str_trim(colon_sep_values)

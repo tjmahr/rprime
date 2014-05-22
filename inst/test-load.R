@@ -20,8 +20,36 @@ plyr::rbind.fill(parsed3)
 
 
 
+# Crashed experiment
+filename <- "inst/tests/data/MP_Block1_001P00XA1.txt"
+eprime_log <- read_eprime(filename)
+chunked <- extract_frames(eprime_log)
+parsed <- lapply(chunked, listify)
+parsed2 <- lapply(parsed, clean_up_list)
+eprime_lists <- parsed2
 
-lapply(eprime_lists, str)
+
+
+
+
+
+
+
+
+
+
+preview_eprime(eprime_lists)
+preview_levels(eprime_lists)
+
+
+
+
+
+
+pluck_apply(eprime_lists, "Eprime.Level")
+pluck_apply(eprime_lists, "Running")
+pluck_apply(eprime_lists, "Procedure")
+lapply(eprime_lists, names)
 
 
 
@@ -41,10 +69,6 @@ flatten_chunks <- function(eprime_lists) {
 }
 
 
-
-pluck <- function(name) {
-  function(xs) xs[[name]]
-}
 
 # Crashed experiment
 filename <- "inst/tests/data/MP_Block1_001P00XA1.txt"

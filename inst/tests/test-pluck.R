@@ -18,8 +18,8 @@ test_that("pluck NULL if there is no matching name", {
 })
 
 test_that("pluck_apply plucks unnamed values from each list", {
-  expect_null(names(pluck_apply(stooges, "age")))
-  expect_equal(length(pluck_apply(stooges, "nmae_misspelled")), 3)
+  expect_null(names(pluck_apply("age", stooges)))
+  expect_equal(length(pluck_apply("nmae_misspelled", stooges)), 3)
 })
 
 
@@ -27,7 +27,7 @@ context("pick")
 
 test_that("pick keeps names", {
   expect_named(pick("age")(stooge1))
-  expect_named(pick_apply(stooges, "name")[[1]])
+  expect_named(pick_apply("name", stooges)[[1]])
 })
 
 test_that("pick extracts the names that it can", {
@@ -43,7 +43,7 @@ context("omit")
 
 test_that("omit keeps names", {
   expect_named(omit("age")(stooge1))
-  expect_named(omit_apply(stooges, "name")[[1]])
+  expect_named(omit_apply("name", stooges)[[1]])
 })
 
 test_that("omit drops all matching names", {
@@ -58,16 +58,3 @@ test_that("omit drops all matching names", {
 
 
 
-
-
-
-
-
-
-
-pick_apply(stooges, "nmae_misspelled")
-pick("nmae_misspelled")(stooge1)
-
-expect_named(pick_apply(stooges, "nmae_misspelled")[[1]])
-
-pick(c("age", "nmae_misspelled"))(stooge3)

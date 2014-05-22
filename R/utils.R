@@ -56,7 +56,7 @@ pluck <- function(key) {
 
 #' @rdname list_functions
 #' @export
-pluck_apply <- function(xss, key) {
+pluck_apply <- function(key, xss) {
   lapply(xss, pluck(key))
 }
 
@@ -70,7 +70,7 @@ pick <- function(keys) {
 
 #' @rdname list_functions
 #' @export
-pick_apply <- function(xss, keys) {
+pick_apply <- function(keys, xss) {
   lapply(xss, pick(keys))
 }
 
@@ -83,6 +83,6 @@ omit <- function(keys) {
 
 #' @rdname list_functions
 #' @export
-omit_apply <- function(xss, keys) {
+omit_apply <- function(keys, xss) {
   lapply(xss, pick(keys))
 }

@@ -11,15 +11,15 @@
 \usage{
 pluck(key)(xs)
 
-pluck_apply(xss, key)
+pluck_apply(key, xss)
 
 pick(keys)(xs)
 
-pick_apply(xss, keys)
+pick_apply(keys, xss)
 
 omit(keys)(xs)
 
-omit_apply(xss, keys)
+omit_apply(keys, xss)
 }
 \arguments{
 \item{key}{the name of the value to pluck from a list}
