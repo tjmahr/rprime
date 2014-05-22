@@ -1,4 +1,4 @@
-Package: primer
+Package: rprime
 Title: Functions for dealing with Eprime txt files
 Description: 
 Version: 0.1
@@ -6,5 +6,5 @@ Author: Tristan Mahr
 Maintainer: Tristan Mahr <mahr@wisc.edu>
 Depends:
     R (>= 3.0.1)
-License: MIT
+License: GPL-2
 LazyData: true

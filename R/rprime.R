@@ -1,6 +1,6 @@
 #' Functions for dealing with Eprime txt files
 #'
-#' @name primer
+#' @name rprime
 #' @docType package
 #' @import stringr
 NULL
