@@ -8,6 +8,7 @@ preview_eprime <- function(eprime_lists) {
 }
 
 #' @rdname preview_eprime
+#' @export
 preview_levels <- function(eprime_lists) {
   prep <- preview_prep(eprime_lists)
   cat("Unique Levels: \n")
@@ -16,6 +17,7 @@ preview_levels <- function(eprime_lists) {
 }
 
 #' @rdname preview_eprime
+#' @export
 preview_chunks <- function(eprime_lists) {
   prep <- preview_prep(eprime_lists)
 

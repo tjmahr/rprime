@@ -11,7 +11,19 @@ patterns <- list(
 
 rprime_cols <- list(
   level_index = "Eprime.LevelIndex",
-  level = "Eprime.Level"
+  level = "Eprime.Level",
+  basename = "Eprime.Basename",
+  frame = "Eprime.Frame"
 )
 
+#' @export
+str_which <- function(string, pattern) {
+  which(str_detect(string, pattern))
+}
+
+new_row <- function(key, value) sprintf("%s: %s", key, value)
 is_bracket <- function(xs) str_detect(xs, patterns$bracket)
+is_header <- function(xs) any(str_detect(xs, patterns$header_start))
+
+length_zero <- function(x) length(x) == 0
+length_one <- function(x) length(x) == 1

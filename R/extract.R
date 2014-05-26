@@ -4,7 +4,8 @@ clean_up_list <- function(eprime_list) {
   if (!is.null(level_name)) {
     # Remove the level name from the names in the list
     eprime_list <- set_which_name(eprime_list, level_name, rprime_cols$level_index)
-    eprime_list[[rprime_cols$level_index]] <- paste0(level_name, "_", eprime_list[[rprime_cols$level_index]])
+    eprime_list[[rprime_cols$level_index]] <-
+      paste0(level_name, "_", eprime_list[[rprime_cols$level_index]])
     names(eprime_list) <- str_replace(names(eprime_list), paste0(level_name, "\\."), "")
   }
   eprime_list
@@ -53,6 +54,32 @@ listify <- function(colon_sep_values) {
 
 
 
+#' @export
+update_header_frame <- function(framed) {
+  has_header <- any(sapply(framed, is_header))
+  if (has_header) {
+    header_position <- Position(is_header, framed)
+    header <-  framed[[header_position]]
+
+    basename_row <- new_row(rprime_cols$basename, attr(framed, "basename"))
+    run_proc_rows <- new_row(c("Running", "Procedure"), "Header")
+
+    header <- inject_row(header, c(basename_row, run_proc_rows))
+    framed[[header_position]] <- header
+  }
+  framed
+}
+
+#' @export
+number_frames <- function(framed) {
+  rows <- new_row(rprime_cols$frame, seq_along(framed))
+  Map(inject_row, framed, rows)
+}
+
+inject_row <- function(frame_lines, row) {
+  c(frame_lines[-length(frame_lines)], row, frame_lines[length(frame_lines)])
+}
+
 
 #' @export
 extract_frames <- function(eprime_log) {
@@ -100,10 +127,3 @@ make_ranges <- function(starts, ends, eprime_log) {
   mapply(seq, starts, ends)
 }
 
-#' @export
-str_which <- function(string, pattern) {
-  which(str_detect(string, pattern))
-}
-
-length_zero <- function(x) length(x) == 0
-length_one <- function(x) length(x) == 1

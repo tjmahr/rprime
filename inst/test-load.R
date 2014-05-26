@@ -1,21 +1,50 @@
 
+
+
+
+
+
+
+
+require(reshape2)
+require(stringi)
+require(tools)
+
 # Wrong file encoding
 # In readLines(con) : line 44 appears to contain an embedded nul
 filename <- "inst/tests/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
-chunked <- extract_frames(eprime_log)
+framed <- extract_frames(eprime_log)
+framed <- update_header_frame(framed)
+framed <- number_frames(framed)
 
-parsed <- lapply(chunked, listify)
-parsed2 <- lapply(parsed, clean_up_list)
-eprime_lists <- parsed2
+chunked <- lapply(framed, listify)
+eprime_lists <- lapply(chunked, clean_up_list)
+
+preview_eprime(eprime_lists)
+preview_levels(eprime_lists)
+
+
+
 
 super_parse <- functional::Compose(listify, clean_up_list)
 super_parsed <- lapply(chunked, super_parse)
 
-has_level_one <- function(xs) pluck("Eprime.Level")(xs) == "1"
-parsed2 <- Filter(Negate(has_level_one), parsed2)
 
-parsed3 <- lapply(parsed2, as.data.frame)
+make_filter("Running", NA)
+key <- "Running"
+values <- NA
+
+preview_levels(keep_levels(eprime_lists, 1))
+preview_levels(drop_levels(eprime_lists, 1))
+preview_levels(drop_levels(eprime_lists, c(1,2)))
+preview_levels(filter_out(eprime_lists, "Running", NA))
+preview_levels(drop_levels(eprime_lists, 0))
+
+
+
+
+parsed3 <- lapply(eprime_lists, as.data.frame)
 plyr::rbind.fill(parsed3)
 
 
@@ -37,9 +66,6 @@ eprime_lists <- parsed2
 
 
 
-
-preview_eprime(eprime_lists)
-preview_levels(eprime_lists)
 
 
 
