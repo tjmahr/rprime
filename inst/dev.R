@@ -1,22 +1,17 @@
+require("stringr")
+require("stringi")
+require("tools")
+require("reshape2")
 
-
-
-
-
-
-
-
-require(reshape2)
-require(stringi)
-require(tools)
-
-# Wrong file encoding
-# In readLines(con) : line 44 appears to contain an embedded nul
 filename <- "inst/tests/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
-framed <- extract_frames(eprime_log)
-framed <- update_header_frame(framed)
-framed <- number_frames(framed)
+chunked <- extract_chunks(eprime_log)
+
+make_one_eprime_frame
+
+framed <- lapply(chunked, make_one_eprime_frame)
+
+
 
 chunked <- lapply(framed, listify)
 eprime_lists <- lapply(chunked, clean_up_list)

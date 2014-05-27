@@ -36,14 +36,61 @@ set_which_name <- function(list, name, new_name) {
 #   [1] "Whatever"
 #
 
+
+
+
+#' @export
+EprimeFrame <- function(key_value_list = list(), ...) {
+  dots <- merge_lists(key_value_list, list(...))
+  if (is.null(names(dots)) && length(dots) == 1 && is.list(dots[[1]])) {
+    dots <- dots[[1]]
+  }
+
+  eprime_metadata <- unlist(rprime_cols, use.names = FALSE)
+  defaults <- structure(as.list(rep(NA, length(eprime_metadata))),
+                        names = eprime_metadata)
+
+  structure(merge_lists(defaults, dots), class = c("EprimeFrame", "list"))
+}
+
+
+merge_lists <- function(x, y) {
+  x[names(y)] <- y
+  x
+}
+
+#' @export
+print.EprimeFrame <- function(...) str(...)
+
+
+
+#
+# EprimeFrame(key_value_list)
+# EprimeFrame(New = "New Attribute")
+# EprimeFrame(key_value_list, Running = "New Attribute")
+#
+#
+
+
+
+# colon_sep_values <- chunked[[1]]
+
+
+
+
+
+
+#' @export
+make_one_eprime_frame <- function(colon_sep_values) {
+  frame_list <- merge_lists(listify(colon_sep_values),
+                            count_tabs(colon_sep_values))
+  EprimeFrame(frame_list)
+}
+
+
 #' @export
 listify <- function(colon_sep_values) {
-  # Infer level of nesting by counting tabs
-  tab_count <- str_count(colon_sep_values[1], "\\t")
-  level <- tab_count + 1
-  colon_sep_values <- c(colon_sep_values, paste0(rprime_cols$level, ": ", level))
-
-  # Clean up the lines and listify
+  # Clean up the lines
   colon_sep_values <- str_trim(colon_sep_values)
   colon_sep_values <- Filter(Negate(is_bracket), colon_sep_values)
 
@@ -51,38 +98,57 @@ listify <- function(colon_sep_values) {
   structure(as.list(splits[, 2]), names = splits[, 1])
 }
 
-
+count_tabs <- function(colon_sep_values) {
+  # Infer level of nesting by counting tabs
+  tab_count <- str_count(colon_sep_values[1], "\\t")
+  level <- tab_count + 1
+  structure(list(level), names = rprime_cols$level)
+}
 
 
 #' @export
-update_header_frame <- function(framed) {
-  has_header <- any(sapply(framed, is_header))
-  if (has_header) {
-    header_position <- Position(is_header, framed)
-    header <-  framed[[header_position]]
+extract_chunks <- function(eprime_log) {
+  #require(functional)
+  #extract <- Compose(parse_chunks, update_header, number_chunks)
+  #extract(eprime_log)
+  parsed <- parse_chunks(eprime_log)
+  fixed_header <- update_header(parsed)
+  number_chunks(fixed_header)
+}
 
-    basename_row <- new_row(rprime_cols$basename, attr(framed, "basename"))
+# Add "Running", "Procedure" and "Eprime.Basename" lines to the header lines
+update_header <- function(chunked) {
+  has_header <- any(sapply(chunked, is_header))
+  if (has_header) {
+    header_position <- Position(is_header, chunked)
+    header <-  chunked[[header_position]]
+
+    basename_row <- new_row(rprime_cols$basename, attr(chunked, "basename"))
     run_proc_rows <- new_row(c("Running", "Procedure"), "Header")
 
     header <- inject_row(header, c(basename_row, run_proc_rows))
-    framed[[header_position]] <- header
+    chunked[[header_position]] <- header
   }
-  framed
+  chunked
 }
 
-#' @export
-number_frames <- function(framed) {
-  rows <- new_row(rprime_cols$frame, seq_along(framed))
-  Map(inject_row, framed, rows)
+# Add "Eprime.FrameNumber" lines to every frame
+number_chunks <- function(chunked) {
+  rows <- new_row(rprime_cols$frame, seq_along(chunked))
+  Map(inject_row, chunked, rows)
 }
 
+# Insert a line in the second-to-last position in an Eprime frame
 inject_row <- function(frame_lines, row) {
   c(frame_lines[-length(frame_lines)], row, frame_lines[length(frame_lines)])
 }
 
 
+
+
+#' Find all the texts between Eprime LogFrame boundaries. Store in a list.
 #' @export
-extract_frames <- function(eprime_log) {
+parse_chunks <- function(eprime_log) {
   # Find all the texts between LogFrame boundaries
   starts <- str_which(eprime_log, patterns$bracket_start)
   ends <- str_which(eprime_log, patterns$bracket_end)
@@ -117,7 +183,7 @@ make_ranges <- function(starts, ends, eprime_log) {
     warning_header <- paste0("Incomplete Log Frame found on line ", bad_line)
     lines <- paste0(c(warning_header, eprime_log[sample_range]), collapse = "\n")
     warning(lines)
-}
+  }
 
   # Each start should come before its corresponding end
   well_ordered_pairs <- starts < ends

@@ -13,7 +13,9 @@ rprime_cols <- list(
   level_index = "Eprime.LevelIndex",
   level = "Eprime.Level",
   basename = "Eprime.Basename",
-  frame = "Eprime.Frame"
+  frame = "Eprime.FrameNumber",
+  procedure = "Procedure",
+  running = "Running"
 )
 
 #' @export
