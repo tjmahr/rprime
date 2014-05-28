@@ -43,9 +43,11 @@ preview_prep <- function(eprime_lists) {
        unique_chunks = unique_chunks)
 }
 
+
+
 #' @export
 #' @importFrom plyr rbind.fill
-frame_lists <- function(eprime_lists) {
-  eprime_lists <- lapply(eprime_lists, as.data.frame)
-  plyr::rbind.fill(eprime_lists)
+to_data_frame <- function(frame_list) {
+  data_frames <- lapply(frame_list, as.data.frame)
+  plyr::rbind.fill(data_frames)
 }

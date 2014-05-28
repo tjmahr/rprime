@@ -22,6 +22,10 @@ merge_lists <- function(x, y) {
 print.EprimeFrame <- function(...) str(...)
 
 #' @export
+print.FrameList <- function(...) str(...)
+
+
+#' @export
 as_eprime_frame <- function(xs) {
   class(xs) <- unique(c(class(xs), "EprimeFrame", "list"))
   xs

@@ -7,12 +7,12 @@ filename <- "inst/tests/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
 chunked <- extract_chunks(eprime_log)
 
-colon_sep_values <- chunked[[3]]
-dput(colon_sep_values)
 
 
 
-make_eprime_frames(chunked)
+
+
+
 make_eprime_frames(chunked[3])
 make_eprime_frames(chunked[3], tidy = FALSE)
 make_eprime_frames(chunked[[3]])
@@ -26,42 +26,38 @@ framed <- as_frame_list(framed)
 
 
 
-chunked <- lapply(framed, listify)
-lapply(chunked, clean_up_list)
+colon_sep_values <- chunked[[3]]
+dput(colon_sep_values)
 
-
-
-
-
-super_parse <- functional::Compose(listify, clean_up_list)
-super_parsed <- lapply(chunked, super_parse)
 
 
 make_filter("Running", NA)
 key <- "Running"
 values <- NA
 
-preview_levels(keep_levels(eprime_lists, 1))
-preview_levels(drop_levels(eprime_lists, 1))
-preview_levels(drop_levels(eprime_lists, c(1,2)))
-preview_levels(filter_out(eprime_lists, "Running", NA))
-preview_levels(drop_levels(eprime_lists, 0))
 
+level_2 <- drop_levels(eprime_list, 1)
+to_data_frame(level_2)
+preview_levels(keep_levels(eprime_list, 1))
+preview_levels(drop_levels(eprime_list, 1))
+preview_levels(drop_levels(eprime_list, c(1,2)))
+preview_levels(filter_out(eprime_list, "Running", NA))
+preview_levels(filter_out(eprime_list, "Running", c(NA, "PracticeList")))
 
-
-
-parsed3 <- lapply(eprime_lists, as.data.frame)
-plyr::rbind.fill(parsed3)
+preview_levels(drop_levels(eprime_list, 0))
 
 
 
 # Crashed experiment
 filename <- "inst/tests/data/MP_Block1_001P00XA1.txt"
 eprime_log <- read_eprime(filename)
-chunked <- extract_frames(eprime_log)
-parsed <- lapply(chunked, listify)
-parsed2 <- lapply(parsed, clean_up_list)
-eprime_lists <- parsed2
+chunked <- extract_chunks(eprime_log)
+eprime_list <- make_eprime_frames(chunked)
+preview_levels(eprime_list)
+
+eprime_list <- keep_levels(eprime_list, 3)
+to_data_frame(eprime_list)
+
 
 
 

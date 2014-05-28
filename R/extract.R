@@ -2,9 +2,11 @@
 #' Extract all text chunks between Eprime LogFrame boundaries.
 #' @export
 extract_chunks <- function(eprime_log) {
+  basename <- attr(eprime_log, "basename")
   parsed <- parse_chunks(eprime_log)
   fixed_header <- update_header(parsed)
-  number_chunks(fixed_header)
+  numbered <- number_chunks(fixed_header)
+  inject_basename(numbered, basename)
 }
 
 # Add "Running", "Procedure" and "Eprime.Basename" lines to the header lines
@@ -26,6 +28,12 @@ update_header <- function(chunked) {
 # Add "Eprime.FrameNumber" lines to every frame
 number_chunks <- function(chunked) {
   rows <- new_row(rprime_cols$frame, seq_along(chunked))
+  Map(inject_row, chunked, rows)
+}
+
+# Add "Eprime.Basename" lines to every frame
+inject_basename <- function(chunked, basename) {
+  rows <- new_row(rprime_cols$basename, basename)
   Map(inject_row, chunked, rows)
 }
 
