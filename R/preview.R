@@ -48,6 +48,6 @@ preview_prep <- function(eprime_lists) {
 #' @export
 #' @importFrom plyr rbind.fill
 to_data_frame <- function(frame_list) {
-  data_frames <- lapply(frame_list, as.data.frame)
+  data_frames <- lapply(frame_list, as.data.frame, stringsAsFactors = FALSE)
   plyr::rbind.fill(data_frames)
 }
