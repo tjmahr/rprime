@@ -7,17 +7,28 @@ filename <- "inst/tests/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
 chunked <- extract_chunks(eprime_log)
 
-make_one_eprime_frame
+colon_sep_values <- chunked[[3]]
+dput(colon_sep_values)
 
-framed <- lapply(chunked, make_one_eprime_frame)
+
+
+make_eprime_frames(chunked)
+make_eprime_frames(chunked[3])
+make_eprime_frames(chunked[3], tidy = FALSE)
+make_eprime_frames(chunked[[3]])
+
+eprime_list <- make_eprime_frames(chunked)
+preview_eprime(eprime_list)
+preview_levels(eprime_list)
+
+
+framed <- as_frame_list(framed)
 
 
 
 chunked <- lapply(framed, listify)
-eprime_lists <- lapply(chunked, clean_up_list)
+lapply(chunked, clean_up_list)
 
-preview_eprime(eprime_lists)
-preview_levels(eprime_lists)
 
 
 

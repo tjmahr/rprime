@@ -5,4 +5,6 @@
 #' @import stringr
 NULL
 
-require(stringr)
+require("stringr")
+require("tools")
+require("stringi")

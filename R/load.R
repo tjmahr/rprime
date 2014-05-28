@@ -13,8 +13,6 @@
 #' @importFrom tools file_path_sans_ext
 #' @export
 read_eprime <- function(filename) {
-  require("tools")
-  require("stringi")
   basename <- file_path_sans_ext(basename(filename))
   eprime_log <- stri_read_lines(filename)
   attr(eprime_log, "basename") <- basename
