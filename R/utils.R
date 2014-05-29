@@ -65,24 +65,40 @@ pluck_apply <- function(key, xss) {
 #' @usage pick(keys)(xs)
 #' @export
 pick <- function(keys) {
-  function(xs) xs[is.element(names(xs), keys)]
+  function(xs) {
+    classes <- class(xs)
+    xs <- xs[is.element(names(xs), keys)]
+    class(xs) <- classes
+    xs
+  }
 }
 
 #' @rdname list_functions
 #' @export
 pick_apply <- function(keys, xss) {
-  lapply(xss, pick(keys))
+  classes <- class(xss)
+  xss <- lapply(xss, pick(keys))
+  class(xss) <- classes
+  xss
 }
 
 #' @rdname list_functions
 #' @usage omit(keys)(xs)
 #' @export
 omit <- function(keys) {
-  function(xs) xs[!is.element(names(xs), keys)]
+  function(xs) {
+    classes <- class(xs)
+    xs <- xs[!is.element(names(xs), keys)]
+    class(xs) <- classes
+    xs
+  }
 }
 
 #' @rdname list_functions
 #' @export
 omit_apply <- function(keys, xss) {
-  lapply(xss, pick(keys))
+  classes <- class(xss)
+  xss <- lapply(xss, omit(keys))
+  class(xss) <- classes
+  xss
 }

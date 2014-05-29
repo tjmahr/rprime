@@ -7,22 +7,27 @@ filename <- "inst/tests/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
 chunked <- extract_chunks(eprime_log)
 
-
-
-
-
-
-
 make_eprime_frames(chunked[3])
-make_eprime_frames(chunked[3], tidy = FALSE)
+make_eprime_frames(chunked[3:5], tidy = FALSE)
 make_eprime_frames(chunked[[3]])
 
-eprime_list <- make_eprime_frames(chunked)
-preview_eprime(eprime_list)
-preview_levels(eprime_list)
+
+frame_list <- make_eprime_frames(chunked)
+preview_eprime(frame_list)
+preview_levels(frame_list)
+
+level_2 <- drop_levels(frame_list, 1)
+to_data_frame(level_2)
+to_data_frame(level_2[1:3])
+to_data_frame(level_2[[1]])
 
 
-framed <- as_frame_list(framed)
+
+
+
+
+
+
 
 
 
@@ -36,8 +41,7 @@ key <- "Running"
 values <- NA
 
 
-level_2 <- drop_levels(eprime_list, 1)
-to_data_frame(level_2)
+
 preview_levels(keep_levels(eprime_list, 1))
 preview_levels(drop_levels(eprime_list, 1))
 preview_levels(drop_levels(eprime_list, c(1,2)))
