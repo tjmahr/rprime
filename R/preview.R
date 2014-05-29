@@ -71,10 +71,9 @@ preview_prep <- function(frame_list) {
 #' @seealso plyr::rbind.fill
 to_data_frame <- function(...) UseMethod("to_data_frame")
 
-#' @export
 to_data_frame.default <- function(frame_list) {
   require("plyr")
-  data_frames <- lapply(frame_list, to_data_frame)
+  data_frames <- lapply(frame_list, as.data.frame, stringsAsFactors = FALSE)
   rbind.fill(data_frames)
 }
 

@@ -42,13 +42,13 @@ values <- NA
 
 
 
-preview_levels(keep_levels(eprime_list, 1))
-preview_levels(drop_levels(eprime_list, 1))
-preview_levels(drop_levels(eprime_list, c(1,2)))
-preview_levels(filter_out(eprime_list, "Running", NA))
-preview_levels(filter_out(eprime_list, "Running", c(NA, "PracticeList")))
+preview_levels(keep_levels(frame_list, 1))
+preview_levels(drop_levels(frame_list, 1))
+preview_levels(drop_levels(frame_list, c(1,2)))
+preview_levels(filter_out(frame_list, "Running", NA))
+preview_levels(filter_out(frame_list, "Running", c(NA, "PracticeList")))
 
-preview_levels(drop_levels(eprime_list, 0))
+preview_levels(drop_levels(frame_list, 0))
 
 
 
