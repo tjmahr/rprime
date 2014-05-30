@@ -24,6 +24,6 @@ Individual Eprime Frames are converted to a data-frame using
   missing columns being filled with NA.
 }
 \seealso{
-plyr::rbind.fill
+\link{rbind.fill}
 }
 

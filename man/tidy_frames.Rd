@@ -8,4 +8,5 @@ tidy_frames(...)
 \description{
 Clean up `Running`-related attributes
 }
+\keyword{internal}
 

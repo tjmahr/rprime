@@ -68,11 +68,11 @@ preview_prep <- function(frame_list) {
 #' @return all of the EprimeFrames combined into a single data frame.
 #' @importFrom plyr rbind.fill
 #' @export
-#' @seealso plyr::rbind.fill
+#' @seealso \link{rbind.fill}
 to_data_frame <- function(...) UseMethod("to_data_frame")
 
+#' @export
 to_data_frame.default <- function(frame_list) {
-  require("plyr")
   data_frames <- lapply(frame_list, as.data.frame, stringsAsFactors = FALSE)
   rbind.fill(data_frames)
 }

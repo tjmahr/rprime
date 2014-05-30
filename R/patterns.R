@@ -29,5 +29,8 @@ is_bracket <- function(xs) str_detect(xs, patterns$bracket)
 is_header <- function(xs) any(str_detect(xs, patterns$header_start))
 is_row <- function(xs) any(str_detect(xs, patterns$row))
 
+has_header <- function(xs) any(sapply(xs, is_header))
+
 length_zero <- function(x) length(x) == 0
 length_one <- function(x) length(x) == 1
+

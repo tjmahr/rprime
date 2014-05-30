@@ -15,7 +15,11 @@
 read_eprime <- function(filename) {
   basename <- file_path_sans_ext(basename(filename))
   eprime_log <- stri_read_lines(filename)
+
+  if (!has_header(eprime_log)) {
+    warning(sprintf("%s is not an Eprime txt file. Dummy text will be used instead.", filename))
+    eprime_log <- c("*** Header Start ***", "*** Header End ***")
+  }
   attr(eprime_log, "basename") <- basename
   eprime_log
 }
-

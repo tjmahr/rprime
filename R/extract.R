@@ -89,6 +89,6 @@ make_ranges <- function(starts, ends, eprime_log) {
   starts <- starts[well_ordered_pairs]
   ends <- ends[well_ordered_pairs]
 
-  mapply(seq, starts, ends)
+  Map(seq, starts, ends)
 }
 

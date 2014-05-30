@@ -5,7 +5,82 @@
 \usage{
 make_eprime_frames(...)
 }
+\arguments{
+\item{colon_sep_values}{a character vector with lines of the form \code{"key:
+value"}}
+
+\item{chunk_list}{a list of chunks of colon-separated text}
+
+\item{tidy}{whether the Eprime Frames should be cleaned up}
+}
+\value{
+when passed a single chunk, a single EprimeFrame object is returned.
+  When passed a list of chunks, a FrameList object (a list of EprimeFrames)
+  is returned.
+}
 \description{
 Convert chunks of text into Eprime Frames
+}
+\examples{
+lines <- c("\\t*** LogFrame Start ***",
+           "\\tProcedure: FamTask",
+           "\\titem1: bear",
+           "\\titem2: chair",
+           "\\tCorrectResponse: bear",
+           "\\tImageSide: Left",
+           "\\tDuration: 885",
+           "\\tFamiliarization: 1",
+           "\\tFamInforcer: 1",
+           "\\tReinforcerImage: Bicycle1",
+           "\\tFamiliarization.Cycle: 1",
+           "\\tFamiliarization.Sample: 1",
+           "\\tRunning: Familiarization",
+           "\\tFamTarget.RESP: ",
+           "\\tCorrect: True",
+           "\\t*** LogFrame End ***")
+
+make_eprime_frames(lines)
+# List of 16
+# $ Eprime.LevelName  : chr "Familiarization_1"
+# $ Eprime.Level      : num 2
+# $ Eprime.Basename   : logi NA
+# $ Eprime.FrameNumber: logi NA
+# $ Procedure         : chr "FamTask"
+# $ Running           : chr "Familiarization"
+# $ item1             : chr "bear"
+# $ item2             : chr "chair"
+# $ CorrectResponse   : chr "bear"
+# $ ImageSide         : chr "Left"
+# $ Duration          : chr "885"
+# $ FamInforcer       : chr "1"
+# $ ReinforcerImage   : chr "Bicycle1"
+# $ Cycle             : chr "1"
+# $ Sample            : chr "1"
+# $ Correct           : chr "True"
+# - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
+
+# Not tidied: The value of "Running" still appears in "Familiarization.Cycle"
+# and "Familiarization.Sample" and none ofthe "Eprime." metadata attributes
+# have been updated.
+make_eprime_frames(lines, tidy = FALSE)
+# List of 17
+# $ Eprime.LevelName      : logi NA
+# $ Eprime.Level          : num 2
+# $ Eprime.Basename       : logi NA
+# $ Eprime.FrameNumber    : logi NA
+# $ Procedure             : chr "FamTask"
+# $ Running               : chr "Familiarization"
+# $ item1                 : chr "bear"
+# $ item2                 : chr "chair"
+# $ CorrectResponse       : chr "bear"
+# $ ImageSide             : chr "Left"
+# $ Duration              : chr "885"
+# $ Familiarization       : chr "1"
+# $ FamInforcer           : chr "1"
+# $ ReinforcerImage       : chr "Bicycle1"
+# $ Familiarization.Cycle : chr "1"
+# $ Familiarization.Sample: chr "1"
+# $ Correct               : chr "True"
+# - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
 }
 
