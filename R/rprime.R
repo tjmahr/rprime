@@ -3,8 +3,7 @@
 #' @name rprime
 #' @docType package
 #' @import stringr
+#' @import plyr
+#' @import tools
+#' @import stringi
 NULL
-
-require("stringr")
-require("tools")
-require("stringi")

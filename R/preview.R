@@ -66,10 +66,11 @@ preview_prep <- function(frame_list) {
 #' @param eprime_frame an EprimeFrame object
 #' @param frame_list a FrameList object (a list of EprimeFrames)
 #' @return all of the EprimeFrames combined into a single data frame.
-#' @importFrom plyr rbind.fill
 #' @export
 #' @seealso \link{rbind.fill}
-to_data_frame <- function(...) UseMethod("to_data_frame")
+to_data_frame <- function(...) {
+  UseMethod("to_data_frame")
+}
 
 #' @export
 to_data_frame.default <- function(frame_list) {
@@ -84,7 +85,6 @@ to_data_frame.EprimeFrame <- function(eprime_frame) {
 
 #' @export
 to_data_frame.FrameList <- function(frame_list) {
-  require("plyr")
   data_frames <- lapply(frame_list, to_data_frame)
   rbind.fill(data_frames)
 }

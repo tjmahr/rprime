@@ -241,6 +241,7 @@ tidy_frames.FrameList <- function(frame_list) {
 #'   value"}
 #' @return a named list of the values in the colon-separated lines. \code{"key:
 #'   value"} yields \code{list(key = "value")}
+#' @export
 #' @examples
 #' lines <- c("\t*** LogFrame Start ***",
 #'            "\tProcedure: PracticeProc",

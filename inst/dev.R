@@ -13,20 +13,25 @@ make_eprime_frames(chunked[[3]])
 
 
 frame_list <- make_eprime_frames(chunked)
-preview_eprime(frame_list)
 preview_levels(frame_list)
+preview_eprime(frame_list)
+
 
 level_2 <- drop_levels(frame_list, 1)
-to_data_frame(level_2)
+level_2 <- filter_in(frame_list, "Running", "TrialList")
+responses <- pick_apply(c("Eprime.Basename", "Sample", "Stimulus1", "Stimulus2", "Stimulus3", "CorrectResponse", "Response"), level_2)
+
+to_data_frame(responses)
 to_data_frame(level_2[1:3])
 to_data_frame(level_2[[1]])
 
 
 
-preview_levels(keep_levels(frame_list, 1))
+preview_levels(keep_levels(frame_list, 2))
 preview_levels(drop_levels(frame_list, 1))
 preview_levels(drop_levels(frame_list, c(1,2)))
 preview_levels(filter_out(frame_list, "Running", NA))
+preview_levels(filter_in(frame_list, "Running", "TrialList"))
 preview_levels(filter_out(frame_list, "Running", c(NA, "Header", "PracticeList")))
 preview_levels(drop_levels(frame_list, 0))
 

@@ -1,0 +1,16 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Using rprime}
+-->
+
+
+```{r, echo = FALSE, message = FALSE}
+library(rprime)
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+
+```
+
