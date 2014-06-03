@@ -24,5 +24,6 @@ read_eprime <- function(filename) {
     eprime_log <- c("*** Header Start ***", "*** Header End ***")
   }
   attr(eprime_log, "basename") <- basename
+  class(eprime_log) <- c("EprimeLines", "character")
   eprime_log
 }

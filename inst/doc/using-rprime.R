@@ -8,6 +8,55 @@ knitr::opts_chunk$set(
 
 
 ## ------------------------------------------------------------------------
+# Read file
+experiment_data <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
+
+# Extract and parse the data
+experiment_data <- extract_chunks(experiment_data)
+experiment_data <- make_eprime_frames(experiment_data)
+
+# Explore the data
+preview_eprime(experiment_data)
+
+# We can filter by levels
+just_level_2 <- keep_levels(experiment_data, 2)
+preview_levels(just_level_2)
+
+not_level_1 <- drop_levels(experiment_data, 1)
+preview_levels(not_level_1)
+
+# Or filter by attributes
+no_header <- filter_out(experiment_data, "Running", "Header")
+preview_levels(no_header)
+
+not_practice <- filter_in(experiment_data, "Running", "TrialLists")
+sue_trials <- filter_in(experiment_data, "Module", "SUE")
+
+preview_frames(not_practice)
+
+# Export to dataframe
+columns_to_keep <- c("Eprime.Basename", "Module", "Sample", "Correct", "Response")
+sue_trials_df <- to_data_frame(sue_trials)[columns_to_keep]
+head(sue_trials_df)
+
+## ------------------------------------------------------------------------
+blending_file <- read_eprime("data/Blending_001L00XS4.txt")
+head(blending_file)
+
+## ------------------------------------------------------------------------
+coartic_file <- "data/Coartic_Block1_001P00XS1.txt" 
+# Weirdness when trying to use readLines
+suppressWarnings(head(readLines(coartic_file)))
+head(readLines(coartic_file, encoding = "UCS-2LE", skipNul = TRUE))
+
+## ------------------------------------------------------------------------
+# Works
+head(read_eprime(coartic_file))
+
+## ------------------------------------------------------------------------
+head(read_eprime("data/not_an_eprime_file.txt"))
+
+## ------------------------------------------------------------------------
 library(plyr)
 reduce_sails <- function(sails_path) {
   sails_lines <- read_eprime(sails_path)

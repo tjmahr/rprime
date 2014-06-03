@@ -4,7 +4,6 @@
 %\VignetteIndexEntry{Using rprime}
 -->
 
-
 ```{r, echo = FALSE, message = FALSE}
 library(rprime)
 
@@ -15,8 +14,129 @@ knitr::opts_chunk$set(
 
 ```
 
+## Quick Start Demonstration
 
-## Example: Working on multiple files
+
+```{r}
+# Read file
+experiment_data <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
+
+# Extract and parse the data
+experiment_data <- extract_chunks(experiment_data)
+experiment_data <- make_eprime_frames(experiment_data)
+
+# Explore the data
+preview_eprime(experiment_data)
+
+# We can filter by levels
+just_level_2 <- keep_levels(experiment_data, 2)
+preview_levels(just_level_2)
+
+not_level_1 <- drop_levels(experiment_data, 1)
+preview_levels(not_level_1)
+
+# Or filter by attributes
+no_header <- filter_out(experiment_data, "Running", "Header")
+preview_levels(no_header)
+
+not_practice <- filter_in(experiment_data, "Running", "TrialLists")
+sue_trials <- filter_in(experiment_data, "Module", "SUE")
+
+preview_frames(not_practice)
+
+# Export to dataframe
+columns_to_keep <- c("Eprime.Basename", "Module", "Sample", "Correct", "Response")
+sue_trials_df <- to_data_frame(sue_trials)[columns_to_keep]
+head(sue_trials_df)
+```
+
+
+## Reading in files
+
+Use `read_eprime` on an Eprime text file to get the lines of text from that file:
+
+```{r}
+blending_file <- read_eprime("data/Blending_001L00XS4.txt")
+head(blending_file)
+```
+
+### File encodings
+
+The built-in strategy for reading in text files, `readLines`, runs into encoding problems with some Eprime text files. In the following example, this function raises warnings or receives garbage in the returned vector.
+
+```{r}
+coartic_file <- "data/Coartic_Block1_001P00XS1.txt" 
+# Weirdness when trying to use readLines
+suppressWarnings(head(readLines(coartic_file)))
+head(readLines(coartic_file, encoding = "UCS-2LE", skipNul = TRUE))
+```
+
+`read_eprime` delegates file-loading to the `stringi` package's `stri_read_lines()` function which guesses the encoding of the file as it reads in the lines.
+
+```{r}
+# Works
+head(read_eprime(coartic_file))
+```
+
+### Non-Eprime files
+
+In order for a text file to be parsed as an Eprime file, it must contain a header frame, which looks like this:
+
+```
+*** Header Start ***
+[...any number of lines...]
+*** Header End ***
+```
+
+If a file doesn't have a header frame, its contents are ignored and replaced with a dummy header. 
+
+```{r}
+head(read_eprime("data/not_an_eprime_file.txt"))
+```
+
+
+
+
+## Parsing the experiment log
+
+### Log-Frames
+
+The data in an Eprime file are contained inside log-frames. Here's an example:
+
+```
+  *** LogFrame Start ***
+	Procedure: FamTask
+	item1: bear
+	item2: chair
+	CorrectResponse: bear
+	ImageSide: Left
+	Duration: 885
+	Familiarization: 1
+	FamInforcer: 1
+	ReinforcerImage: Bicycle1
+	Familiarization.Cycle: 1
+	Familiarization.Sample: 1
+	Running: Familiarization
+	FamTarget.RESP: 
+	Correct: True
+	*** LogFrame End ***
+```
+
+Each log-frame is sandwhich by the brackets `*** LogFrame Start ***` and `*** LogFrame End ***`. The tabs at the beginning of lines indicate nesting. If trials are nested inside blocks, then the information about the trials will be indented one-tab with respect to the information about the block.
+
+### Chunking and Framing
+
+Once the lines from a text
+
+
+## Exploring
+
+
+## Filtering and Simplifying
+
+## Converting to a data-frame
+
+## Working on multiple files
 
 In this example, we have a folder of txt files from an experiment, and we want do some work on each file and combine the results together into a single file. 
 
