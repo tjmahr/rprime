@@ -1,10 +1,4 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{Using rprime}
--->
-
-
-```{r, echo = FALSE, message = FALSE}
+## ----, echo = FALSE, message = FALSE-------------------------------------
 library(rprime)
 
 knitr::opts_chunk$set(
@@ -12,16 +6,8 @@ knitr::opts_chunk$set(
   error = FALSE,
   tidy = FALSE)
 
-```
 
-
-## Example: Working on multiple files
-
-In this example, we have a folder of txt files from an experiment, and we want do some work on each file and combine the results together into a single file. 
-
-My strategy in this scenario is to figure out what I need to do for a single file and then wrap those steps in a function that takes a filepath to a txt file and returns a data-frame. After some exploration and interactive programming, I come up with the following function.
-
-```{r}
+## ------------------------------------------------------------------------
 library(plyr)
 reduce_sails <- function(sails_path) {
   sails_lines <- read_eprime(sails_path)
@@ -49,25 +35,16 @@ reduce_sails <- function(sails_path) {
   # write.csv(sails, csv, row.names = FALSE)
   sails
 }
-```
 
-Here's a preview of what the function returns when given a filepath.
-
-```{r}
+## ------------------------------------------------------------------------
 head(reduce_sails("data/SAILS/SAILS_001X00XS1.txt"))
-```
 
-Now that the function works on one file, we can use `ldply` to apply the function to several files, returning results in a single dataframe.
-
-```{r}
+## ------------------------------------------------------------------------
 sails_paths <- list.files("data/SAILS/", pattern = ".txt", full.names = TRUE)
 sails_paths
 ensemble <- ldply(sails_paths, reduce_sails)
-```
 
-Finally, with all of the subjects' data contained in a single data-frame, we can use `ddply` and compute summary scores within different levels within each subject. 
-
-```{r}
+## ------------------------------------------------------------------------
 # Score modules within subjects
 modules <- ddply(ensemble, .(Eprime.Basename, Running, Module), summarize, 
                  Score = sum(CorrectResponse),
@@ -85,4 +62,4 @@ overall <- ddply(ensemble, .(Eprime.Basename, Running), summarize,
                  Score = sum(CorrectResponse),
                  PropCorrect = Score / length(CorrectResponse))
 overall
-```
+
