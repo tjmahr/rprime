@@ -3,7 +3,7 @@
 \alias{tidy_frames}
 \title{Clean up `Running`-related attributes}
 \usage{
-tidy_frames(...)
+tidy_frames(x)
 }
 \description{
 Clean up `Running`-related attributes

@@ -3,20 +3,18 @@
 \alias{make_eprime_frames}
 \title{Convert chunks of text into Eprime Frames}
 \usage{
-make_eprime_frames(...)
+make_eprime_frames(x, tidy = TRUE)
 }
 \arguments{
-\item{colon_sep_values}{a character vector with lines of the form \code{"key:
-value"}}
-
-\item{chunk_list}{a list of chunks of colon-separated text}
+\item{x}{a character vector with lines of the form \code{"key: value"}, or a
+list of vectors of colon-separated text}
 
 \item{tidy}{whether the Eprime Frames should be cleaned up}
 }
 \value{
-when passed a single chunk, a single EprimeFrame object is returned.
-  When passed a list of chunks, a FrameList object (a list of EprimeFrames)
-  is returned.
+when passed a vector of \code{"key: value"} lines, a single
+  EprimeFrame object is returned. When passed a list of such vectors, a
+  FrameList object (a list of EprimeFrames) is returned.
 }
 \description{
 Convert chunks of text into Eprime Frames

@@ -13,13 +13,13 @@ make_filter <- function(key, values) {
 #' @export
 filter_in <- function(eprime_lists, key, values) {
   has_key_value <- make_filter(key, values)
-  as_frame_list(eprime_lists[has_key_value(eprime_lists)])
+  as.FrameList(eprime_lists[has_key_value(eprime_lists)])
 }
 
 #' @export
 filter_out <- function(eprime_lists, key, values) {
   lacks_key_value <- Negate(make_filter(key, values))
-  as_frame_list(eprime_lists[lacks_key_value(eprime_lists)])
+  as.FrameList(eprime_lists[lacks_key_value(eprime_lists)])
 }
 
 #' @export

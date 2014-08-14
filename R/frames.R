@@ -1,5 +1,5 @@
 
-#' Make an EprimeFrame object
+#' Create an EprimeFrame object
 #'
 #' Converts a list into an EprimeFrame object, which is just a list with special
 #' metadata values.
@@ -10,7 +10,8 @@
 #' @param ... additional \code{key = value} pairs to merge into
 #'   \code{key_value_list}
 #' @return a list with the class EprimeFrame and with special \code{Eprime.}
-#'   metadata, \code{Running} and \code{Procedure} values, set to NA by default.
+#'   metadata, \code{Running} and \code{Procedure} values, all set to NA by
+#'   default.
 #' @export
 #' @examples
 #' EprimeFrame(list())
@@ -68,7 +69,7 @@
 #' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
 EprimeFrame <- function(key_value_list = list(), ...) {
   dots <- merge_lists(key_value_list, list(...))
-  as_eprime_frame(dots)
+  as.EprimeFrame(dots)
 }
 
 merge_lists <- function(x, y) {
@@ -84,7 +85,8 @@ print.FrameList <- function(...) str(...)
 
 
 #' @export
-as_eprime_frame <- function(xs) {
+as.EprimeFrame <- function(xs) {
+  assert_that(inherits(xs, "list"))
   eprime_metadata <- unlist(rprime_cols, use.names = FALSE)
   defaults <- structure(as.list(rep(NA, length(eprime_metadata))),
                         names = eprime_metadata)
@@ -93,23 +95,35 @@ as_eprime_frame <- function(xs) {
 }
 
 #' @export
-as_frame_list <- function(xss) {
+as.FrameList <- function(xss) {
+  assert_that(inherits(xss, "list"), is_list_of_lists(xss))
   class(xss) <- unique(c(class(xss), "FrameList", "list"))
   xss
 }
 
+is_list_of_lists <- function(xss) {
+  all(sapply(xss, function(x) inherits(x, "list")))
+}
 
-
+#' Extract chunks of text and convert into Eprime Frames
+#'
+#' This is shortcut for \code{make_eprime_frames(extract_chunks(eprime_log))}
+#' @param eprime_log a character vector containing the lines of text from Eprime
+#'   txt file
+#' @return a FrameList object (a list of EprimeFrame objects)
+#' @export
+extract_frames <- function(eprime_log) {
+  make_eprime_frames(extract_chunks(eprime_log))
+}
 
 #' Convert chunks of text into Eprime Frames
 #'
-#' @param colon_sep_values a character vector with lines of the form \code{"key:
-#'   value"}
-#' @param chunk_list a list of chunks of colon-separated text
+#' @param x a character vector with lines of the form \code{"key: value"}, or a
+#'   list of vectors of colon-separated text
 #' @param tidy whether the Eprime Frames should be cleaned up
-#' @return when passed a single chunk, a single EprimeFrame object is returned.
-#'   When passed a list of chunks, a FrameList object (a list of EprimeFrames)
-#'   is returned.
+#' @return when passed a vector of \code{"key: value"} lines, a single
+#'   EprimeFrame object is returned. When passed a list of such vectors, a
+#'   FrameList object (a list of EprimeFrames) is returned.
 #' @export
 #' @examples
 #' lines <- c("\t*** LogFrame Start ***",
@@ -172,20 +186,25 @@ as_frame_list <- function(xss) {
 #' # $ Familiarization.Sample: chr "1"
 #' # $ Correct               : chr "True"
 #' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-make_eprime_frames <- function(...) UseMethod("make_eprime_frames")
+make_eprime_frames <- function(x, tidy = TRUE) {
+  UseMethod("make_eprime_frames")
+}
 
 #' @export
-make_eprime_frames.character <- function(colon_sep_values, tidy = TRUE) {
+make_eprime_frames.list <- function(x, tidy = TRUE) {
+  chunk_list <- x
+  as.FrameList(lapply(chunk_list, make_eprime_frames, tidy))
+}
+
+#' @export
+make_eprime_frames.character <- function(x, tidy = TRUE) {
+  colon_sep_values <- x
   frame_list <- merge_lists(listify(colon_sep_values),
                             count_tabs(colon_sep_values))
   frame <- EprimeFrame(frame_list)
   if (tidy) tidy_frames(frame) else frame
 }
 
-#' @export
-make_eprime_frames.list <- function(chunk_list, tidy = TRUE) {
-  as_frame_list(lapply(chunk_list, make_eprime_frames, tidy))
-}
 
 
 
@@ -193,10 +212,11 @@ make_eprime_frames.list <- function(chunk_list, tidy = TRUE) {
 
 #' Clean up `Running`-related attributes
 #' @keywords internal
-tidy_frames <- function(...) UseMethod("tidy_frames")
+tidy_frames <- function(x) UseMethod("tidy_frames")
 
 #' @keywords internal
-tidy_frames.EprimeFrame <- function(eprime_frame) {
+tidy_frames.EprimeFrame <- function(x) {
+  eprime_frame <- x
   level <- eprime_frame[[rprime_cols$level]]
   level_label <- eprime_frame[["Running"]]
   if (!is.na(level_label)) {
@@ -217,12 +237,13 @@ tidy_frames.EprimeFrame <- function(eprime_frame) {
                                        paste0(level_label, "\\."), "")
     eprime_frame <- merge_lists(eprime_frame, new_list)
   }
-  as_eprime_frame(eprime_frame)
+  as.EprimeFrame(eprime_frame)
 }
 
 #' @keywords internal
-tidy_frames.FrameList <- function(frame_list) {
-  as_frame_list(lapply(frame_list, tidy_frames))
+tidy_frames.FrameList <- function(x) {
+  frame_list <- x
+  as.FrameList(lapply(frame_list, tidy_frames))
 }
 
 

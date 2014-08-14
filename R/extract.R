@@ -1,13 +1,35 @@
 
-#' Extract all text chunks between Eprime LogFrame boundaries.
+#' Extract chunks of text between Eprime LogFrame boundaries.
+#'
+#' Almost all of information in an Eprime file comes in chunks of text bracketed
+#' by the lines \code{*** LogFrame Start ***} and \code{*** LogFrame End ***}.
+#' The exception is the header information which is bracketed by \code{***
+#' Header Start ***} and \code{*** Header End ***}.
+#'
+#' \code{extract_chunks} extracts the bracketed text, storing each chunk of text
+#' in a list. By default, the lists also include additional lines of text as
+#' metadata: \code{Eprime.FrameNumber} and \code{Eprime.Basename} (the name of
+#' the source file). The header frame also gets dummy lines: \code{Procedure:
+#' Header} and \code{Running: Header}.
+#'
+#' @param eprime_log a character vector containing the lines of text from Eprime
+#'   txt file
+#' @param metadata whether to include the additional lines of metadata. TRUE by
+#'   default.
+#' @return a list of character vectors, each vector containing the lines of text
+#'   that fall between Eprime logframe boundaries.
 #' @export
-extract_chunks <- function(eprime_log) {
+extract_chunks <- function(eprime_log, metadata = TRUE) {
   parsed <- parse_chunks(eprime_log)
-  fixed_header <- update_header(parsed)
-  numbered <- number_chunks(fixed_header)
 
-  basename <- attr(eprime_log, "basename")
-  inject_basename(numbered, basename)
+  if (metadata) {
+    basename <- ifelse(!has_attr(eprime_log, "basename"), NA,
+                       attr(eprime_log, "basename"))
+    fixed_header <- update_header(parsed)
+    numbered <- insert_frame_numbers(fixed_header)
+    parsed <- insert_basename(numbered, basename)
+  }
+  parsed
 }
 
 #' Add "Running", "Procedure" lines to the header lines
@@ -16,28 +38,28 @@ update_header <- function(chunked) {
   if (has_header(chunked)) {
     header_position <- Position(is_header, chunked)
     header <- chunked[[header_position]]
-    row_run <- new_row("Running", "Header")
-    row_prc <- new_row("Procedure", "Header")
-    header <- inject_row(header, c(row_run, row_prc))
+    row_run <- new_line("Running", "Header")
+    row_prc <- new_line("Procedure", "Header")
+    header <- insert_line(header, c(row_run, row_prc))
     chunked[[header_position]] <- header
   }
   chunked
 }
 
 # Add "Eprime.FrameNumber" lines to every frame
-number_chunks <- function(chunked) {
-  rows <- new_row(rprime_cols$frame, seq_along(chunked))
-  Map(inject_row, chunked, rows)
+insert_frame_numbers <- function(chunked) {
+  rows <- new_line(rprime_cols$frame, seq_along(chunked))
+  Map(insert_line, chunked, rows)
 }
 
 # Add "Eprime.Basename" lines to every frame
-inject_basename <- function(chunked, basename) {
-  rows <- new_row(rprime_cols$basename, basename)
-  Map(inject_row, chunked, rows)
+insert_basename <- function(chunked, basename) {
+  rows <- new_line(rprime_cols$basename, basename)
+  Map(insert_line, chunked, rows)
 }
 
 # Insert a line in the second-to-last position in an Eprime frame
-inject_row <- function(xs, ys) {
+insert_line <- function(xs, ys) {
   c(but_last(xs), ys, last(xs))
 }
 but_last <- function(...) head(..., n = -1)
@@ -46,7 +68,6 @@ last <- function(...) tail(..., n = 1)
 
 
 #' Find all the texts between Eprime LogFrame boundaries. Store in a list.
-#' @export
 parse_chunks <- function(eprime_log) {
   # Find all the texts between LogFrame boundaries
   starts <- str_which(eprime_log, patterns$bracket_start)
@@ -55,7 +76,6 @@ parse_chunks <- function(eprime_log) {
 
   pull_lines <- function(lines) eprime_log[lines]
   frames <- lapply(ranges, pull_lines)
-  attr(frames, "basename") <- attr(eprime_log, "basename")
   frames
 }
 

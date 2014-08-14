@@ -46,7 +46,7 @@ preview_prep <- function(frame_list) {
 
   full_table <- to_data_frame(main_cols)
   unique_rows <- unique(full_table)
-  unique_frames <- as_frame_list(frame_list[as.numeric(row.names(unique_rows))])
+  unique_frames <- as.FrameList(frame_list[as.numeric(row.names(unique_rows))])
 
   list(unique_rows = unique_rows,
        unique_frames = unique_frames)

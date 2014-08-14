@@ -6,4 +6,9 @@
 #' @import plyr
 #' @import tools
 #' @import stringi
+#' @import assertthat
 NULL
+
+require("stringr")
+require("stringi")
+require("assertthat")
