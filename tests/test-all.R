@@ -1,4 +1,2 @@
 library(testthat)
-library(rprime)
-
-test_package("rprime")
+test_check("rprime")

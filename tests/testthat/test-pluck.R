@@ -5,7 +5,7 @@ stooges <- list(stooge1, stooge2, stooge3)
 
 
 
-context("pluck")
+context("pluck, pick and omit")
 
 test_that("pluck only the first matching name", {
   expect_identical(pluck("name")(stooge1), "moe")
@@ -22,9 +22,6 @@ test_that("pluck_apply plucks unnamed values from each list", {
   expect_equal(length(pluck_apply("nmae_misspelled", stooges)), 3)
 })
 
-
-context("pick")
-
 test_that("pick keeps names", {
   expect_named(pick("age")(stooge1))
   expect_named(pick_apply("name", stooges)[[1]])
@@ -38,8 +35,6 @@ test_that("pick extracts all matching name", {
   expect_equal(length(pick("age")(stooge3)), 2)
 })
 
-
-context("omit")
 
 test_that("omit keeps names", {
   expect_named(omit("age")(stooge1))

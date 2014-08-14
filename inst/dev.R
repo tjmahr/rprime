@@ -2,13 +2,15 @@ require("stringr")
 require("stringi")
 require("tools")
 require("reshape2")
+require("testthat")
 
-filename <- "inst/tests/data/Blending_001L00XS4.txt"
+filename <- "tests/testthat/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
 chunked <- extract_chunks(eprime_log)
 
 make_eprime_frames(chunked[3])
 make_eprime_frames(chunked[3:5], tidy = FALSE)
+make_eprime_frames(chunked[[4]], tidy = FALSE)
 make_eprime_frames(chunked[[3]])
 
 
@@ -38,7 +40,7 @@ preview_levels(drop_levels(frame_list, 0))
 
 
 # Crashed experiment
-filename <- "inst/tests/data/MP_Block1_001P00XA1.txt"
+filename <- "tests/testthat/data/MP_Block1_001P00XA1.txt"
 eprime_log <- read_eprime(filename)
 chunked <- extract_chunks(eprime_log)
 eprime_list <- make_eprime_frames(chunked)
