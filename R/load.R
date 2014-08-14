@@ -11,7 +11,6 @@
 #'   If the file is not an Eprime txt--that is, if it is missing the lines
 #'   \code{*** Header Start ***} and \code{*** Header End ***}--a warning is
 #'   raised and the lines of text are replaced by a dummy header.
-#'
 #' @export
 read_eprime <- function(filename) {
   require("stringi")
@@ -20,7 +19,7 @@ read_eprime <- function(filename) {
   eprime_log <- stri_read_lines(filename)
 
   if (!has_header(eprime_log)) {
-    warning(sprintf("%s is not an Eprime txt file. Dummy text will be used instead.", filename))
+    warning(filename, " is not an Eprime txt file. Dummy text will be used instead.")
     eprime_log <- c("*** Header Start ***", "*** Header End ***")
   }
   attr(eprime_log, "basename") <- basename
