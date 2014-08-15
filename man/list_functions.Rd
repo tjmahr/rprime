@@ -13,11 +13,11 @@ pluck(key)(xs)
 
 pluck_apply(key, xss)
 
-pick(keys)(xs)
+pick(keys)
 
 pick_apply(keys, xss)
 
-omit(keys)(xs)
+omit(keys)
 
 omit_apply(keys, xss)
 }
@@ -25,8 +25,6 @@ omit_apply(keys, xss)
 \item{key}{the name of the value to pluck from a list}
 
 \item{keys}{a character vector of names used to simplify the list}
-
-\item{xs}{a list}
 
 \item{xss}{a list of lists}
 }

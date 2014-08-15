@@ -13,6 +13,6 @@ txt file}
 a FrameList object (a list of EprimeFrame objects)
 }
 \description{
-This is shortcut for \code{make_eprime_frames(extract_chunks(eprime_log))}
+This is a shortcut for \code{make_eprime_frames(extract_chunks(eprime_log))}.
 }
 

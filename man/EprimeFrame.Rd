@@ -13,7 +13,8 @@ EprimeFrame(key_value_list = list(), ...)
 }
 \value{
 a list with the class EprimeFrame and with special \code{Eprime.}
-  metadata, \code{Running} and \code{Procedure} values, set to NA by default.
+  metadata, \code{Running} and \code{Procedure} values, all set to NA by
+  default.
 }
 \description{
 Converts a list into an EprimeFrame object, which is just a list with special

@@ -72,11 +72,6 @@ EprimeFrame <- function(key_value_list = list(), ...) {
   as.EprimeFrame(dots)
 }
 
-merge_lists <- function(x, y) {
-  x[names(y)] <- y
-  x
-}
-
 #' @export
 print.EprimeFrame <- function(...) str(...)
 
@@ -101,13 +96,11 @@ as.FrameList <- function(xss) {
   xss
 }
 
-is_list_of_lists <- function(xss) {
-  all(sapply(xss, function(x) inherits(x, "list")))
-}
+
 
 #' Extract chunks of text and convert into Eprime Frames
 #'
-#' This is shortcut for \code{make_eprime_frames(extract_chunks(eprime_log))}
+#' This is a shortcut for \code{make_eprime_frames(extract_chunks(eprime_log))}.
 #' @param eprime_log a character vector containing the lines of text from Eprime
 #'   txt file
 #' @return a FrameList object (a list of EprimeFrame objects)
@@ -116,11 +109,21 @@ extract_frames <- function(eprime_log) {
   make_eprime_frames(extract_chunks(eprime_log))
 }
 
-#' Convert chunks of text into Eprime Frames
+#' Convert log-frames into EprimeFrames
+#'
+#' In other words, convert character vectors of implicit key-value pairs,
+#' \code{c("key: value", ...)}, into lists of explicit key-value pairs,
+#' \code{list(key = value, ...)}.
+#'
+#' @details During the conversion, if \code{Running: x}, then the
+#'   \code{x.Sample} and \code{x.Cycle} lines are simplified into \code{Sample}
+#'   and \code{Cycle} lines. The \code{x: value} line is recoded as
+#'   \code{Eprime.LevelName: x_value}. The purpose of this tidying is to force
+#'   the same set of key names (eventually, column names) onto frames with
+#'   different values for "Running".
 #'
 #' @param x a character vector with lines of the form \code{"key: value"}, or a
 #'   list of vectors of colon-separated text
-#' @param tidy whether the Eprime Frames should be cleaned up
 #' @return when passed a vector of \code{"key: value"} lines, a single
 #'   EprimeFrame object is returned. When passed a list of such vectors, a
 #'   FrameList object (a list of EprimeFrames) is returned.
@@ -162,47 +165,23 @@ extract_frames <- function(eprime_log) {
 #' # $ Sample            : chr "1"
 #' # $ Correct           : chr "True"
 #' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-#'
-#' # Not tidied: The value of "Running" still appears in "Familiarization.Cycle"
-#' # and "Familiarization.Sample" and none ofthe "Eprime." metadata attributes
-#' # have been updated.
-#' make_eprime_frames(lines, tidy = FALSE)
-#' # List of 17
-#' # $ Eprime.LevelName      : logi NA
-#' # $ Eprime.Level          : num 2
-#' # $ Eprime.Basename       : logi NA
-#' # $ Eprime.FrameNumber    : logi NA
-#' # $ Procedure             : chr "FamTask"
-#' # $ Running               : chr "Familiarization"
-#' # $ item1                 : chr "bear"
-#' # $ item2                 : chr "chair"
-#' # $ CorrectResponse       : chr "bear"
-#' # $ ImageSide             : chr "Left"
-#' # $ Duration              : chr "885"
-#' # $ Familiarization       : chr "1"
-#' # $ FamInforcer           : chr "1"
-#' # $ ReinforcerImage       : chr "Bicycle1"
-#' # $ Familiarization.Cycle : chr "1"
-#' # $ Familiarization.Sample: chr "1"
-#' # $ Correct               : chr "True"
-#' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
 make_eprime_frames <- function(x, tidy = TRUE) {
   UseMethod("make_eprime_frames")
 }
 
 #' @export
-make_eprime_frames.list <- function(x, tidy = TRUE) {
+make_eprime_frames.list <- function(x) {
   chunk_list <- x
-  as.FrameList(lapply(chunk_list, make_eprime_frames, tidy))
+  as.FrameList(lapply(chunk_list, make_eprime_frames))
 }
 
 #' @export
-make_eprime_frames.character <- function(x, tidy = TRUE) {
+make_eprime_frames.character <- function(x) {
   colon_sep_values <- x
   frame_list <- merge_lists(listify(colon_sep_values),
                             count_tabs(colon_sep_values))
   frame <- EprimeFrame(frame_list)
-  if (tidy) tidy_frames(frame) else frame
+  tidy_frames(frame)
 }
 
 
@@ -210,11 +189,9 @@ make_eprime_frames.character <- function(x, tidy = TRUE) {
 
 
 
-#' Clean up `Running`-related attributes
-#' @keywords internal
+# Clean up `Running`-related attributes
 tidy_frames <- function(x) UseMethod("tidy_frames")
 
-#' @keywords internal
 tidy_frames.EprimeFrame <- function(x) {
   eprime_frame <- x
   level <- eprime_frame[[rprime_cols$level]]
@@ -226,6 +203,7 @@ tidy_frames.EprimeFrame <- function(x) {
     #   [Key]: [Value]
     #   [Key].Cycle: [Cycle]
     #   [Key].Sample: [Sample]
+
     # Store [Key]_[Value] as "Eprime.LeveName"
     level_index <- eprime_frame[[level_label]]
     new_list <- list()

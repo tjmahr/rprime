@@ -1,27 +1,18 @@
-# pluck
-# _.pluck(list, propertyName)
-# A convenient version of what is perhaps the most common use-case for map: extracting a list of property values.
-# var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
-# _.pluck(stooges, 'name');
-# => ["moe", "larry", "curly"]
 
-# pick
-# _.pick(object, *keys)
-# Return a copy of the object, filtered to only have values for the whitelisted keys (or array of valid keys).
-#
-# _.pick({name: 'moe', age: 50, userid: 'moe1'}, 'name', 'age');
-# => {name: 'moe', age: 50}
+but_last <- function(...) head(..., n = -1)
+last <- function(...) tail(..., n = 1)
 
-# omit
-# _.omit(object, *keys)
-# Return a copy of the object, filtered to omit the blacklisted keys (or array of keys).
-#
-# _.omit({name: 'moe', age: 50, userid: 'moe1'}, 'userid');
-# => {name: 'moe', age: 50}
+length_zero <- function(x) length(x) == 0
+length_one <- function(x) length(x) == 1
 
+is_list_of_lists <- function(xss) {
+  all(sapply(xss, function(x) inherits(x, "list")))
+}
 
-
-
+merge_lists <- function(x, y) {
+  x[names(y)] <- y
+  x
+}
 
 #' Higher-order functions for dealing with lists
 #'
@@ -30,7 +21,6 @@
 #' @name list_functions
 #' @param key the name of the value to pluck from a list
 #' @param keys a character vector of names used to simplify the list
-#' @param xs a list
 #' @param xss a list of lists
 #' @return \code{pluck} returns an unnamed value and \code{pluck_apply} returns
 #'   a list of unnamed values. \code{pick} and \code{omit} return a simplified
@@ -62,7 +52,6 @@ pluck_apply <- function(key, xss) {
 
 
 #' @rdname list_functions
-#' @usage pick(keys)(xs)
 #' @export
 pick <- function(keys) {
   function(xs) {
@@ -83,7 +72,6 @@ pick_apply <- function(keys, xss) {
 }
 
 #' @rdname list_functions
-#' @usage omit(keys)(xs)
 #' @export
 omit <- function(keys) {
   function(xs) {
@@ -102,3 +90,6 @@ omit_apply <- function(keys, xss) {
   class(xss) <- classes
   xss
 }
+
+
+
