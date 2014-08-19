@@ -7,7 +7,7 @@ patterns <- list(
   header_end    = "^\\*{3} Header End \\*{3}$",
   footer_start  = "^\\*{3} LogFrame Start \\*{3}$",
   footer_end    = "^\\*{3} LogFrame End \\*{3}$",
-  row           = ".*: .*"
+  row           = ".+: .*"
 )
 
 rprime_cols <- list(
