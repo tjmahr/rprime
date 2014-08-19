@@ -1,81 +1,30 @@
 
 #' Create an EprimeFrame object
 #'
-#' This constructor function converts a list object into an \code{EprimeFrame}
-#' object, which is just a list with some special metadata values. Just use
-#' \link{make_eprime_frames} instead.
+#' This constructor function converts a character vector object into an
+#' \code{EprimeFrame} object, which is just a list with some special metadata
+#' values.
 #'
-#' @param key_value_list a list of named elements
-#' @param ... additional arguments are treated as \code{key = value} pairs.
-#'   These arguments are merged into \code{key_value_list}.
+#' @param keys_values
 #' @return a list with the class \code{EprimeFrame} and with special
 #'   \code{Eprime.} metadata, \code{Running} and \code{Procedure} values, all
 #'   set to NA by default.
 #' @export
-#' @examples
-#' key_value_list <- list(
-#'   Procedure = "FamTask",
-#'   item1 = "bear",
-#'   item2 = "chair",
-#'   CorrectResponse = "bear",
-#'   Familiarization.Cycle = "1",
-#'   Familiarization.Sample = "1",
-#'   Running = "Familiarization",
-#'   Correct = "True")
-#'
-#' EprimeFrame(key_value_list)
-#' # List of 12
-#' # $ Eprime.LevelName      : logi NA
-#' # $ Eprime.Level          : logi NA
-#' # $ Eprime.Basename       : logi NA
-#' # $ Eprime.FrameNumber    : logi NA
-#' # $ Procedure             : chr "FamTask"
-#' # $ Running               : chr "Familiarization"
-#' # $ item1                 : chr "bear"
-#' # $ item2                 : chr "chair"
-#' # $ CorrectResponse       : chr "bear"
-#' # $ Familiarization.Cycle : chr "1"
-#' # $ Familiarization.Sample: chr "1"
-#' # $ Correct               : chr "True"
-#' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-#'
-#' # Additional parameters are treated as a list and
-#' # overwrite values in the list
-#' EprimeFrame(key_value_list, Procedure = "Demo", Running = "Practice")
-#' # List of 12
-#' # $ Eprime.LevelName      : logi NA
-#' # $ Eprime.Level          : logi NA
-#' # $ Eprime.Basename       : logi NA
-#' # $ Eprime.FrameNumber    : logi NA
-#' # $ Procedure             : chr "Demo"
-#' # $ Running               : chr "Practice"
-#' # $ item1                 : chr "bear"
-#' # $ item2                 : chr "chair"
-#' # $ CorrectResponse       : chr "bear"
-#' # $ Familiarization.Cycle : chr "1"
-#' # $ Familiarization.Sample: chr "1"
-#' # $ Correct               : chr "True"
-#' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-EprimeFrame <- function(key_value_list = list(), ...) {
-  dots <- merge_lists(key_value_list, list(...))
-  as.EprimeFrame(dots)
+EprimeFrame <- function(keys_values) UseMethod("EprimeFrame")
+
+#' @export
+EprimeFrame.character <- function(keys_values = character(0)) {
+  keys_values <- merge_lists(listify(keys_values), count_tabs(keys_values))
+  as.EprimeFrame(keys_values)
 }
-
-#' @export
-print.EprimeFrame <- function(...) str(...)
-
-#' @export
-print.FrameList <- function(...) str(...)
-
 
 #' @export
 as.EprimeFrame <- function(xs) {
   assert_that(inherits(xs, "list"))
-  eprime_metadata <- unlist(rprime_cols, use.names = FALSE)
-  defaults <- structure(as.list(rep(NA, length(eprime_metadata))),
-                        names = eprime_metadata)
-  classes <- unique(c(class(xs), "EprimeFrame", "list"))
-  structure(merge_lists(defaults, xs), class = classes)
+  with_defaults <- merge_lists(default_metadata, xs)
+  classes <- c("EprimeFrame", "list")
+  frame <- structure(with_defaults, class = classes)
+  tidy(frame)
 }
 
 #' @export
@@ -85,6 +34,12 @@ as.FrameList <- function(xss) {
   xss
 }
 
+
+#' @export
+print.EprimeFrame <- function(...) str(...)
+
+#' @export
+print.FrameList <- function(...) str(...)
 
 
 #' Extract chunks of text and convert into Eprime Frames
@@ -163,50 +118,73 @@ make_eprime_frames.list <- function(x) {
   as.FrameList(lapply(x, make_eprime_frames))
 }
 
-#' @export
-make_eprime_frames.character <- function(x) {
-  frame_list <- merge_lists(listify(x), count_tabs(x))
-  frame <- EprimeFrame(frame_list)
-  tidy_frames(frame)
-}
 
 
 
 
 
 
-# Clean up `Running`-related attributes
-tidy_frames <- function(x) UseMethod("tidy_frames")
+#' Clean up `Running`-related attributes
+#'
+#' A fresh EprimeFrame object has the structure:
+#'
+#' \code{
+#'   Eprime.LevelName: NA
+#'   Eprime.Level: [Level]
+#'   Running: [Key]
+#'   [Key]: [Value]
+#'   [Key].Cycle: [Cycle]
+#'   [Key].Sample: [Sample]
+#' }
+#'
+#' These \code{[Key]} values make it harder to merge together data-frames later
+#' on, since each unique \code{[Key]} gets its own column name. Therefore, we
+#' normalize these field names early on. The end result has the structure:
+#'
+#' \code{
+#'   Eprime.LevelName: [Key]_[Level]
+#'   Eprime.Level: [Level]
+#'   Running: [Key]
+#'   Cycle: [Cycle]
+#'   Sample: [Sample]
+#' }
+#'
+#' @keywords internal
+tidy <- function(x) UseMethod("tidy")
 
-tidy_frames.EprimeFrame <- function(x) {
+#' @keywords internal
+tidy.EprimeFrame <- function(x) {
   eprime_frame <- x
-  level <- eprime_frame[[rprime_cols$level]]
-  level_label <- eprime_frame[["Running"]]
-  if (!is.na(level_label)) {
-    # A fresh frame has the structure:
-    #   Eprime.Level: [Level]
-    #   Running: [Key]
-    #   [Key]: [Value]
-    #   [Key].Cycle: [Cycle]
-    #   [Key].Sample: [Sample]
+  level_depth <- eprime_frame[[rprime_cols$level]]
+  level_label <- eprime_frame[[rprime_cols$running]]
+  level_name  <- eprime_frame[[rprime_cols$level_name]]
 
-    # Store [Key]_[Value] as "Eprime.LeveName"
+  # Tidy if Running field is used and level name is still NA
+  has_level_label <- !is.na(level_label)
+  needs_level_name <- is.na(level_name)
+
+  if (needs_level_name & has_level_label) {
+
+
+    # Store [Key]_[Value] as "Eprime.LevelName"
     level_index <- eprime_frame[[level_label]]
-    new_list <- list()
-    new_list[rprime_cols$level_name] <- paste0(level_label, "_", level_index)
+    level_name  <- paste0(level_label, "_", level_index)
+    new_list <- structure(as.list(level_name), names = rprime_cols$level_name)
 
     # Remove "[Key]: [Value]" item and then remove "[Key]." from names
     eprime_frame[level_label] <- NULL
-    names(eprime_frame) <- str_replace(names(eprime_frame),
-                                       paste0(level_label, "\\."), "")
+    key_dot <- paste0(level_label, "\\.")
+    names(eprime_frame) <- str_replace(names(eprime_frame), key_dot, "")
     eprime_frame <- merge_lists(eprime_frame, new_list)
   }
-  as.EprimeFrame(eprime_frame)
+
+  class(eprime_frame) <- class(x)
+  eprime_frame
 }
 
 #' @keywords internal
-tidy_frames.FrameList <- function(x) {
-  as.FrameList(lapply(x, tidy_frames))
+tidy.FrameList <- function(x) {
+  as.FrameList(lapply(x, tidy))
 }
 
 
@@ -242,6 +220,8 @@ listify <- function(colon_sep_xs) {
   splits <- str_split_fixed(colon_sep_xs, pattern = ": ", 2)
   # Trim after splitting so "X: " lines are correctly parsed
   splits <- apply(splits, 2, str_trim)
+  # apply reduces single row matrix into a vector
+  splits <- if (!is.matrix(splits)) matrix(splits, ncol = 2) else splits
   structure(as.list(splits[, 2]), names = splits[, 1])
 }
 
@@ -252,6 +232,7 @@ listify <- function(colon_sep_xs) {
 #' where the frame is nested in the experiment's structure.
 #' @keywords internal
 count_tabs <- function(colon_sep_xs) {
+  colon_sep_xs <- ifelse(length_zero(colon_sep_xs), "", colon_sep_xs)
   # Add one because there is no level 0
   level <- str_count(first(colon_sep_xs), "\\t") + 1
   structure(list(level), names = rprime_cols$level)

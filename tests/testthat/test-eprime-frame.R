@@ -1,3 +1,9 @@
+expect_nearly_identical <- function(x, y, ...) {
+  expect_identical(sort_names(x), sort_names(y), ...)
+}
+
+sort_names <- function(x) x[sort(names(x))]
+
 # Empty EprimeFrame
 default_list <- structure(list(
   Eprime.LevelName = NA,
@@ -5,45 +11,28 @@ default_list <- structure(list(
   Eprime.Basename = NA,
   Eprime.FrameNumber = NA,
   Procedure = NA,
-  Running = NA), class = c("list", "EprimeFrame"))
+  Running = NA), class = c("EprimeFrame", "list"))
 
-key_value_list <- list(
-  Procedure = "FamTask",
-  item1 = "bear",
-  item2 = "chair",
-  CorrectResponse = "bear",
-  Familiarization.Cycle = "1",
-  Familiarization.Sample = "1",
-  Running = "Familiarization",
-  Correct = "True")
+# It's not possible to have an NA Eprime.Level when constructing from a
+# character vector
+default_character <- default_list
+default_character$Eprime.Level <- 1
 
-# Empty EprimeFrame + some values in a list
-updated_list <- default_list
-updated_list[names(key_value_list)] <- key_value_list
-
-# Empty EprimeFrame + some values in a list + overwritten values from ...
-final_list <- updated_list
-final_list$Procedure <- "Demo"
-final_list$Running <- "Practice"
+updated <- default_character
+updated$Test <- "Passed"
+test_character <- "Test: Passed"
 
 
 context("EprimeFrame")
 
 test_that("Uses default values", {
-  expect_identical(EprimeFrame(list()), default_list)
-  expect_identical(as.EprimeFrame(list()), default_list)
+  expect_nearly_identical(as.EprimeFrame(list()), default_list)
+  expect_nearly_identical(EprimeFrame(character()), default_character)
 })
 
-test_that("Works with a key-value list", {
-  expect_identical(EprimeFrame(key_value_list), updated_list)
-  expect_identical(as.EprimeFrame(key_value_list), updated_list)
+test_that("Simple from character construction", {
+  expect_nearly_identical(EprimeFrame(test_character), updated)
 })
-
-test_that("Dots overwrite key-value pairs in list", {
-  t3 <- EprimeFrame(key_value_list, Procedure = "Demo", Running = "Practice")
-  expect_identical(t3, final_list)
-})
-
 
 test_that("listify works", {
   garbage_lines <- c("\t*** LogFrame Start ***", "*** LogFrame End ***", "", NA)

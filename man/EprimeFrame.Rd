@@ -3,13 +3,10 @@
 \alias{EprimeFrame}
 \title{Create an EprimeFrame object}
 \usage{
-EprimeFrame(key_value_list = list(), ...)
+EprimeFrame(keys_values)
 }
 \arguments{
-\item{key_value_list}{a list of named elements}
-
-\item{...}{additional arguments are treated as \code{key = value} pairs.
-These arguments are merged into \code{key_value_list}.}
+\item{keys_values}{}
 }
 \value{
 a list with the class \code{EprimeFrame} and with special
@@ -17,53 +14,8 @@ a list with the class \code{EprimeFrame} and with special
   set to NA by default.
 }
 \description{
-This constructor function converts a list object into an \code{EprimeFrame}
-object, which is just a list with some special metadata values. Just use
-\link{make_eprime_frames} instead.
-}
-\examples{
-key_value_list <- list(
-  Procedure = "FamTask",
-  item1 = "bear",
-  item2 = "chair",
-  CorrectResponse = "bear",
-  Familiarization.Cycle = "1",
-  Familiarization.Sample = "1",
-  Running = "Familiarization",
-  Correct = "True")
-
-EprimeFrame(key_value_list)
-# List of 12
-# $ Eprime.LevelName      : logi NA
-# $ Eprime.Level          : logi NA
-# $ Eprime.Basename       : logi NA
-# $ Eprime.FrameNumber    : logi NA
-# $ Procedure             : chr "FamTask"
-# $ Running               : chr "Familiarization"
-# $ item1                 : chr "bear"
-# $ item2                 : chr "chair"
-# $ CorrectResponse       : chr "bear"
-# $ Familiarization.Cycle : chr "1"
-# $ Familiarization.Sample: chr "1"
-# $ Correct               : chr "True"
-# - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-
-# Additional parameters are treated as a list and
-# overwrite values in the list
-EprimeFrame(key_value_list, Procedure = "Demo", Running = "Practice")
-# List of 12
-# $ Eprime.LevelName      : logi NA
-# $ Eprime.Level          : logi NA
-# $ Eprime.Basename       : logi NA
-# $ Eprime.FrameNumber    : logi NA
-# $ Procedure             : chr "Demo"
-# $ Running               : chr "Practice"
-# $ item1                 : chr "bear"
-# $ item2                 : chr "chair"
-# $ CorrectResponse       : chr "bear"
-# $ Familiarization.Cycle : chr "1"
-# $ Familiarization.Sample: chr "1"
-# $ Correct               : chr "True"
-# - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
+This constructor function converts a character vector object into an
+\code{EprimeFrame} object, which is just a list with some special metadata
+values.
 }
 
