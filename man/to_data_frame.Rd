@@ -3,12 +3,11 @@
 \alias{to_data_frame}
 \title{Convert Eprime Frames into data-frames}
 \usage{
-to_data_frame(...)
+to_data_frame(x)
 }
 \arguments{
-\item{eprime_frame}{an EprimeFrame object}
-
-\item{frame_list}{a FrameList object (a list of EprimeFrames)}
+\item{x}{an EprimeFrame object, or a FrameList object (a list of
+EprimeFrames)}
 }
 \value{
 all of the EprimeFrames combined into a single data frame.

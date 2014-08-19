@@ -48,44 +48,9 @@ preview_prep <- function(frame_list) {
   unique_rows <- unique(full_table)
   unique_frames <- as.FrameList(frame_list[as.numeric(row.names(unique_rows))])
 
-  list(unique_rows = unique_rows,
-       unique_frames = unique_frames)
+  list(unique_rows = unique_rows, unique_frames = unique_frames)
 }
 
 
 
-
-#' Convert Eprime Frames into data-frames
-#'
-#' @details Individual Eprime Frames are converted to a data-frame using
-#'   \code{as.data.frame}. Strings are not converted to factors.
-#'
-#'   Each of the individual data-frames are then \code{rbind}ed together, with
-#'   missing columns being filled with NA.
-#'
-#' @param eprime_frame an EprimeFrame object
-#' @param frame_list a FrameList object (a list of EprimeFrames)
-#' @return all of the EprimeFrames combined into a single data frame.
-#' @export
-#' @seealso \link{rbind.fill}
-to_data_frame <- function(...) {
-  UseMethod("to_data_frame")
-}
-
-#' @export
-to_data_frame.default <- function(frame_list) {
-  data_frames <- lapply(frame_list, as.data.frame, stringsAsFactors = FALSE)
-  rbind.fill(data_frames)
-}
-
-#' @export
-to_data_frame.EprimeFrame <- function(eprime_frame) {
-  as.data.frame(eprime_frame, stringsAsFactors = FALSE)
-}
-
-#' @export
-to_data_frame.FrameList <- function(frame_list) {
-  data_frames <- lapply(frame_list, to_data_frame)
-  rbind.fill(data_frames)
-}
 
