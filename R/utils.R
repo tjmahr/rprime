@@ -1,4 +1,3 @@
-
 but_last <- function(...) head(..., n = -1)
 last <- function(...) tail(..., n = 1)
 
