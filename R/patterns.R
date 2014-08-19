@@ -10,14 +10,21 @@ patterns <- list(
   row           = ".+: .*"
 )
 
+# Names of the metadata fields.
 rprime_cols <- list(
+  level      = "Eprime.Level",
   level_name = "Eprime.LevelName",
-  level = "Eprime.Level",
-  basename = "Eprime.Basename",
-  frame = "Eprime.FrameNumber",
-  procedure = "Procedure",
-  running = "Running"
+  basename   = "Eprime.Basename",
+  frame      = "Eprime.FrameNumber",
+  procedure  = "Procedure",
+  running    = "Running"
 )
+
+# Make a list of the metadata fields initialized to NAs
+default_metadata <- structure(
+  .Data = as.list(rep(NA, length(rprime_cols))),
+  names = unlist(unname(rprime_cols)))
+
 
 #' @export
 str_which <- function(string, pattern) {
