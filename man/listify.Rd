@@ -3,10 +3,10 @@
 \alias{listify}
 \title{Convert a vector of colon-separated text lines into a list of named elements}
 \usage{
-listify(colon_sep_values)
+listify(colon_sep_xs)
 }
 \arguments{
-\item{colon_sep_values}{a character vector with lines of the form \code{"key:
+\item{colon_sep_xs}{a character vector with lines of the form \code{"key:
 value"}}
 }
 \value{
@@ -17,12 +17,13 @@ a named list of the values in the colon-separated lines. \code{"key:
 Convert a vector of colon-separated text lines into a list of named elements
 }
 \details{
-Some minoring cleaning of the input is performed:
+Some minor cleaning of the input is performed:
   \itemize{
-    \item White-space on both sides of the input strings is omitted.
-    \item Eprime bracketing lines like \code{"*** LogFrame Start ***"}
-          are filtered out.
-    \item Lines without a colon character \code{":"} are filtered out.}
+    \item Lines without a colon-space separator \code{": "} are filtered out.
+    \item Lines with more 400+ characters are filtered out. (This fix is
+          directed at \code{Clock.Information:} lines.)}
+    \item Once the strings are split at the separator, white-space on the
+          left and right sides of each half-string is omitted.
 }
 \examples{
 lines <- c("\\t*** LogFrame Start ***",
@@ -34,18 +35,5 @@ str(listify(lines))
 # List of 2
 # $ Procedure: chr "PracticeProc"
 # $ Stimulus1: chr "toothbrush"
-
-lines2 <- c("Item: 1",
-            "  WhiteSpaceItem: Stuff\\t",
-            "AnotherItem: Two Colons: Yes",
-            "",
-            "Last Item: Whatever")
-
-str(listify(lines2))
-# List of 4
-# $ Item          : chr "1"
-# $ WhiteSpaceItem: chr "Stuff"
-# $ AnotherItem   : chr "Two Colons: Yes"
-# $ Last Item     : chr "Whatever"
 }
 

@@ -3,7 +3,7 @@
 \alias{make_eprime_frames}
 \title{Convert log-frames into EprimeFrames}
 \usage{
-make_eprime_frames(x, tidy = TRUE)
+make_eprime_frames(x)
 }
 \arguments{
 \item{x}{a character vector with lines of the form \code{"key: value"}, or a

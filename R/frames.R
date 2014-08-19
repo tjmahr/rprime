@@ -1,29 +1,18 @@
 
 #' Create an EprimeFrame object
 #'
-#' Converts a list into an EprimeFrame object, which is just a list with special
-#' metadata values.
-#'
-#' @details Just use \link{make_eprime_frames} instead
+#' This constructor function converts a list object into an \code{EprimeFrame}
+#' object, which is just a list with some special metadata values. Just use
+#' \link{make_eprime_frames} instead.
 #'
 #' @param key_value_list a list of named elements
-#' @param ... additional \code{key = value} pairs to merge into
-#'   \code{key_value_list}
-#' @return a list with the class EprimeFrame and with special \code{Eprime.}
-#'   metadata, \code{Running} and \code{Procedure} values, all set to NA by
-#'   default.
+#' @param ... additional arguments are treated as \code{key = value} pairs.
+#'   These arguments are merged into \code{key_value_list}.
+#' @return a list with the class \code{EprimeFrame} and with special
+#'   \code{Eprime.} metadata, \code{Running} and \code{Procedure} values, all
+#'   set to NA by default.
 #' @export
 #' @examples
-#' EprimeFrame(list())
-#' # List of 6
-#' #  $ Eprime.LevelName  : logi NA
-#' #  $ Eprime.Level      : logi NA
-#' #  $ Eprime.Basename   : logi NA
-#' #  $ Eprime.FrameNumber: logi NA
-#' #  $ Procedure         : logi NA
-#' #  $ Running           : logi NA
-#' #  - attr(*, "class")= chr [1:2] "list" "EprimeFrame"
-#'
 #' key_value_list <- list(
 #'   Procedure = "FamTask",
 #'   item1 = "bear",
@@ -165,21 +154,18 @@ extract_frames <- function(eprime_log) {
 #' # $ Sample            : chr "1"
 #' # $ Correct           : chr "True"
 #' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-make_eprime_frames <- function(x, tidy = TRUE) {
+make_eprime_frames <- function(x) {
   UseMethod("make_eprime_frames")
 }
 
 #' @export
 make_eprime_frames.list <- function(x) {
-  chunk_list <- x
-  as.FrameList(lapply(chunk_list, make_eprime_frames))
+  as.FrameList(lapply(x, make_eprime_frames))
 }
 
 #' @export
 make_eprime_frames.character <- function(x) {
-  colon_sep_values <- x
-  frame_list <- merge_lists(listify(colon_sep_values),
-                            count_tabs(colon_sep_values))
+  frame_list <- merge_lists(listify(x), count_tabs(x))
   frame <- EprimeFrame(frame_list)
   tidy_frames(frame)
 }
@@ -220,8 +206,7 @@ tidy_frames.EprimeFrame <- function(x) {
 
 #' @keywords internal
 tidy_frames.FrameList <- function(x) {
-  frame_list <- x
-  as.FrameList(lapply(frame_list, tidy_frames))
+  as.FrameList(lapply(x, tidy_frames))
 }
 
 
@@ -229,14 +214,14 @@ tidy_frames.FrameList <- function(x) {
 
 #' Convert a vector of colon-separated text lines into a list of named elements
 #'
-#' @details Some minoring cleaning of the input is performed:
+#' @details Some minor cleaning of the input is performed:
 #'   \itemize{
-#'     \item White-space on both sides of the input strings is omitted.
-#'     \item Eprime bracketing lines like \code{"*** LogFrame Start ***"}
-#'           are filtered out.
-#'     \item Lines without a colon character \code{":"} are filtered out.}
-#'
-#' @param colon_sep_values a character vector with lines of the form \code{"key:
+#'     \item Lines without a colon-space separator \code{": "} are filtered out.
+#'     \item Lines with more 400+ characters are filtered out. (This fix is
+#'           directed at \code{Clock.Information:} lines.)}
+#'     \item Once the strings are split at the separator, white-space on the
+#'           left and right sides of each half-string is omitted.
+#' @param colon_sep_xs a character vector with lines of the form \code{"key:
 #'   value"}
 #' @return a named list of the values in the colon-separated lines. \code{"key:
 #'   value"} yields \code{list(key = "value")}
@@ -251,32 +236,23 @@ tidy_frames.FrameList <- function(x) {
 #' # List of 2
 #' # $ Procedure: chr "PracticeProc"
 #' # $ Stimulus1: chr "toothbrush"
-#'
-#' lines2 <- c("Item: 1",
-#'             "  WhiteSpaceItem: Stuff\t",
-#'             "AnotherItem: Two Colons: Yes",
-#'             "",
-#'             "Last Item: Whatever")
-#'
-#' str(listify(lines2))
-#' # List of 4
-#' # $ Item          : chr "1"
-#' # $ WhiteSpaceItem: chr "Stuff"
-#' # $ AnotherItem   : chr "Two Colons: Yes"
-#' # $ Last Item     : chr "Whatever"
-listify <- function(colon_sep_values) {
-  colon_sep_values <- str_trim(colon_sep_values)
-  colon_sep_values <- Filter(Negate(is_bracket), colon_sep_values)
-  colon_sep_values <- Filter(is_row, colon_sep_values)
-
-  splits <- str_split_fixed(colon_sep_values, pattern = ": ", 2)
+listify <- function(colon_sep_xs) {
+  colon_sep_xs <- Filter(is_row, colon_sep_xs)
+  colon_sep_xs <- Filter(function(x) str_length(x) < 400, colon_sep_xs)
+  splits <- str_split_fixed(colon_sep_xs, pattern = ": ", 2)
+  # Trim after splitting so "X: " lines are correctly parsed
+  splits <- apply(splits, 2, str_trim)
   structure(as.list(splits[, 2]), names = splits[, 1])
 }
 
-#' Infer level of nesting by counting tabs
+
+#' Infer level of nesting (for a log-frame) by counting tabs
+#'
+#' The number of tabs before the "key: value" information in a log-frame tells
+#' where the frame is nested in the experiment's structure.
 #' @keywords internal
-count_tabs <- function(colon_sep_values) {
-  tab_count <- str_count(colon_sep_values[1], "\\t")
-  level <- tab_count + 1
+count_tabs <- function(colon_sep_xs) {
+  # Add one because there is no level 0
+  level <- str_count(first(colon_sep_xs), "\\t") + 1
   structure(list(level), names = rprime_cols$level)
 }

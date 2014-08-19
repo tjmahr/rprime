@@ -6,16 +6,36 @@ require("testthat")
 
 filename <- "tests/testthat/data/Blending_001L00XS4.txt"
 eprime_log <- read_eprime(filename)
+str_length(eprime_log)
+
+extract_frames(eprime_log)
+
+
 chunked <- extract_chunks(eprime_log)
 
+
+
+
 make_eprime_frames(chunked[3])
-make_eprime_frames(chunked[3:5], tidy = FALSE)
-make_eprime_frames(chunked[[4]], tidy = FALSE)
+make_eprime_frames(chunked[3:5])
+make_eprime_frames(chunked[[4]])
+
+
 make_eprime_frames(chunked[[3]])
 
 
 frame_list <- make_eprime_frames(chunked)
+
+frame_list <- extract_frames(eprime_log)
+class(frame_list[1])
+class(frame_list[[1]])
+
 preview_levels(frame_list)
+
+
+capture.output(preview_levels(frame_list)
+
+
 preview_eprime(frame_list)
 
 

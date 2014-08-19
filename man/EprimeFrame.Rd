@@ -8,32 +8,20 @@ EprimeFrame(key_value_list = list(), ...)
 \arguments{
 \item{key_value_list}{a list of named elements}
 
-\item{...}{additional \code{key = value} pairs to merge into
-\code{key_value_list}}
+\item{...}{additional arguments are treated as \code{key = value} pairs.
+These arguments are merged into \code{key_value_list}.}
 }
 \value{
-a list with the class EprimeFrame and with special \code{Eprime.}
-  metadata, \code{Running} and \code{Procedure} values, all set to NA by
-  default.
+a list with the class \code{EprimeFrame} and with special
+  \code{Eprime.} metadata, \code{Running} and \code{Procedure} values, all
+  set to NA by default.
 }
 \description{
-Converts a list into an EprimeFrame object, which is just a list with special
-metadata values.
-}
-\details{
-Just use \link{make_eprime_frames} instead
+This constructor function converts a list object into an \code{EprimeFrame}
+object, which is just a list with some special metadata values. Just use
+\link{make_eprime_frames} instead.
 }
 \examples{
-EprimeFrame(list())
-# List of 6
-#  $ Eprime.LevelName  : logi NA
-#  $ Eprime.Level      : logi NA
-#  $ Eprime.Basename   : logi NA
-#  $ Eprime.FrameNumber: logi NA
-#  $ Procedure         : logi NA
-#  $ Running           : logi NA
-#  - attr(*, "class")= chr [1:2] "list" "EprimeFrame"
-
 key_value_list <- list(
   Procedure = "FamTask",
   item1 = "bear",
