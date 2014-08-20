@@ -43,7 +43,7 @@ EprimeFrame <- function(keys_values) UseMethod("EprimeFrame")
 
 #' @export
 EprimeFrame.EprimeChunk <- function(keys_values = character(0)) {
-  EprimeFrame.character(key_values)
+  EprimeFrame.character(keys_values)
 }
 
 #' @export
