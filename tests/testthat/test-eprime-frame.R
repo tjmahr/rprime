@@ -68,6 +68,21 @@ test_that("Running-related values are normalized", {
   expect_nearly_identical(EprimeFrame(keys_values), normalized_running)
 })
 
+
+test_that("listify handles typical data", {
+  example_lines <- c(
+    "\t*** LogFrame Start ***",
+    "\tProcedure: PracticeProc",
+    "\tStimulus1: toothbrush",
+    "\t*** LogFrame End ***")
+
+  expected_example <- list(
+    Procedure = "PracticeProc",
+    Stimulus1 = "toothbrush")
+
+  expect_identical(listify(example_lines), expected_example)
+})
+
 test_that("listify handles garbage values", {
   garbage_lines <- c("", NA,
     "\t*** LogFrame Start ***",
@@ -87,4 +102,5 @@ test_that("listify handles garbage values", {
     NoValue = "",
     `Last Item` = "Whatever")
   expect_identical(listify(c(garbage_lines, usable_lines)), expected)
+
 })

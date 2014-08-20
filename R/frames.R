@@ -210,13 +210,13 @@ tidy <- function(x) {
 #'   \itemize{
 #'     \item Lines without a colon-space separator \code{": "} are filtered out.
 #'     \item Lines with more 400+ characters are filtered out. (This fix is
-#'           directed at \code{Clock.Information:} lines.)}
+#'           directed at \code{Clock.Information:} lines.)
 #'     \item Once the strings are split at the separator, white-space on the
-#'           left and right sides of each half-string is omitted.
-#' @param colon_sep_xs a character vector with lines of the form \code{"key:
-#'   value"}
-#' @return a named list of the values in the colon-separated lines. \code{"key:
-#'   value"} yields \code{list(key = "value")}
+#'           left and right sides of each half-string is omitted.}
+#' @param colon_sep_xs a character vector with lines of the form
+#'   \code{"key: value"}
+#' @return a named list of the values in the colon-separated lines.
+#'   \code{"key: value"} yields \code{list(key = "value")}
 #' @export
 #' @examples
 #' lines <- c("\t*** LogFrame Start ***",
@@ -224,7 +224,7 @@ tidy <- function(x) {
 #'            "\tStimulus1: toothbrush",
 #'            "\t*** LogFrame End ***")
 #'
-#' str(listify(lines))
+#' listify(lines)
 #' # List of 2
 #' # $ Procedure: chr "PracticeProc"
 #' # $ Stimulus1: chr "toothbrush"
