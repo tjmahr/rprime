@@ -28,10 +28,10 @@ as.EprimeFrame <- function(xs) {
 }
 
 #' @export
-as.FrameList <- function(xss) {
-  assert_that(inherits(xss, "list"), is_list_of_lists(xss))
-  class(xss) <- unique(c(class(xss), "FrameList", "list"))
-  xss
+as.FrameList <- function(xs) {
+  assert_that(is_list_of(xs, "list"), is_list_of(xs, "EprimeFrame"))
+  class(xs) <- unique(c(class(xs), "FrameList", "list"))
+  xs
 }
 
 

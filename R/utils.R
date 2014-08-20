@@ -5,8 +5,9 @@ last <- function(...) tail(..., n = 1)
 length_zero <- function(x) length(x) == 0
 length_one <- function(x) length(x) == 1
 
-is_list_of_lists <- function(xss) {
-  all(sapply(xss, function(x) inherits(x, "list")))
+is_list_of <- function(xs, classes) {
+  assert_that(is.list(xs))
+  all(vapply(xs, function(x) inherits(x, classes), logical(1)))
 }
 
 merge_lists <- function(x, y) {
