@@ -23,7 +23,7 @@ to_data_frame.default <- function(x) {
 
 #' @export
 to_data_frame.EprimeFrame <- function(x) {
-  as.data.frame(x, stringsAsFactors = FALSE)
+  as.data.frame.list(x, stringsAsFactors = FALSE)
 }
 
 #' @export

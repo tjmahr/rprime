@@ -19,8 +19,8 @@ preview_eprime <- function(frame_list) {
 #' @export
 preview_levels <- function(frame_list) {
   prep <- preview_prep(frame_list)
-  cat("Unique Levels: \n")
-  print(prep$unique_rows, row.names = FALSE)
+  cat("Level Counts: \n")
+  print(prep$row_counts, row.names = FALSE)
   invisible(NULL)
 }
 
@@ -45,10 +45,12 @@ preview_prep <- function(frame_list) {
   main_cols <- pick_apply(c("Eprime.Level", "Running", "Procedure"), frame_list)
 
   full_table <- to_data_frame(main_cols)
+
   unique_rows <- unique(full_table)
   unique_frames <- as.FrameList(frame_list[as.numeric(row.names(unique_rows))])
+  row_counts <- plyr::count(full_table)
 
-  list(unique_rows = unique_rows, unique_frames = unique_frames)
+  list(row_counts = row_counts, unique_rows = unique_rows, unique_frames = unique_frames)
 }
 
 
