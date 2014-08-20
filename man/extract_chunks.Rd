@@ -3,7 +3,7 @@
 \alias{extract_chunks}
 \title{Extract log-frames from an Eprime log file}
 \usage{
-extract_chunks(eprime_log, metadata = TRUE)
+extract_chunks(eprime_log)
 }
 \arguments{
 \item{eprime_log}{a character vector containing the lines of text from Eprime

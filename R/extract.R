@@ -17,14 +17,19 @@
 #' @return a list of character vectors, where each vector contains the lines of
 #'   a log-frame
 #' @export
-extract_chunks <- function(eprime_log, metadata = TRUE) {
+extract_chunks <- function(eprime_log) {
   parsed <- parse_chunks(eprime_log)
   basename <- ifelse(!has_attr(eprime_log, "basename"), NA,
                      attr(eprime_log, "basename"))
   fixed_header <- update_header(parsed)
   numbered <- insert_frame_numbers(fixed_header)
   parsed <- insert_basename(numbered, basename)
-  parsed
+  lapply(parsed, as.EprimeChunk)
+}
+
+as.EprimeChunk <- function(x) {
+  class(x) <- c("EprimeChunk", class(x))
+  x
 }
 
 #' Add "Running", "Procedure" lines to the header log-frame

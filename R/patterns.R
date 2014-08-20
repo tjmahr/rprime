@@ -35,6 +35,5 @@ new_line <- function(key, value) sprintf("%s: %s", key, value)
 is_bracket <- function(xs) str_detect(xs, patterns$bracket)
 is_header <- function(xs) any(str_detect(xs, patterns$header_start))
 is_row <- function(xs) any(str_detect(xs, patterns$row))
-
 has_header <- function(xs) any(sapply(xs, is_header))
 
