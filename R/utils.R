@@ -20,8 +20,8 @@ merge_lists <- function(x, y) {
 #' These functions were inspired by underscore.js.
 #'
 #' @name list_functions
-#' @param key the name of the value to pluck from a list
-#' @param keys a character vector of names used to simplify the list
+#' @param key the name of a value in a list
+#' @param keys a character vector of names in a list
 #' @param xss a list of lists
 #' @return \code{pluck} returns an unnamed value and \code{pluck_apply} returns
 #'   a list of unnamed values. \code{pick} and \code{omit} return a simplified
@@ -38,16 +38,14 @@ merge_lists <- function(x, y) {
 NULL
 
 
-#' @rdname list_functions
-#' @usage pluck(key)(xs)
 #' @export
 pluck <- function(key) {
   function(xs) xs[[key]]
 }
 
-#' @rdname list_functions
 #' @export
 pluck_apply <- function(key, xss) {
+  assert_that(is_list_of(xss, "list"))
   lapply(xss, pluck(key))
 }
 
@@ -63,16 +61,15 @@ pick <- function(keys) {
   }
 }
 
-#' @rdname list_functions
 #' @export
 pick_apply <- function(keys, xss) {
+  assert_that(is_list_of(xss, "list"))
   classes <- class(xss)
   xss <- lapply(xss, pick(keys))
   class(xss) <- classes
   xss
 }
 
-#' @rdname list_functions
 #' @export
 omit <- function(keys) {
   function(xs) {
@@ -83,9 +80,9 @@ omit <- function(keys) {
   }
 }
 
-#' @rdname list_functions
 #' @export
 omit_apply <- function(keys, xss) {
+  assert_that(is_list_of(xss, "list"))
   classes <- class(xss)
   xss <- lapply(xss, omit(keys))
   class(xss) <- classes
