@@ -22,8 +22,7 @@ knitr::opts_chunk$set(
 experiment_data <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
 
 # Extract and parse the data
-experiment_data <- extract_chunks(experiment_data)
-experiment_data <- make_eprime_frames(experiment_data)
+experiment_data <- FrameList(experiment_data)
 
 # Explore the data
 preview_eprime(experiment_data)
@@ -146,7 +145,7 @@ My strategy in this scenario is to figure out what I need to do for a single fil
 library(plyr)
 reduce_sails <- function(sails_path) {
   sails_lines <- read_eprime(sails_path)
-  sails_frames <- make_eprime_frames(extract_chunks(sails_lines))
+  sails_frames <- FrameList(sails_lines)
   
   # Trials occur at level 3
   sails_frames <- keep_levels(sails_frames, 3)
