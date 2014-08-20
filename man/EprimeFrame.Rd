@@ -6,7 +6,8 @@
 EprimeFrame(keys_values)
 }
 \arguments{
-\item{keys_values}{}
+\item{keys_values}{a character vector of containing some \code{"key: value"}
+strings.}
 }
 \value{
 a list with the class \code{EprimeFrame} and with special
@@ -16,6 +17,35 @@ a list with the class \code{EprimeFrame} and with special
 \description{
 This constructor function converts a character vector object into an
 \code{EprimeFrame} object, which is just a list with some special metadata
-values.
+values. Strings with the format \code{"key: value"} are parsed into \code{key
+= value} list items (via \code{listify}).
+}
+\examples{
+# Default metadata values
+EprimeFrame(c("key: value", "question: answer", "garbage text"))
+# List of 8
+# $ Eprime.Level      : num 1
+# $ Eprime.LevelName  : logi NA
+# $ Eprime.Basename   : logi NA
+# $ Eprime.FrameNumber: logi NA
+# $ Procedure         : logi NA
+# $ Running           : logi NA
+# $ key               : chr "value"
+# $ question          : chr "answer"
+
+# Normalize [Running] related lines
+keys_values <- c("Running: Demo", "Demo: ExampleCode", "Demo.Cycle: 1",
+                 "Demo.Sample: 1", "Key: Value")
+EprimeFrame(keys_values)
+# List of 9
+# $ Eprime.Level      : num 1
+# $ Eprime.LevelName  : chr "Demo_ExampleCode"
+# $ Eprime.Basename   : logi NA
+# $ Eprime.FrameNumber: logi NA
+# $ Procedure         : logi NA
+# $ Running           : chr "Demo"
+# $ Cycle             : chr "1"
+# $ Sample            : chr "1"
+# $ Key               : chr "Value"
 }
 

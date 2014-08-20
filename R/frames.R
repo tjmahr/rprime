@@ -3,28 +3,61 @@
 #'
 #' This constructor function converts a character vector object into an
 #' \code{EprimeFrame} object, which is just a list with some special metadata
-#' values.
+#' values. Strings with the format \code{"key: value"} are parsed into \code{key
+#' = value} list items (via \code{listify}).
 #'
-#' @param keys_values
+#' @param keys_values a character vector of containing some \code{"key: value"}
+#'   strings.
 #' @return a list with the class \code{EprimeFrame} and with special
 #'   \code{Eprime.} metadata, \code{Running} and \code{Procedure} values, all
 #'   set to NA by default.
 #' @export
+#' @examples
+#' # Default metadata values
+#' EprimeFrame(c("key: value", "question: answer", "garbage text"))
+#' # List of 8
+#' # $ Eprime.Level      : num 1
+#' # $ Eprime.LevelName  : logi NA
+#' # $ Eprime.Basename   : logi NA
+#' # $ Eprime.FrameNumber: logi NA
+#' # $ Procedure         : logi NA
+#' # $ Running           : logi NA
+#' # $ key               : chr "value"
+#' # $ question          : chr "answer"
+#'
+#' # Normalize [Running] related lines
+#' keys_values <- c("Running: Demo", "Demo: ExampleCode", "Demo.Cycle: 1",
+#'                  "Demo.Sample: 1", "Key: Value")
+#' EprimeFrame(keys_values)
+#' # List of 9
+#' # $ Eprime.Level      : num 1
+#' # $ Eprime.LevelName  : chr "Demo_ExampleCode"
+#' # $ Eprime.Basename   : logi NA
+#' # $ Eprime.FrameNumber: logi NA
+#' # $ Procedure         : logi NA
+#' # $ Running           : chr "Demo"
+#' # $ Cycle             : chr "1"
+#' # $ Sample            : chr "1"
+#' # $ Key               : chr "Value"
 EprimeFrame <- function(keys_values) UseMethod("EprimeFrame")
+
+#' @export
+EprimeFrame.EprimeChunk <- function(keys_values = character(0)) {
+  EprimeFrame.character(key_values)
+}
 
 #' @export
 EprimeFrame.character <- function(keys_values = character(0)) {
   keys_values <- merge_lists(listify(keys_values), count_tabs(keys_values))
-  as.EprimeFrame(keys_values)
+  frame <- as.EprimeFrame(keys_values)
+  tidy(frame)
 }
 
 #' @export
 as.EprimeFrame <- function(xs) {
-  assert_that(inherits(xs, "list"))
+  assert_that(is.list(xs))
   with_defaults <- merge_lists(default_metadata, xs)
-  classes <- c("EprimeFrame", "list")
-  frame <- structure(with_defaults, class = classes)
-  tidy(frame)
+  structure(with_defaults, class = c("EprimeFrame", "list"))
 }
 
 #' @export
@@ -42,16 +75,8 @@ print.EprimeFrame <- function(...) str(...)
 print.FrameList <- function(...) str(...)
 
 
-#' Extract chunks of text and convert into Eprime Frames
-#'
-#' This is a shortcut for \code{make_eprime_frames(extract_chunks(eprime_log))}.
-#' @param eprime_log a character vector containing the lines of text from Eprime
-#'   txt file
-#' @return a FrameList object (a list of EprimeFrame objects)
-#' @export
-extract_frames <- function(eprime_log) {
-  make_eprime_frames(extract_chunks(eprime_log))
-}
+
+
 
 #' Convert log-frames into EprimeFrames
 #'
@@ -109,17 +134,18 @@ extract_frames <- function(eprime_log) {
 #' # $ Sample            : chr "1"
 #' # $ Correct           : chr "True"
 #' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-make_eprime_frames <- function(x) {
-  UseMethod("make_eprime_frames")
+FrameList <- function(x) UseMethod("FrameList")
+
+#' @export
+FrameList.character <- function(x) {
+  FrameList.list(extract_chunks(x))
 }
 
 #' @export
-make_eprime_frames.list <- function(x) {
-  as.FrameList(lapply(x, make_eprime_frames))
+FrameList.list <- function(x) {
+  assert_that(is_list_of(x, "EprimeChunk"))
+  as.FrameList(lapply(x, EprimeFrame))
 }
-
-
-
 
 
 
@@ -150,10 +176,7 @@ make_eprime_frames.list <- function(x) {
 #' }
 #'
 #' @keywords internal
-tidy <- function(x) UseMethod("tidy")
-
-#' @keywords internal
-tidy.EprimeFrame <- function(x) {
+tidy <- function(x) {
   eprime_frame <- x
   level_depth <- eprime_frame[[rprime_cols$level]]
   level_label <- eprime_frame[[rprime_cols$running]]
@@ -164,8 +187,6 @@ tidy.EprimeFrame <- function(x) {
   needs_level_name <- is.na(level_name)
 
   if (needs_level_name & has_level_label) {
-
-
     # Store [Key]_[Value] as "Eprime.LevelName"
     level_index <- eprime_frame[[level_label]]
     level_name  <- paste0(level_label, "_", level_index)
@@ -181,13 +202,6 @@ tidy.EprimeFrame <- function(x) {
   class(eprime_frame) <- class(x)
   eprime_frame
 }
-
-#' @keywords internal
-tidy.FrameList <- function(x) {
-  as.FrameList(lapply(x, tidy))
-}
-
-
 
 
 #' Convert a vector of colon-separated text lines into a list of named elements
