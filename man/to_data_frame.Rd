@@ -3,11 +3,13 @@
 \alias{to_data_frame}
 \title{Convert Eprime Frames into data-frames}
 \usage{
-to_data_frame(x)
+to_data_frame(x, ...)
 }
 \arguments{
 \item{x}{an EprimeFrame object, or a FrameList object (a list of
 EprimeFrames)}
+
+\item{...}{other parameters passed onto \code{as.data.frame}}
 }
 \value{
 all of the EprimeFrames combined into a single data frame.
@@ -16,8 +18,8 @@ all of the EprimeFrames combined into a single data frame.
 Convert Eprime Frames into data-frames
 }
 \details{
-Individual Eprime Frames are converted to a data-frame using
-  \code{as.data.frame}. Strings are not converted to factors.
+Individual EprimeFrames are converted to a data-frame using
+  \code{as.data.frame}. (Strings are not converted to factors.)
 
   Each of the individual data-frames are then \code{rbind}ed together, with
   missing columns being filled with NA.

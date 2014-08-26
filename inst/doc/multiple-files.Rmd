@@ -1,49 +1,25 @@
-## ----, echo = FALSE, message = FALSE-------------------------------------
+
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Using rprime}
+-->
+
+```{r, echo = FALSE, message = FALSE}
 library("rprime")
 library("knitr")
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
   tidy = FALSE)
+```
 
-## ------------------------------------------------------------------------
-# Read in an Eprime text file
-experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
+## Working with multiple files
 
-# Extract and parse the log-frames from the file
-experiment_data <- FrameList(experiment_lines)
+Suppose we want to load all the Eprime files in a directory and combine the results in data-frame. 
 
-# Run-down of different log-frames in the FrameList
-preview_levels(experiment_data)
+My strategy in this scenario is to figure out what I need to do for a single file and then wrap those steps in a function that takes a filepath to a txt file and returns a data-frame. After some exploration and interactive programming, I come up with the following function:
 
-# Filter (out) by depth of nesting
-not_level_1 <- drop_levels(experiment_data, 1)
-preview_levels(not_level_1)
-
-# Filter (in) by depth of nesting
-just_level_3 <- keep_levels(experiment_data, 3)
-
-# Preview each kind of log-frame in the FrameList
-preview_eprime(just_level_3)
-
-# Filter (out) by attribute values
-no_header <- filter_out(experiment_data, "Running", values = "Header")
-preview_levels(no_header)
-
-# Filter (in) by attribute values
-not_practice <- filter_in(experiment_data, "Running", "TrialLists")
-preview_eprime(not_practice)
-
-# Drill down into a FrameList
-sue_trials <- filter_in(not_practice, "Module", "SUE")
-preview_eprime(sue_trials)
-
-# Export to dataframe
-columns_to_keep <- c("Eprime.Basename", "Module", "Sample", "Correct", "Response")
-sue_trials_df <- to_data_frame(sue_trials)[columns_to_keep]
-head(sue_trials_df)
-
-## ------------------------------------------------------------------------
+```{r}
 library("plyr")
 reduce_sails <- function(sails_path) {
   sails_lines <- read_eprime(sails_path)
@@ -72,16 +48,25 @@ reduce_sails <- function(sails_path) {
   # write.csv(sails, csv, row.names = FALSE)
   sails
 }
+```
 
-## ------------------------------------------------------------------------
+Here's a preview of what the function returns when given a filepath.
+
+```{r}
 head(reduce_sails("data/SAILS/SAILS_001X00XS1.txt"))
+```
 
-## ------------------------------------------------------------------------
+Now that the function works on one file, I can use `ldply` to apply the function to several files, returning results in a single dataframe.
+
+```{r}
 sails_paths <- list.files("data/SAILS/", pattern = ".txt", full.names = TRUE)
 sails_paths
 ensemble <- ldply(sails_paths, reduce_sails)
+```
 
-## ------------------------------------------------------------------------
+Finally, with all of the subjects' data contained in a single data-frame, I can use `ddply` plus `summarise` and compute summary scores at different levels of aggregation within each subject. 
+
+```{r}
 # Score trials within subjects
 overall <- ddply(ensemble, .(Eprime.Basename, Running), summarise, 
                  Score = sum(CorrectResponse),
@@ -98,4 +83,4 @@ modules
 library("reshape2")
 dcast(modules, Eprime.Basename ~ Module, subset = .(Running == "Trial"), 
       fun.aggregate = mean, value.var = "PropCorrect")
-
+```

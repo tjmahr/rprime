@@ -5,43 +5,47 @@
 -->
 
 ```{r, echo = FALSE, message = FALSE}
-library(rprime)
-
-knitr::opts_chunk$set(
+library("rprime")
+library("knitr")
+opts_chunk$set(
   comment = "#>",
   error = FALSE,
   tidy = FALSE)
-
 ```
 
 ## Quick Start Demonstration
 
-
 ```{r}
-# Read file
-experiment_data <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
+# Read in an Eprime text file
+experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
 
-# Extract and parse the data
-experiment_data <- FrameList(experiment_data)
+# Extract and parse the log-frames from the file
+experiment_data <- FrameList(experiment_lines)
 
-# Explore the data
-preview_eprime(experiment_data)
+# Run-down of different log-frames in the FrameList
+preview_levels(experiment_data)
 
-# We can filter by levels
-just_level_2 <- keep_levels(experiment_data, 2)
-preview_levels(just_level_2)
-
+# Filter (out) by depth of nesting
 not_level_1 <- drop_levels(experiment_data, 1)
 preview_levels(not_level_1)
 
-# Or filter by attributes
-no_header <- filter_out(experiment_data, "Running", "Header")
+# Filter (in) by depth of nesting
+just_level_3 <- keep_levels(experiment_data, 3)
+
+# Preview each kind of log-frame in the FrameList
+preview_eprime(just_level_3)
+
+# Filter (out) by attribute values
+no_header <- filter_out(experiment_data, "Running", values = "Header")
 preview_levels(no_header)
 
+# Filter (in) by attribute values
 not_practice <- filter_in(experiment_data, "Running", "TrialLists")
-sue_trials <- filter_in(experiment_data, "Module", "SUE")
+preview_eprime(not_practice)
 
-preview_frames(not_practice)
+# Drill down into a FrameList
+sue_trials <- filter_in(not_practice, "Module", "SUE")
+preview_eprime(sue_trials)
 
 # Export to dataframe
 columns_to_keep <- c("Eprime.Basename", "Module", "Sample", "Correct", "Response")
@@ -50,99 +54,14 @@ head(sue_trials_df)
 ```
 
 
-## Reading in files
+## Working with multiple files
 
-Use `read_eprime` on an Eprime text file to get the lines of text from that file:
-
-```{r}
-blending_file <- read_eprime("data/Blending_001L00XS4.txt")
-head(blending_file)
-```
-
-### File encodings
-
-The built-in strategy for reading in text files, `readLines`, runs into encoding problems with some Eprime text files. In the following example, this function raises warnings or receives garbage in the returned vector.
-
-```{r}
-coartic_file <- "data/Coartic_Block1_001P00XS1.txt" 
-# Weirdness when trying to use readLines
-suppressWarnings(head(readLines(coartic_file)))
-head(readLines(coartic_file, encoding = "UCS-2LE", skipNul = TRUE))
-```
-
-`read_eprime` delegates file-loading to the `stringi` package's `stri_read_lines()` function which guesses the encoding of the file as it reads in the lines.
-
-```{r}
-# Works
-head(read_eprime(coartic_file))
-```
-
-### Non-Eprime files
-
-In order for a text file to be parsed as an Eprime file, it must contain a header frame, which looks like this:
-
-```
-*** Header Start ***
-[...any number of lines...]
-*** Header End ***
-```
-
-If a file doesn't have a header frame, its contents are ignored and replaced with a dummy header. 
-
-```{r}
-head(read_eprime("data/not_an_eprime_file.txt"))
-```
-
-
-
-
-## Parsing the experiment log
-
-### Log-Frames
-
-The data in an Eprime file are contained inside log-frames. Here's an example:
-
-```
-  *** LogFrame Start ***
-	Procedure: FamTask
-	item1: bear
-	item2: chair
-	CorrectResponse: bear
-	ImageSide: Left
-	Duration: 885
-	Familiarization: 1
-	FamInforcer: 1
-	ReinforcerImage: Bicycle1
-	Familiarization.Cycle: 1
-	Familiarization.Sample: 1
-	Running: Familiarization
-	FamTarget.RESP: 
-	Correct: True
-	*** LogFrame End ***
-```
-
-Each log-frame is sandwhich by the brackets `*** LogFrame Start ***` and `*** LogFrame End ***`. The tabs at the beginning of lines indicate nesting. If trials are nested inside blocks, then the information about the trials will be indented one-tab with respect to the information about the block.
-
-### Chunking and Framing
-
-Once the lines from a text
-
-
-## Exploring
-
-
-## Filtering and Simplifying
-
-## Converting to a data-frame
-
-## Working on multiple files
-
-In this example, we have a folder of txt files from an experiment, and we want do some work on each file and combine the results together into a single file. 
+Suppose we want to load all the Eprime files in a directory and combine the results in data-frame. 
 
 My strategy in this scenario is to figure out what I need to do for a single file and then wrap those steps in a function that takes a filepath to a txt file and returns a data-frame. After some exploration and interactive programming, I come up with the following function.
 
 ```{r}
-library(plyr)
+library("plyr")
 reduce_sails <- function(sails_path) {
   sails_lines <- read_eprime(sails_path)
   sails_frames <- FrameList(sails_lines)
@@ -152,19 +71,20 @@ reduce_sails <- function(sails_path) {
   sails <- to_data_frame(sails_frames)
   
   # Tidy up
-  to_pick <- c("Eprime.Basename", "Running", "Module", "Sound", "Sample",
-               "Correct", "Response")
+  to_pick <- c("Eprime.Basename", "Running", "Module", "Sound", 
+               "Sample", "Correct", "Response")
   sails <- sails[to_pick]
   running_map <- c(TrialLists = "Trial", PracticeBlock = "Practice")
-  sails$Running <- revalue(sails$Running, running_map)
+  sails$Running <- ifelse(sails$Running == "PracticeBlock", "Practice", "Trial")
   
-  # Number trials in the practice and experimental blocks separately
+  # Renumber trials in the practice and experimental blocks separately.
+  # Numerically code correct response.
   sails <- ddply(sails, .(Running), mutate, 
                  TrialNumber = seq(from = 1, to = length(Running)),
                  CorrectResponse = ifelse(Correct == Response, 1, 0))
   sails$Sample <- NULL
   
-  # Optionally, you might save the processed file via: 
+  # Optionally, one might save the processed file via: 
   # csv <- paste0(file_path_sans_ext(sails_path), ".csv")
   # write.csv(sails, csv, row.names = FALSE)
   sails
@@ -177,7 +97,7 @@ Here's a preview of what the function returns when given a filepath.
 head(reduce_sails("data/SAILS/SAILS_001X00XS1.txt"))
 ```
 
-Now that the function works on one file, we can use `ldply` to apply the function to several files, returning results in a single dataframe.
+Now that the function works on one file, I can use `ldply` to apply the function to several files, returning results in a single dataframe.
 
 ```{r}
 sails_paths <- list.files("data/SAILS/", pattern = ".txt", full.names = TRUE)
@@ -185,24 +105,23 @@ sails_paths
 ensemble <- ldply(sails_paths, reduce_sails)
 ```
 
-Finally, with all of the subjects' data contained in a single data-frame, we can use `ddply` and compute summary scores within different levels within each subject. 
+Finally, with all of the subjects' data contained in a single data-frame, I can use `ddply` plus `summarise` and compute summary scores at different levels of aggregation within each subject. 
 
 ```{r}
+# Score trials within subjects
+overall <- ddply(ensemble, .(Eprime.Basename, Running), summarise, 
+                 Score = sum(CorrectResponse),
+                 PropCorrect = Score / length(CorrectResponse))
+overall
+
 # Score modules within subjects
-modules <- ddply(ensemble, .(Eprime.Basename, Running, Module), summarize, 
+modules <- ddply(ensemble, .(Eprime.Basename, Running, Module), summarise, 
                  Score = sum(CorrectResponse),
                  PropCorrect = Score / length(CorrectResponse))
 modules
 
 # Drop practice values, then print data in wide format
-library(reshape2)
-dcast(modules, Eprime.Basename ~ Module, 
-      subset = .(Running == "Trial"), 
+library("reshape2")
+dcast(modules, Eprime.Basename ~ Module, subset = .(Running == "Trial"), 
       fun.aggregate = mean, value.var = "PropCorrect")
-
-# Score trials within subjects
-overall <- ddply(ensemble, .(Eprime.Basename, Running), summarize, 
-                 Score = sum(CorrectResponse),
-                 PropCorrect = Score / length(CorrectResponse))
-overall
 ```
