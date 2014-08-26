@@ -38,11 +38,13 @@ merge_lists <- function(x, y) {
 NULL
 
 
+#' @rdname list_functions
 #' @export
 pluck <- function(key) {
   function(xs) xs[[key]]
 }
 
+#' @rdname list_functions
 #' @export
 pluck_apply <- function(key, xss) {
   assert_that(is_list_of(xss, "list"))

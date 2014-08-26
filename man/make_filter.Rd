@@ -8,4 +8,5 @@ make_filter(key, values)
 \description{
 Make a filtering predicate
 }
+\keyword{internal}
 

@@ -1,4 +1,5 @@
 #' Make a filtering predicate
+#' @keywords internal
 make_filter <- function(key, values) {
   function(eprime_lists) {
     # Convert NULLs to NA

@@ -2,8 +2,14 @@
 \name{list_functions}
 \alias{list_functions}
 \alias{pick}
+\alias{pluck}
+\alias{pluck_apply}
 \title{Higher-order functions for dealing with lists}
 \usage{
+pluck(key)
+
+pluck_apply(key, xss)
+
 pick(keys)
 }
 \arguments{
