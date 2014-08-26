@@ -10,7 +10,6 @@
 #' @export
 preview_eprime <- function(frame_list) {
   preview_levels(frame_list)
-  cat("\n")
   preview_frames(frame_list)
   invisible(NULL)
 }
@@ -42,15 +41,19 @@ preview_frames <- function(frame_list) {
 }
 
 preview_prep <- function(frame_list) {
-  main_cols <- pick_apply(c("Eprime.Level", "Running", "Procedure"), frame_list)
-
-  full_table <- to_data_frame(main_cols)
+  keys <- c("Eprime.Level", "Running", "Procedure")
+  main_cols <- pick_apply(keys, frame_list)
+  full_table <- to_data_frame(main_cols)[keys]
 
   unique_rows <- unique(full_table)
   unique_frames <- as.FrameList(frame_list[as.numeric(row.names(unique_rows))])
-  row_counts <- plyr::count(full_table)
 
-  list(row_counts = row_counts, unique_rows = unique_rows, unique_frames = unique_frames)
+  # Include frequency count
+  row_counts <- plyr::count(full_table)
+  row_counts <- plyr::join(unique_rows, row_counts, by = keys)
+
+  list(row_counts = row_counts, unique_rows = unique_rows,
+       unique_frames = unique_frames)
 }
 
 
