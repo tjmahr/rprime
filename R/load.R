@@ -13,8 +13,6 @@
 #'   raised and the lines of text are replaced by a dummy header.
 #' @export
 read_eprime <- function(filename) {
-  require("stringi")
-  require("tools")
   basename <- file_path_sans_ext(basename(filename))
   eprime_log <- stri_read_lines(filename)
 

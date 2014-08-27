@@ -53,6 +53,10 @@ EprimeFrame.character <- function(keys_values = character(0)) {
   tidy(frame)
 }
 
+#' Convert a list into an EprimeFrame object
+#' @param xs a list
+#' @return the original list as an \code{EprimeFrame} object (along with dummy
+#'   Eprime metadata fields)
 #' @export
 as.EprimeFrame <- function(xs) {
   assert_that(is.list(xs))
@@ -60,6 +64,9 @@ as.EprimeFrame <- function(xs) {
   structure(with_defaults, class = c("EprimeFrame", "list"))
 }
 
+#' Convert a list of EprimeFrames into a FrameList object
+#' @param xs a list of EprimeFrames
+#' @return the original list as a \code{FrameList} object
 #' @export
 as.FrameList <- function(xs) {
   assert_that(is_list_of(xs, "list"), is_list_of(xs, "EprimeFrame"))
