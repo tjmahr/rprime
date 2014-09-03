@@ -1,4 +1,3 @@
-#' @export
 patterns <- list(
   bracket       = "\\*{3} (.*) (Start|End) \\*{3}",
   bracket_start = "\\*{3} (.*) Start \\*{3}",
@@ -25,12 +24,7 @@ default_metadata <- structure(
   .Data = as.list(rep(NA, length(rprime_cols))),
   names = unlist(unname(rprime_cols)))
 
-
-#' @export
-str_which <- function(string, pattern) {
-  which(str_detect(string, pattern))
-}
-
+str_which <- function(string, pattern) which(str_detect(string, pattern))
 new_line <- function(key, value) sprintf("%s: %s", key, value)
 is_bracket <- function(xs) str_detect(xs, patterns$bracket)
 is_header <- function(xs) any(str_detect(xs, patterns$header_start))

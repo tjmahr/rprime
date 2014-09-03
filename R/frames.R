@@ -1,7 +1,79 @@
+#' Convert log-frames into EprimeFrames
+#'
+#' Convert character vectors of implicit key-value pairs (e.g., \code{c("key1:
+#' value1", "key2: value2")}), into  lists of explicit key-value pairs,
+#' \code{list(key1 = "value1", key2 = "value2")}.
+#'
+#' @details During the conversion, if \code{Running: x}, then the
+#'   \code{x.Sample} and \code{x.Cycle} lines are simplified into \code{Sample}
+#'   and \code{Cycle} lines. The \code{x: value} line is recoded as
+#'   \code{Eprime.LevelName: x_value}. The purpose of this tidying is to force
+#'   the same set of key names (eventually, column names) onto frames with
+#'   different values for "Running".
+#'
+#' @param x a character vector with lines of the form \code{"key: value"}, or a
+#'   list of vectors of colon-separated text
+#' @return When passed a list of character vectors of \code{"key: value"} lines,
+#'   a FrameList object (a list of EprimeFrames) is returned. when passed a
+#'   single vector vector of \code{"key: value"} lines, a single EprimeFrame
+#'   object is returned inside of a FrameList object.
+#' @export
+#' @examples
+#' lines <- c("\t*** LogFrame Start ***",
+#'            "\tProcedure: FamTask",
+#'            "\titem1: bear",
+#'            "\titem2: chair",
+#'            "\tCorrectResponse: bear",
+#'            "\tImageSide: Left",
+#'            "\tDuration: 885",
+#'            "\tFamiliarization: 1",
+#'            "\tFamInforcer: 1",
+#'            "\tReinforcerImage: Bicycle1",
+#'            "\tFamiliarization.Cycle: 1",
+#'            "\tFamiliarization.Sample: 1",
+#'            "\tRunning: Familiarization",
+#'            "\tFamTarget.RESP: ",
+#'            "\tCorrect: True",
+#'            "\t*** LogFrame End ***")
+#' # List of 1
+#' # $ :List of 17
+#' # ..$ Eprime.Level      : num 2
+#' # ..$ Eprime.LevelName  : chr "Familiarization_1"
+#' # ..$ Eprime.Basename   : chr "NA"
+#' # ..$ Eprime.FrameNumber: chr "1"
+#' # ..$ Procedure         : chr "FamTask"
+#' # ..$ Running           : chr "Familiarization"
+#' # ..$ item1             : chr "bear"
+#' # ..$ item2             : chr "chair"
+#' # ..$ CorrectResponse   : chr "bear"
+#' # ..$ ImageSide         : chr "Left"
+#' # ..$ Duration          : chr "885"
+#' # ..$ FamInforcer       : chr "1"
+#' # ..$ ReinforcerImage   : chr "Bicycle1"
+#' # ..$ Cycle             : chr "1"
+#' # ..$ Sample            : chr "1"
+#' # ..$ FamTarget.RESP    : chr ""
+#' # ..$ Correct           : chr "True"
+#' # ..- attr(*, "class")= chr [1:2] "EprimeFrame" "list"
+#' # - attr(*, "class")= chr [1:2] "list" "FrameList"
+FrameList <- function(x) UseMethod("FrameList")
+
+#' @export
+FrameList.character <- function(x) {
+  FrameList.list(extract_chunks(x))
+}
+
+#' @export
+FrameList.list <- function(x) {
+  assert_that(is_list_of(x, "EprimeChunk") | is_list_of(x, "character"))
+  as.FrameList(lapply(x, EprimeFrame))
+}
+
+
 
 #' Create an EprimeFrame object
 #'
-#' This constructor function converts a character vector object into an
+#' This constructor function converts a character vector into an
 #' \code{EprimeFrame} object, which is just a list with some special metadata
 #' values. Strings with the format \code{"key: value"} are parsed into \code{key
 #' = value} list items (via \code{listify}).
@@ -14,7 +86,12 @@
 #' @export
 #' @examples
 #' # Default metadata values
-#' EprimeFrame(c("key: value", "question: answer", "garbage text"))
+#' lines <- c(
+#'   "key: value",
+#'   "question: answer",
+#'   "garbage text")
+#'
+#' EprimeFrame(lines)
 #' # List of 8
 #' # $ Eprime.Level      : num 1
 #' # $ Eprime.LevelName  : logi NA
@@ -26,8 +103,13 @@
 #' # $ question          : chr "answer"
 #'
 #' # Normalize [Running] related lines
-#' keys_values <- c("Running: Demo", "Demo: ExampleCode", "Demo.Cycle: 1",
-#'                  "Demo.Sample: 1", "Key: Value")
+#' keys_values <- c(
+#'   "Running: Demo",
+#'   "Demo: ExampleCode",
+#'   "Demo.Cycle: 1",
+#'   "Demo.Sample: 1",
+#'   "Key: Value")
+#'
 #' EprimeFrame(keys_values)
 #' # List of 9
 #' # $ Eprime.Level      : num 1
@@ -53,16 +135,7 @@ EprimeFrame.character <- function(keys_values = character(0)) {
   tidy(frame)
 }
 
-#' Convert a list into an EprimeFrame object
-#' @param xs a list
-#' @return the original list as an \code{EprimeFrame} object (along with dummy
-#'   Eprime metadata fields)
-#' @export
-as.EprimeFrame <- function(xs) {
-  assert_that(is.list(xs))
-  with_defaults <- merge_lists(default_metadata, xs)
-  structure(with_defaults, class = c("EprimeFrame", "list"))
-}
+
 
 #' Convert a list of EprimeFrames into a FrameList object
 #' @param xs a list of EprimeFrames
@@ -74,86 +147,24 @@ as.FrameList <- function(xs) {
   xs
 }
 
-
+#' Convert a list into an EprimeFrame object
+#' @param xs a list
+#' @return the original list as an \code{EprimeFrame} object (along with dummy
+#'   Eprime metadata fields)
 #' @export
-print.EprimeFrame <- function(...) str(...)
+as.EprimeFrame <- function(xs) {
+  assert_that(is.list(xs))
+  with_defaults <- merge_lists(default_metadata, xs)
+  structure(with_defaults, class = c("EprimeFrame", "list"))
+}
+
+
 
 #' @export
 print.FrameList <- function(...) str(...)
 
-
-
-
-
-#' Convert log-frames into EprimeFrames
-#'
-#' In other words, convert character vectors of implicit key-value pairs,
-#' \code{c("key: value", ...)}, into lists of explicit key-value pairs,
-#' \code{list(key = value, ...)}.
-#'
-#' @details During the conversion, if \code{Running: x}, then the
-#'   \code{x.Sample} and \code{x.Cycle} lines are simplified into \code{Sample}
-#'   and \code{Cycle} lines. The \code{x: value} line is recoded as
-#'   \code{Eprime.LevelName: x_value}. The purpose of this tidying is to force
-#'   the same set of key names (eventually, column names) onto frames with
-#'   different values for "Running".
-#'
-#' @param x a character vector with lines of the form \code{"key: value"}, or a
-#'   list of vectors of colon-separated text
-#' @return when passed a vector of \code{"key: value"} lines, a single
-#'   EprimeFrame object is returned. When passed a list of such vectors, a
-#'   FrameList object (a list of EprimeFrames) is returned.
 #' @export
-#' @examples
-#' lines <- c("\t*** LogFrame Start ***",
-#'            "\tProcedure: FamTask",
-#'            "\titem1: bear",
-#'            "\titem2: chair",
-#'            "\tCorrectResponse: bear",
-#'            "\tImageSide: Left",
-#'            "\tDuration: 885",
-#'            "\tFamiliarization: 1",
-#'            "\tFamInforcer: 1",
-#'            "\tReinforcerImage: Bicycle1",
-#'            "\tFamiliarization.Cycle: 1",
-#'            "\tFamiliarization.Sample: 1",
-#'            "\tRunning: Familiarization",
-#'            "\tFamTarget.RESP: ",
-#'            "\tCorrect: True",
-#'            "\t*** LogFrame End ***")
-#'
-#' make_eprime_frames(lines)
-#' # List of 16
-#' # $ Eprime.LevelName  : chr "Familiarization_1"
-#' # $ Eprime.Level      : num 2
-#' # $ Eprime.Basename   : logi NA
-#' # $ Eprime.FrameNumber: logi NA
-#' # $ Procedure         : chr "FamTask"
-#' # $ Running           : chr "Familiarization"
-#' # $ item1             : chr "bear"
-#' # $ item2             : chr "chair"
-#' # $ CorrectResponse   : chr "bear"
-#' # $ ImageSide         : chr "Left"
-#' # $ Duration          : chr "885"
-#' # $ FamInforcer       : chr "1"
-#' # $ ReinforcerImage   : chr "Bicycle1"
-#' # $ Cycle             : chr "1"
-#' # $ Sample            : chr "1"
-#' # $ Correct           : chr "True"
-#' # - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-FrameList <- function(x) UseMethod("FrameList")
-
-#' @export
-FrameList.character <- function(x) {
-  FrameList.list(extract_chunks(x))
-}
-
-#' @export
-FrameList.list <- function(x) {
-  assert_that(is_list_of(x, "EprimeChunk"))
-  as.FrameList(lapply(x, EprimeFrame))
-}
-
+print.EprimeFrame <- function(...) str(...)
 
 
 

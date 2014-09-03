@@ -35,25 +35,21 @@ merge_lists <- function(x, y) {
 #' The simple versions of \code{pluck}, \code{pick}, and \code{omit} are curried
 #' functions, meaning that they return a function which can be applied to a
 #' list. See the syntax in the usage section.
+#' @keywords internal
 NULL
 
-
 #' @rdname list_functions
-#' @export
 pluck <- function(key) {
   function(xs) xs[[key]]
 }
 
 #' @rdname list_functions
-#' @export
 pluck_apply <- function(key, xss) {
   assert_that(is_list_of(xss, "list"))
   lapply(xss, pluck(key))
 }
 
-
 #' @rdname list_functions
-#' @export
 pick <- function(keys) {
   function(xs) {
     classes <- class(xs)
@@ -63,7 +59,7 @@ pick <- function(keys) {
   }
 }
 
-#' @export
+#' @rdname list_functions
 pick_apply <- function(keys, xss) {
   assert_that(is_list_of(xss, "list"))
   classes <- class(xss)
@@ -72,7 +68,7 @@ pick_apply <- function(keys, xss) {
   xss
 }
 
-#' @export
+#' @rdname list_functions
 omit <- function(keys) {
   function(xs) {
     classes <- class(xs)
@@ -82,7 +78,7 @@ omit <- function(keys) {
   }
 }
 
-#' @export
+#' @rdname list_functions
 omit_apply <- function(keys, xss) {
   assert_that(is_list_of(xss, "list"))
   classes <- class(xss)

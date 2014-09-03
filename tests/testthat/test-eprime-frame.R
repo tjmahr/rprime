@@ -1,3 +1,5 @@
+## Test functions that create lists from character vectors of colon-separated
+## values.
 
 # expect_identical lists to have the same order
 expect_nearly_identical <- function(x, y, ...) {

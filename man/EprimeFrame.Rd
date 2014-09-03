@@ -15,14 +15,19 @@ a list with the class \code{EprimeFrame} and with special
   set to NA by default.
 }
 \description{
-This constructor function converts a character vector object into an
+This constructor function converts a character vector into an
 \code{EprimeFrame} object, which is just a list with some special metadata
 values. Strings with the format \code{"key: value"} are parsed into \code{key
 = value} list items (via \code{listify}).
 }
 \examples{
 # Default metadata values
-EprimeFrame(c("key: value", "question: answer", "garbage text"))
+lines <- c(
+  "key: value",
+  "question: answer",
+  "garbage text")
+
+EprimeFrame(lines)
 # List of 8
 # $ Eprime.Level      : num 1
 # $ Eprime.LevelName  : logi NA
@@ -34,8 +39,13 @@ EprimeFrame(c("key: value", "question: answer", "garbage text"))
 # $ question          : chr "answer"
 
 # Normalize [Running] related lines
-keys_values <- c("Running: Demo", "Demo: ExampleCode", "Demo.Cycle: 1",
-                 "Demo.Sample: 1", "Key: Value")
+keys_values <- c(
+  "Running: Demo",
+  "Demo: ExampleCode",
+  "Demo.Cycle: 1",
+  "Demo.Sample: 1",
+  "Key: Value")
+
 EprimeFrame(keys_values)
 # List of 9
 # $ Eprime.Level      : num 1

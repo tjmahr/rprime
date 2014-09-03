@@ -17,4 +17,6 @@ Imports:
     tools,
     assertthat
 Suggests:
-    knitr
+    knitr,
+    reshape2,
+    testthat

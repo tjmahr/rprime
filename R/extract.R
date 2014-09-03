@@ -12,6 +12,9 @@
 #' the source file). The header log-frame also gets dummy lines:
 #' \code{Procedure: Header} and \code{Running: Header}.
 #'
+#' These chunks of colon-separated lines are converted into lists by
+#' \code{FrameList(...)}.
+#'
 #' @param eprime_log a character vector containing the lines of text from Eprime
 #'   txt file
 #' @return a list of character vectors, where each vector contains the lines of
@@ -32,8 +35,7 @@ as.EprimeChunk <- function(x) {
   x
 }
 
-#' Add "Running", "Procedure" lines to the header log-frame
-#' @keywords internal
+# Add "Running", "Procedure" lines to the header log-frame
 update_header <- function(chunked) {
   if (has_header(chunked)) {
     header_position <- Position(is_header, chunked)
@@ -64,6 +66,7 @@ insert_line <- function(xs, ys) {
 }
 
 #' Extract the lines of text from each log-frame
+#'
 #' @param eprime_log a character vector of lines from an Eprime log file
 #' @return a list of character vectors, where each vector contains the lines of
 #'   a log-frame
@@ -81,6 +84,7 @@ parse_chunks <- function(eprime_log) {
 
 
 #' Check Eprime log-frame line ranges
+#'
 #' @param starts the line numbers of the log-frame start lines
 #' @param ends the line numbers of the log-frame end lines
 #' @param eprime_log a character vector of lines from an Eprime log file

@@ -10,14 +10,15 @@ FrameList(x)
 list of vectors of colon-separated text}
 }
 \value{
-when passed a vector of \code{"key: value"} lines, a single
-  EprimeFrame object is returned. When passed a list of such vectors, a
-  FrameList object (a list of EprimeFrames) is returned.
+When passed a list of character vectors of \code{"key: value"} lines,
+  a FrameList object (a list of EprimeFrames) is returned. when passed a
+  single vector vector of \code{"key: value"} lines, a single EprimeFrame
+  object is returned inside of a FrameList object.
 }
 \description{
-In other words, convert character vectors of implicit key-value pairs,
-\code{c("key: value", ...)}, into lists of explicit key-value pairs,
-\code{list(key = value, ...)}.
+Convert character vectors of implicit key-value pairs (e.g., \code{c("key1:
+value1", "key2: value2")}), into  lists of explicit key-value pairs,
+\code{list(key1 = "value1", key2 = "value2")}.
 }
 \details{
 During the conversion, if \code{Running: x}, then the
@@ -44,25 +45,26 @@ lines <- c("\\t*** LogFrame Start ***",
            "\\tFamTarget.RESP: ",
            "\\tCorrect: True",
            "\\t*** LogFrame End ***")
-
-make_eprime_frames(lines)
-# List of 16
-# $ Eprime.LevelName  : chr "Familiarization_1"
-# $ Eprime.Level      : num 2
-# $ Eprime.Basename   : logi NA
-# $ Eprime.FrameNumber: logi NA
-# $ Procedure         : chr "FamTask"
-# $ Running           : chr "Familiarization"
-# $ item1             : chr "bear"
-# $ item2             : chr "chair"
-# $ CorrectResponse   : chr "bear"
-# $ ImageSide         : chr "Left"
-# $ Duration          : chr "885"
-# $ FamInforcer       : chr "1"
-# $ ReinforcerImage   : chr "Bicycle1"
-# $ Cycle             : chr "1"
-# $ Sample            : chr "1"
-# $ Correct           : chr "True"
-# - attr(*, "class")= chr [1:2] "EprimeFrame" "list"
+# List of 1
+# $ :List of 17
+# ..$ Eprime.Level      : num 2
+# ..$ Eprime.LevelName  : chr "Familiarization_1"
+# ..$ Eprime.Basename   : chr "NA"
+# ..$ Eprime.FrameNumber: chr "1"
+# ..$ Procedure         : chr "FamTask"
+# ..$ Running           : chr "Familiarization"
+# ..$ item1             : chr "bear"
+# ..$ item2             : chr "chair"
+# ..$ CorrectResponse   : chr "bear"
+# ..$ ImageSide         : chr "Left"
+# ..$ Duration          : chr "885"
+# ..$ FamInforcer       : chr "1"
+# ..$ ReinforcerImage   : chr "Bicycle1"
+# ..$ Cycle             : chr "1"
+# ..$ Sample            : chr "1"
+# ..$ FamTarget.RESP    : chr ""
+# ..$ Correct           : chr "True"
+# ..- attr(*, "class")= chr [1:2] "EprimeFrame" "list"
+# - attr(*, "class")= chr [1:2] "list" "FrameList"
 }
 

@@ -25,5 +25,8 @@ text in a list. The lists also include some additional lines of text as
 metadata: \code{Eprime.FrameNumber} and \code{Eprime.Basename} (the name of
 the source file). The header log-frame also gets dummy lines:
 \code{Procedure: Header} and \code{Running: Header}.
+
+These chunks of colon-separated lines are converted into lists by
+\code{FrameList(...)}.
 }
 
