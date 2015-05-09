@@ -2,7 +2,7 @@ rprime
 ======
 
 [![Build Status](https://travis-ci.org/tjmahr/rprime.svg)](https://travis-ci.org/tjmahr/rprime) 
-[![Coverage Status](https://img.shields.io/coveralls/NA/NA.svg)](https://coveralls.io/r/NA/NA?branch=master)
+[![Coverage Status](https://coveralls.io/repos/tjmahr/rprime/badge.svg)](https://coveralls.io/r/tjmahr/rprime)
 
 
 
