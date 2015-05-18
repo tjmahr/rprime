@@ -12,6 +12,8 @@
 #'   \code{*** Header Start ***} and \code{*** Header End ***}--a warning is
 #'   raised and the lines of text are replaced by a dummy header.
 #' @export
+#' @importFrom stringi stri_read_lines
+#' @importFrom tools file_path_sans_ext
 read_eprime <- function(filename) {
   basename <- file_path_sans_ext(basename(filename))
   eprime_log <- stri_read_lines(filename)
