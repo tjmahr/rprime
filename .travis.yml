@@ -10,11 +10,12 @@ env:
 
 notifications:
   email:
-    on_success: change
-    on_failure: change
+    on_success: mahr@wisc.edu
+    on_failure: mahr@wisc.edu
 
 r_github_packages:
   - jimhester/covr
+  - Rexamine/stringi
 
 after_success:
   - Rscript -e 'library(covr);coveralls()'
