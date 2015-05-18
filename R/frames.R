@@ -1,4 +1,4 @@
-#' Convert log-frames into EprimeFrames
+#' Convert lines from an Eprime file into EprimeFrame objects
 #'
 #' Convert character vectors of implicit key-value pairs (e.g., \code{c("key1:
 #' value1", "key2: value2")}), into  lists of explicit key-value pairs,
@@ -269,3 +269,4 @@ count_tabs <- function(colon_sep_xs) {
   level <- str_count(first(colon_sep_xs), "\\t") + 1
   structure(list(level), names = rprime_cols$level)
 }
+
