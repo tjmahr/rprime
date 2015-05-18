@@ -1,6 +1,6 @@
 Package: rprime
 Title: Functions for dealing with Eprime txt files
-Description: Functions for dealing with Eprime txt files
+Description: A suite of functions for dealing with Eprime txt files.
 Version: 0.1.0
 Maintainer: Tristan Mahr <mahr@wisc.edu>
 Author: Tristan Mahr <mahr@wisc.edu>
