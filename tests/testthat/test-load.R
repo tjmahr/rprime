@@ -12,7 +12,7 @@ no_footer <- "data/Coartic_Block1_001P00XS1.txt"
 not_an_eprime_file <- "data/not_an_eprime_file.txt"
 
 
-context("read_eprime: standard files")
+context("Reading standard files")
 
 test_that("Load well-formed data", {
   eprime_log <- read_eprime(good_file)
@@ -22,7 +22,7 @@ test_that("Load well-formed data", {
 })
 
 
-context("read_eprime: non-standard files")
+context("Reading non-standard files")
 
 test_that("load file with unexpected encoding", {
   # no warnings
