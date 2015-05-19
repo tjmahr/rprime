@@ -2,8 +2,8 @@ Package: rprime
 Title: Functions for Working with 'Eprime' Text files
 Description: A suite of functions for dealing with Eprime text files.
 Version: 0.1.0
-Maintainer: Tristan Mahr <mahr@wisc.edu>
-Author: Tristan Mahr <mahr@wisc.edu>
+Maintainer: Tristan Mahr <tristan.mahr@wisc.edu>
+Author: Tristan Mahr <tristan.mahr@wisc.edu>
 License: GPL-2 | file LICENSE
 URL: http://github.com/tjmahr/rprime
 BugReports: http://github.com/tjmahr/rprime/issues
