@@ -2,8 +2,6 @@
 % Please edit documentation in R/utils.R
 \name{list_functions}
 \alias{list_functions}
-\alias{omit}
-\alias{omit_apply}
 \alias{pick}
 \alias{pick_apply}
 \alias{pluck}
@@ -17,10 +15,6 @@ pluck_apply(key, xss)
 pick(keys)
 
 pick_apply(keys, xss)
-
-omit(keys)
-
-omit_apply(keys, xss)
 }
 \arguments{
 \item{key}{the name of a value in a list}
@@ -31,21 +25,19 @@ omit_apply(keys, xss)
 }
 \value{
 \code{pluck} returns an unnamed value and \code{pluck_apply} returns
-  a list of unnamed values. \code{pick} and \code{omit} return a simplified
-  version of the original list. \code{pick_apply} and \code{omit_apply}
-  return a list of simplified lists.
+  a list of unnamed values. \code{pick} returns a simplified version of the
+  original list. \code{pick_apply} returns a list of simplified lists.
 }
 \description{
 These functions were inspired by underscore.js.
 }
 \details{
 \itemize{ \item \code{pluck}: Pluck a named value from a list \item
-\code{pick}: Simplify a list by picking out whitelisted names \item
-\code{omit}: Simplify a list by omitting blacklisted names. }
+  \code{pick}: Simplify a list by picking out whitelisted names}
 
-The simple versions of \code{pluck}, \code{pick}, and \code{omit} are curried
-functions, meaning that they return a function which can be applied to a
-list. See the syntax in the usage section.
+  The simple versions of \code{pluck} and \code{pick} are curried functions,
+  meaning that they return a function which can be applied to a list. See the
+  syntax in the usage section.
 }
 \keyword{internal}
 

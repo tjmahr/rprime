@@ -24,17 +24,15 @@ merge_lists <- function(x, y) {
 #' @param keys a character vector of names in a list
 #' @param xss a list of lists
 #' @return \code{pluck} returns an unnamed value and \code{pluck_apply} returns
-#'   a list of unnamed values. \code{pick} and \code{omit} return a simplified
-#'   version of the original list. \code{pick_apply} and \code{omit_apply}
-#'   return a list of simplified lists.
+#'   a list of unnamed values. \code{pick} returns a simplified version of the
+#'   original list. \code{pick_apply} returns a list of simplified lists.
 #'
 #' @details \itemize{ \item \code{pluck}: Pluck a named value from a list \item
-#' \code{pick}: Simplify a list by picking out whitelisted names \item
-#' \code{omit}: Simplify a list by omitting blacklisted names. }
+#'   \code{pick}: Simplify a list by picking out whitelisted names}
 #'
-#' The simple versions of \code{pluck}, \code{pick}, and \code{omit} are curried
-#' functions, meaning that they return a function which can be applied to a
-#' list. See the syntax in the usage section.
+#'   The simple versions of \code{pluck} and \code{pick} are curried functions,
+#'   meaning that they return a function which can be applied to a list. See the
+#'   syntax in the usage section.
 #' @keywords internal
 NULL
 
@@ -67,25 +65,5 @@ pick_apply <- function(keys, xss) {
   class(xss) <- classes
   xss
 }
-
-#' @rdname list_functions
-omit <- function(keys) {
-  function(xs) {
-    classes <- class(xs)
-    xs <- xs[!is.element(names(xs), keys)]
-    class(xs) <- classes
-    xs
-  }
-}
-
-#' @rdname list_functions
-omit_apply <- function(keys, xss) {
-  assert_that(is_list_of(xss, "list"))
-  classes <- class(xss)
-  xss <- lapply(xss, omit(keys))
-  class(xss) <- classes
-  xss
-}
-
 
 
