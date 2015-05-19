@@ -1,0 +1,177 @@
+<!-- %\VignetteEngine{knitr::knitr} %\VignetteIndexEntry{Using rprime} -->
+
+```{r, echo = FALSE, message = FALSE}
+library("rprime")
+library("knitr")
+opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+```
+
+## rprime
+
+Eprime, or more officially E-Prime® 2.0, is a set of programs by [Psychology Software
+Tools, Inc.](http://www.pstnet.com/) used for running psychological
+experiments. Data from experiment sessions are saved into two files: 1) a
+proprietary [binary `.edat2`
+file](http://www.pstnet.com/support/kb.asp?TopicID=3149), and 2) a plain-text
+`.txt` file. The rprime package provides a set of functions for parsing these
+`.txt` files inside R.
+
+**Disclaimer**: I write this documentation as someone who has very little time
+creating and designing experiments in Eprime but has spent a lot of time
+parsing Eprime text files in R. Therefore, this vignette is not documentation
+for Eprime software and its data format. Instead, this vignette just outlines
+this package's approach to extracting data from Eprime text files.
+
+
+### Background
+
+An Eprime `txt` file is a series of **frames**. Each frame is a list of
+key-value pairs. Frames are bracketed by special start and stop lines.
+
+#### Headers
+
+Each file begins with a special **Header** frame, which looks something like
+this:
+
+```
+*** Header Start ***
+VersionPersist: 1
+LevelName: Session
+LevelName: Block
+LevelName: Trial
+LevelName: SubTrial
+LevelName: LogLevel5
+LevelName: LogLevel6
+LevelName: LogLevel7
+LevelName: LogLevel8
+LevelName: LogLevel9
+LevelName: LogLevel10
+Experiment: SAE_MinimalPairDiscrim
+SessionDate: 07-10-2013
+SessionTime: 10:46:22
+SessionTimeUtc: 3:46:22 PM
+Dialect: Yes
+Subject: 001
+ExpTyp: L
+Age: 00
+Gender: X
+Session: 1
+RandomSeed: -261296366
+Group: 1
+Display.RefreshRate: 60.003
+Clock.Information: <?xml version="1.0"?>\n<Clock xmlns:dt="urn:schemas-microsoft-com:datatypes"><Description dt:dt="string">E-Prime Primary Realtime Clock</Description><StartTime><Timestamp dt:dt="int">0</Timestamp><DateUtc dt:dt="string">2013-07-10T15:46:22Z</DateUtc></StartTime><FrequencyChanges><FrequencyChange><Frequency dt:dt="r8">3020527</Frequency><Timestamp dt:dt="r8">364810315607</Timestamp><Current dt:dt="r8">0</Current><DateUtc dt:dt="string">2013-07-10T15:46:22Z</DateUtc></FrequencyChange></FrequencyChanges></Clock>\n
+*** Header End ***
+```
+
+The header is set off by the brackets `*** Header Start***` and `*** Header
+End***`. The fields in the header describe the basic settings of the
+experiment.
+
+#### LogFrames
+
+The other frames in the text file are **LogFrames**. These record data about
+individual the procedures or trials are executed during the experiment. The
+following lines immediately follow the header from the previous example:
+
+```
+	Level: 2
+	*** LogFrame Start ***
+	Procedure: FamTask
+	item1: bear
+	item2: chair
+	CorrectResponse: bear
+	ImageSide: Left
+	Duration: 885
+	Familiarization: 1
+	FamInforcer: 1
+	ReinforcerImage: Bicycle1
+	Familiarization.Cycle: 1
+	Familiarization.Sample: 1
+	Running: Familiarization
+	FamTarget.RESP:
+	Correct: True
+	*** LogFrame End ***
+```
+
+Trials and procedures can be **nested** inside of higher-order sections of the
+experiment. For example, practice trials may be nested inside of a practice
+block of an experiment. The level of nesting in the above frame is indicated by
+the number of tabs before each line as well as the `Level: ` line. The only
+Level 1 frames in an experiment appear to the header frame and the final frame
+off an experiment, which largely duplicated the header frame.
+
+Some **special fields** appear in every log-frame. These fields are
+`Procedure`, `Running`, `[Running].Sample` and `[Running].Cycle` where
+`[Running]` is the value of the running field. In the previous example, these
+were:
+
+```
+	Procedure: FamTask
+	Familiarization.Cycle: 1
+	Familiarization.Sample: 1
+	Running: Familiarization
+```
+
+When trials are presented in a random order, the `[Running].Sample` field records the sequential trial number. 
+
+
+### Basic strategy 
+
+
+#### File reading
+
+First, the lines from the text file are read into R and stored into a character vector. Here are the first few lines from the example file:
+
+```{r}
+library("rprime")
+exp_lines <- read_eprime("data/MINP_001L00XS1.txt")
+head(exp_lines)
+```
+
+If the file is not an Eprime `.txt` file, a **dummy header** is created so that the 
+file may be treated like any other like Eprime. The user is warned as this happens.
+
+```{r}
+bad_lines <- read_eprime("data/not_an_eprime_file.txt")
+head(bad_lines)
+```
+
+I chose to use a dummy header instead of raising an error so that code which loaded 
+multiple files at once would not fail outright when it encountered a bad file.
+
+
+#### Chunking
+
+The basic strategy for paring the Eprime file: 
+
+1. Read in the Eprime file
+2. Creating EprimeFrame objects
+    a. Extract a frame by pulling out lines of text that fall between a pair of 
+       bracketing lines.
+    b. Create key-value pairs inside the frame by splitting text lines at `:`s 
+    c. Add some helpful metadata inside each frame.
+    d. Bundle up the key-value pairs into an R `list` object with an added 
+       `Eprime.Frame` class.
+3. Storing the frames from an experiment together inside of a `FrameList` object.
+
+```{r}
+
+
+exp_chunk <- exp_lines[28:44]
+EprimeFrame(exp_chunk)
+FrameList(exp_chunk)
+```
+
+
+The basic strategy for
+
+```{r}
+FrameList(exp_lines)[[2]]
+rprime::
+EprimeFrame(exp_lines)
+```
+
+
