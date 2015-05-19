@@ -15,10 +15,16 @@ not_an_eprime_file <- "data/not_an_eprime_file.txt"
 context("Reading standard files")
 
 test_that("Load well-formed data", {
-  eprime_log <- read_eprime(good_file)
+  eprime_log <- read_eprime(good_file, remove_clock = FALSE)
   expect_equal(first(eprime_log), "*** Header Start ***")
   expect_equal(eprime_log[30], "\t*** LogFrame Start ***")
   expect_equal(last(eprime_log), "*** LogFrame End ***")
+
+  # Removing the clock removes 2 lines, one of which is in the header
+  no_clock <- read_eprime(good_file, remove_clock = TRUE)
+  expect_equal(no_clock[29], "\t*** LogFrame Start ***")
+  expect_equal(length(no_clock) + 2, length(eprime_log))
+
 })
 
 

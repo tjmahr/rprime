@@ -227,8 +227,6 @@ tidy <- function(x) {
 #' @details Some minor cleaning of the input is performed:
 #'   \itemize{
 #'     \item Lines without a colon-space separator \code{": "} are filtered out.
-#'     \item Lines with more 400+ characters are filtered out. (This fix is
-#'           directed at \code{Clock.Information:} lines.)
 #'     \item Once the strings are split at the separator, white-space on the
 #'           left and right sides of each half-string is omitted.}
 #' @param colon_sep_xs a character vector with lines of the form
@@ -248,7 +246,6 @@ tidy <- function(x) {
 #' # $ Stimulus1: chr "toothbrush"
 listify <- function(colon_sep_xs) {
   colon_sep_xs <- Filter(is_row, colon_sep_xs)
-  colon_sep_xs <- Filter(function(x) str_length(x) < 400, colon_sep_xs)
   splits <- str_split_fixed(colon_sep_xs, pattern = ": ", 2)
   # Trim after splitting so "X: " lines are correctly parsed
   splits <- apply(splits, 2, str_trim)

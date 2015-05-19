@@ -21,8 +21,6 @@ Convert a vector of colon-separated text lines into a list of named elements
 Some minor cleaning of the input is performed:
   \itemize{
     \item Lines without a colon-space separator \code{": "} are filtered out.
-    \item Lines with more 400+ characters are filtered out. (This fix is
-          directed at \code{Clock.Information:} lines.)
     \item Once the strings are split at the separator, white-space on the
           left and right sides of each half-string is omitted.}
 }
