@@ -4,7 +4,7 @@
 \alias{to_data_frame}
 \title{Convert Eprime Frames into data-frames}
 \usage{
-to_data_frame(x, ...)
+to_data_frame(x)
 }
 \arguments{
 \item{x}{an EprimeFrame object, or a FrameList object (a list of

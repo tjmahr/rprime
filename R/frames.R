@@ -186,7 +186,7 @@ print.EprimeFrame <- function(...) str(...)
 #' normalize these field names early on. The end result has the structure:
 #'
 #' \code{
-#'   Eprime.LevelName: [Key]_[Level]
+#'   Eprime.LevelName: [Key]_[Value]
 #'   Eprime.Level: [Level]
 #'   Running: [Key]
 #'   Cycle: [Cycle]

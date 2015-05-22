@@ -24,7 +24,7 @@ on, since each unique \code{[Key]} gets its own column name. Therefore, we
 normalize these field names early on. The end result has the structure:
 
 \code{
-  Eprime.LevelName: [Key]_[Level]
+  Eprime.LevelName: [Key]_[Value]
   Eprime.Level: [Level]
   Running: [Key]
   Cycle: [Cycle]
