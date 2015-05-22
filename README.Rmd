@@ -1,0 +1,25 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+rprime
+===============================================================================
+
+[![Build Status](https://travis-ci.org/tjmahr/rprime.svg)](https://travis-ci.org/tjmahr/rprime) 
+[![Coverage Status](https://coveralls.io/repos/tjmahr/rprime/badge.svg)](https://coveralls.io/r/tjmahr/rprime)
+
+```{r, child="vignettes/using-rprime.Rmd"}
+```
+
