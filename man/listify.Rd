@@ -24,15 +24,5 @@ Some minor cleaning of the input is performed:
     \item Once the strings are split at the separator, white-space on the
           left and right sides of each half-string is omitted.}
 }
-\examples{
-lines <- c("\\t*** LogFrame Start ***",
-           "\\tProcedure: PracticeProc",
-           "\\tStimulus1: toothbrush",
-           "\\t*** LogFrame End ***")
-
-listify(lines)
-# List of 2
-# $ Procedure: chr "PracticeProc"
-# $ Stimulus1: chr "toothbrush"
-}
+\keyword{internal}
 

@@ -233,17 +233,7 @@ tidy <- function(x) {
 #'   \code{"key: value"}
 #' @return a named list of the values in the colon-separated lines.
 #'   \code{"key: value"} yields \code{list(key = "value")}
-#' @export
-#' @examples
-#' lines <- c("\t*** LogFrame Start ***",
-#'            "\tProcedure: PracticeProc",
-#'            "\tStimulus1: toothbrush",
-#'            "\t*** LogFrame End ***")
-#'
-#' listify(lines)
-#' # List of 2
-#' # $ Procedure: chr "PracticeProc"
-#' # $ Stimulus1: chr "toothbrush"
+#' @keywords internal
 listify <- function(colon_sep_xs) {
   colon_sep_xs <- Filter(is_row, colon_sep_xs)
   splits <- str_split_fixed(colon_sep_xs, pattern = ": ", 2)
