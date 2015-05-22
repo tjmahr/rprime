@@ -1,7 +1,7 @@
 
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Using rprime}
+%\VignetteIndexEntry{Working with multiple files}
 -->
 
 ```{r, echo = FALSE, message = FALSE}
@@ -15,9 +15,13 @@ opts_chunk$set(
 
 ## Working with multiple files
 
-Suppose we want to load all the Eprime files in a directory and combine the results in data-frame. 
+Suppose we want to load all the Eprime files in a directory and combine the 
+results in dataframe. 
 
-My strategy in this scenario is to figure out what I need to do for a single file and then wrap those steps in a function that takes a filepath to a txt file and returns a data-frame. After some exploration and interactive programming, I come up with the following function:
+My strategy in this scenario is to figure out what I need to do for a single 
+file and then wrap those steps in a function that takes a filepath to a txt 
+file and returns a dataframe. After some exploration and interactive 
+programming, I come up with the following function.
 
 ```{r}
 library("plyr")
@@ -34,7 +38,7 @@ reduce_sails <- function(sails_path) {
                "Sample", "Correct", "Response")
   sails <- sails[to_pick]
   running_map <- c(TrialLists = "Trial", PracticeBlock = "Practice")
-  sails$Running <- ifelse(sails$Running == "PracticeBlock", "Practice", "Trial")
+  sails$Running <- running_map[sails$Running]
   
   # Renumber trials in the practice and experimental blocks separately.
   # Numerically code correct response.
@@ -56,7 +60,10 @@ Here's a preview of what the function returns when given a filepath.
 head(reduce_sails("data/SAILS/SAILS_001X00XS1.txt"))
 ```
 
-Now that the function works on one file, I can use `ldply` to apply the function to several files, returning results in a single dataframe.
+Now that the function works on one file, I can use `ldply` to apply the 
+function to several files, returning results in a single dataframe. (For 
+`dplyr`, I would `lapply` the function to each path to get a list of 
+dataframes, then use `bind_rows` to combine into a single dataframe.)
 
 ```{r}
 sails_paths <- list.files("data/SAILS/", pattern = ".txt", full.names = TRUE)
@@ -64,7 +71,9 @@ sails_paths
 ensemble <- ldply(sails_paths, reduce_sails)
 ```
 
-Finally, with all of the subjects' data contained in a single data-frame, I can use `ddply` plus `summarise` and compute summary scores at different levels of aggregation within each subject. 
+Finally, with all of the subjects' data contained in a single dataframe, I can 
+use `ddply` plus `summarise` and compute summary scores at different levels of 
+aggregation within each subject. 
 
 ```{r}
 # Score trials within subjects
@@ -76,11 +85,6 @@ overall
 # Score modules within subjects
 modules <- ddply(ensemble, .(Eprime.Basename, Running, Module), summarise, 
                  Score = sum(CorrectResponse),
-                 PropCorrect = Score / length(CorrectResponse))
+                 PropCorrect = mean(CorrectResponse))
 modules
-
-# Drop practice values, then print data in wide format
-library("reshape2")
-dcast(modules, Eprime.Basename ~ Module, subset = .(Running == "Trial"), 
-      fun.aggregate = mean, value.var = "PropCorrect")
 ```

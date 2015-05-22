@@ -20,5 +20,4 @@ Imports:
     assertthat
 Suggests:
     knitr,
-    reshape2,
     testthat
