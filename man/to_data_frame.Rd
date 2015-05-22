@@ -9,8 +9,6 @@ to_data_frame(x, ...)
 \arguments{
 \item{x}{an EprimeFrame object, or a FrameList object (a list of
 EprimeFrames)}
-
-\item{...}{other parameters passed onto \code{as.data.frame}}
 }
 \value{
 all of the EprimeFrames combined into a single data frame.
