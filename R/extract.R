@@ -24,9 +24,10 @@ extract_chunks <- function(eprime_log) {
   parsed <- parse_chunks(eprime_log)
   basename <- ifelse(!has_attr(eprime_log, "basename"), NA,
                      attr(eprime_log, "basename"))
-  fixed_header <- update_header(parsed)
-  numbered <- insert_frame_numbers(fixed_header)
-  parsed <- insert_basename(numbered, basename)
+  parsed <- parsed %>%
+    update_header %>%
+    insert_frame_numbers %>%
+    insert_basename(basename)
   lapply(parsed, as.EprimeChunk)
 }
 
