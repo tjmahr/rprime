@@ -1,5 +1,5 @@
 Package: rprime
-Title: Functions for Working with 'Eprime' Text files
+Title: Functions for Working with 'Eprime' Text Files
 Description: A suite of functions for loading, parsing, filtering and
     exporting data from 'Eprime' text files.
 Version: 0.1.0
