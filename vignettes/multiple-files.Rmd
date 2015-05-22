@@ -1,8 +1,12 @@
-
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Working with multiple files}
--->
+---
+title: "Working with multiple files"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with multiple files}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 ```{r, echo = FALSE, message = FALSE}
 library("rprime")
@@ -10,10 +14,9 @@ library("knitr")
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
-  tidy = FALSE)
+  tidy = FALSE,
+  collapse = TRUE)
 ```
-
-## Working with multiple files
 
 Suppose we want to load all the Eprime files in a directory and combine the 
 results in dataframe. 

@@ -1,8 +1,12 @@
-
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Parsing summary}
--->
+---
+title: "Parsing summary"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Parsing summary}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 ```{r, echo = FALSE, message = FALSE}
 library("rprime")
@@ -10,10 +14,9 @@ library("knitr")
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
-  tidy = FALSE)
+  tidy = FALSE,
+  collapse = TRUE)
 ```
-
-## rprime parsing summary
 
 Eprime, or more officially E-Prime® 2.0, is a set of programs by [Psychology
 Software Tools, Inc.](http://www.pstnet.com/) used for running psychological
@@ -23,9 +26,9 @@ file](http://www.pstnet.com/support/kb.asp?TopicID=3149), and 2) a plain-text
 `.txt` file. The rprime package provides a set of functions for parsing these
 `.txt` files inside R.
 
-This vignette documents how rprime parsed an Eprime text file and the decisions
-made during that process. **See the quick-start vignette for examples of how to
-use this package.**
+This vignette documents how rprime parses an Eprime text file and the changes 
+it makes during that process. **See the quick-start vignette for examples of 
+how to use this package.**
 
 **Disclaimer**: I write this documentation as someone who has spent little time
 creating and designing experiments in Eprime but has spent a lot of time
@@ -42,7 +45,8 @@ key-value pairs. Frames are bracketed by special start and stop lines.
 Each file begins with a special **Header** frame. The header is set off by the
 brackets `*** Header Start***` and `*** Header End***`. The fields in the
 header describe the basic settings of the experiment. A header frame looks like
-this:
+something this (the several-hundred character-long `Clock.Information` line has 
+been omitted):
 
 ```
 *** Header Start ***
@@ -70,7 +74,6 @@ Session: 1
 RandomSeed: -261296366
 Group: 1
 Display.RefreshRate: 60.003
-Clock.Information: <?xml version="1.0"?>\n<Clock xmlns:dt="urn:schemas-microsoft-com:datatypes"><Description dt:dt="string">E-Prime Primary Realtime Clock</Description><StartTime><Timestamp dt:dt="int">0</Timestamp><DateUtc dt:dt="string">2013-07-10T15:46:22Z</DateUtc></StartTime><FrequencyChanges><FrequencyChange><Frequency dt:dt="r8">3020527</Frequency><Timestamp dt:dt="r8">364810315607</Timestamp><Current dt:dt="r8">0</Current><DateUtc dt:dt="string">2013-07-10T15:46:22Z</DateUtc></FrequencyChange></FrequencyChanges></Clock>\n
 *** Header End ***
 ```
 
@@ -191,7 +194,8 @@ During the chunking, some metadata is inserted into the frames as additional
 
 1. `Eprime.FrameNumber`, the number of the log frame in the file 
 2. `Eprime.Basename`, the `basename` of the source file 
-3. The header frame also gets the lines `Procedure: Header` and `Running: Header`.
+3. The header frame also gets the lines `Procedure: Header` and 
+   `Running: Header`.
 
 The result of chunking is a list of character vectors. Here's how the second
 frame looks after chunking.
@@ -201,7 +205,7 @@ chunks <- extract_chunks(exp_lines)
 chunks[[2]]
 ```
 
-#### Building lists from `Key: Value` strings
+#### Building lists from "Key: Value" strings
 
 The data from each log-frame have been stored as character vector in a list.
 Next, we convert each vector of `"Key: Value"` strings into a list of named

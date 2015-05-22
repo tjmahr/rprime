@@ -1,8 +1,12 @@
-
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Quick start examples}
--->
+---
+title: "Quick start examples"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick start demonstration}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 ```{r, echo = FALSE, message = FALSE}
 library("rprime")
@@ -10,10 +14,11 @@ library("knitr")
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
-  tidy = FALSE)
+  tidy = FALSE,
+  collapse = TRUE)
 ```
 
-## Quick Start Demonstration
+Loading and parsing a file.
 
 ```{r}
 # Read in an Eprime text file
@@ -21,7 +26,11 @@ experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
 
 # Extract and parse the log-frames from the file
 experiment_data <- FrameList(experiment_lines)
+```
 
+Exploring and filtering frames from a file.
+
+```{r}
 # Run-down of different log-frames in the FrameList
 preview_levels(experiment_data)
 
@@ -46,7 +55,11 @@ preview_eprime(not_practice)
 # Drill down into a FrameList
 sue_trials <- filter_in(not_practice, "Module", "SUE")
 preview_eprime(sue_trials)
+```
 
+Convert to a dataframe.
+
+```{r}
 # Export to dataframe
 columns_to_keep <- c("Eprime.Basename", "Module", "Sample", 
                      "Correct", "Response")
