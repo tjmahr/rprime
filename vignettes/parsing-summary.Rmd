@@ -185,7 +185,7 @@ bracketing lines. When there is no closing bracket, as when an experiment is
 aborted, a warning is raised and the partial frame is skipped.
 
 ```{r}
-# Experiment aborted on trial 38
+# Experiment aborted on trial 3
 aborted <- FrameList(read_eprime("data/MP_Block1_001P00XA1.txt"))
 ```
 

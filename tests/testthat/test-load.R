@@ -2,10 +2,10 @@
 first <- function(...) head(..., n = 1)
 last <- function(...) tail(..., n = 1)
 first_line_header <- function(x) first(x) == "*** Header Start ***"
-count_blanks <- function(xs) sum(str_detect(xs, "^$"))
+count_blanks <- function(xs) sum(stringr::str_detect(xs, "^$"))
 
 # Test files
-good_file <- "data/Blending_001L00XS4.txt"
+good_file <- "data/MINP_001L00XS1.txt"
 bad_encoding <- "data/Blending_001L00XS4.txt"
 crashed_experiment <- "data/MP_Block1_001P00XA1.txt"
 no_footer <- "data/Coartic_Block1_001P00XS1.txt"
@@ -17,14 +17,13 @@ context("Reading standard files")
 test_that("Load well-formed data", {
   eprime_log <- read_eprime(good_file, remove_clock = FALSE)
   expect_equal(first(eprime_log), "*** Header Start ***")
-  expect_equal(eprime_log[30], "\t*** LogFrame Start ***")
+  expect_equal(eprime_log[29], "\t*** LogFrame Start ***")
   expect_equal(last(eprime_log), "*** LogFrame End ***")
 
   # Removing the clock removes 2 lines, one of which is in the header
   no_clock <- read_eprime(good_file, remove_clock = TRUE)
-  expect_equal(no_clock[29], "\t*** LogFrame Start ***")
+  expect_equal(no_clock[28], "\t*** LogFrame Start ***")
   expect_equal(length(no_clock) + 2, length(eprime_log))
-
 })
 
 
