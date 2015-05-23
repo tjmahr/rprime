@@ -20,4 +20,5 @@ Imports:
     assertthat
 Suggests:
     knitr,
+    rmarkdown,
     testthat

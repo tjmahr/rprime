@@ -1,5 +1,6 @@
 ---
 title: "Parsing summary"
+author: "Tristan Mahr"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
