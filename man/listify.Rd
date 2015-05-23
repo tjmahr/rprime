@@ -24,5 +24,4 @@ Some minor cleaning of the input is performed:
     \item Once the strings are split at the separator, white-space on the
           left and right sides of each half-string is omitted.}
 }
-\keyword{internal}
 

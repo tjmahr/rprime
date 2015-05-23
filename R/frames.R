@@ -233,7 +233,6 @@ tidy <- function(x) {
 #'   \code{"key: value"}
 #' @return a named list of the values in the colon-separated lines.
 #'   \code{"key: value"} yields \code{list(key = "value")}
-#' @keywords internal
 #' @export
 listify <- function(colon_sep_xs) {
   colon_sep_xs <- Filter(is_row, colon_sep_xs)
