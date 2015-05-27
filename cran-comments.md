@@ -1,6 +1,5 @@
 ## Test environments
-* local Windows 7 install, R 3.2.0
-* Windows R devel (via win-builder)
+* Windows R Release and R Devel (via win-builder)
 * ubuntu 12.04 (via travis-ci), R 3.2.0
 
 
@@ -10,9 +9,9 @@ There were no ERRORs or WARNINGs.
 There was 1 NOTE:
 
 * checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Tristan Mahr <tristan.mahr@wisc.edu>’
+Maintainer: 'Tristan Mahr <tristan.mahr@wisc.edu>'
 New submission
 
 
 ## Downstream dependencies
-“There are currently no downstream dependencies for this package”.
+There are currently no downstream dependencies for this package.
