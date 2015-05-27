@@ -20,6 +20,6 @@ rprime
 [![Build Status](https://travis-ci.org/tjmahr/rprime.svg)](https://travis-ci.org/tjmahr/rprime) 
 [![Coverage Status](https://coveralls.io/repos/tjmahr/rprime/badge.svg)](https://coveralls.io/r/tjmahr/rprime)
 
-```{r, child="vignettes/using-rprime.Rmd"}
+```{r, child="vignettes/quick-start-demo.Rmd"}
 ```
 
