@@ -32,13 +32,15 @@ The main workflow for working with `rprime` involves:
 3. `preview_levels`, `preview_eprime`: explore the structure of the parsed 
    data.
 4. `keep_levels`, `drop_levels`, `filter_in`, `filter_out`: select and filter 
-   particular levels from the txt-file..
+   particular levels from the txt-file.
 5.  `to_data_frame`: make a data-frame from the parsed data.
 
 
 ## Examples
 
-Loading and parsing a file.
+### Getting data into R
+
+Load the file with `read_eprime` and parse its contents with `FrameList`.
 
 ```{r}
 # Read in an Eprime text file
@@ -48,43 +50,70 @@ experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
 experiment_data <- FrameList(experiment_lines)
 ```
 
-Exploring and filtering frames from a file.
+### Exploring
+
+In the text file, frames were distinguished by the procedure they are running as 
+well as the their level of nesting. Get an overview of the different types of 
+frames with `preview_levels`.
 
 ```{r}
-# Run-down of different log-frames in the FrameList
+# There are six different kinds of frames in this file
 preview_levels(experiment_data)
+```
 
+Get a preview of the data in each kind of frame with `preview_frames`.
+
+```{r}
+preview_frames(experiment_data)
+```
+
+`preview_eprime` (not demonstrated here) does both kinds of previews (levels 
+and frames).
+
+### Filtering
+
+Use `keep_levels` and `drop_levels` to filter frames according to nesting level.
+
+```{r}
 # Filter (out) by depth of nesting
 not_level_1 <- drop_levels(experiment_data, 1)
 preview_levels(not_level_1)
 
 # Filter (in) by depth of nesting
 just_level_3 <- keep_levels(experiment_data, 3)
+preview_levels(just_level_3)
+```
 
-# Preview each kind of log-frame in the FrameList
-preview_eprime(just_level_3)
+Use `filter_in` and `filter_out` to filter frames using attribute values. Use 
+repeated filtering statements to drill down into the list of frames.
 
+```{r}
 # Filter (out) by attribute values
 no_header <- filter_out(experiment_data, "Running", values = "Header")
 preview_levels(no_header)
 
 # Filter (in) by attribute values
 not_practice <- filter_in(experiment_data, "Running", "TrialLists")
-preview_eprime(not_practice)
+preview_levels(not_practice)
 
-# Drill down into a FrameList
+# Drill down further into the trials by filtering again
 sue_trials <- filter_in(not_practice, "Module", "SUE")
 preview_eprime(sue_trials)
 ```
 
-Convert to a dataframe.
+### Exporting
+
+Convert to a dataframe with `to_dataframe`. Attribute names in the log-frames 
+become column names in the dataframe.
 
 ```{r}
 # Export to dataframe
+sue_trials_df <- to_data_frame(sue_trials)
+str(sue_trials_df, vec.len = 2)
+
+# Don't need every column
 columns_to_keep <- c("Eprime.Basename", "Module", "Sample", 
                      "Correct", "Response")
-sue_trials_df <- to_data_frame(sue_trials)[columns_to_keep]
+sue_trials_df <- sue_trials_df[columns_to_keep]
 head(sue_trials_df)
 ```
-
-

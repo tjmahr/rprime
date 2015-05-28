@@ -38,7 +38,7 @@ for Eprime software or its data format. Instead, this vignette just outlines
 this package's approach to extracting data from Eprime text files.
 
 
-### Background
+## Background
 
 An Eprime `txt` file is a series of **frames**. Each frame is a list of
 key-value pairs. Frames are bracketed by special start and stop lines.
@@ -106,7 +106,7 @@ Trials and procedures can be **nested** inside of higher-order sections of the
 experiment. For example, practice trials may be nested inside of a practice
 block of an experiment. The level of nesting in the above frame is indicated by
 the number of tabs before each line as well as the `Level` line. The only Level
-1 frames in an experiment appear to the header frame and the final frame off an
+1 frames in an experiment appear to the header frame and the final frame of an
 experiment (which largely duplicates the header frame).
 
 Some **special fields** appear in every log-frame. These fields are
@@ -126,19 +126,19 @@ When trials are presented in a random order, the `[Running].Sample` field
 records the sequential trial number.
 
 
-### Strategy
+## Strategy
 
 The basic strategy for parsing the Eprime file:
 
 1. Read in the Eprime file. 
-2. Create EprimeFrame objects.
+2. Create `EprimeFrame` objects.
     a. Extract the frames.
     b. Create key-value pairs inside the frame by splitting text lines at `:` 
        characters.
     c. Add some helpful metadata inside each frame.
     d. Bundle up the key-value pairs into an R `list` object with an added
-       `Eprime.Frame` class.
-3. Storing the frames from an experiment together inside of a `FrameList`
+       `EprimeFrame` class.
+3. Bundle the frames from an experiment together inside of a `FrameList`
 object.
 
 Each of these steps is handled by some lower level functions. **In practice,
@@ -152,7 +152,7 @@ eprime_lists <- FrameList(read_eprime("data/MINP_001L00XS1.txt"))
 eprime_lists[[1]]
 ```
 
-#### File reading
+### File reading
 
 Lines from the text file are read into R and stored into a character vector.
 Here are the first few lines from the example file:
@@ -177,7 +177,7 @@ loads multiple files at once will not fail outright when it encounters a bad
 file.
 
 
-#### Chunking
+### Chunking
 
 The next step in parsing the file is to extract all the frames. This is
 accomplished by pulling out lines of text that fall between a pair of
@@ -206,7 +206,7 @@ chunks <- extract_chunks(exp_lines)
 chunks[[2]]
 ```
 
-#### Building lists from "Key: Value" strings
+### Building lists from "Key: Value" strings
 
 The data from each log-frame have been stored as character vector in a list.
 Next, we convert each vector of `"Key: Value"` strings into a list of named
