@@ -1,7 +1,9 @@
 Package: rprime
 Title: Functions for Working with 'Eprime' Text Files
-Description: A suite of functions for loading, parsing, filtering and
-    exporting data from 'Eprime' text files.
+Description: 'Eprime' is a set of programs for administering psychological
+    experiments by computer. This package provides functions for loading,
+    parsing, filtering and exporting data in the text files produced by
+    'Eprime' experiments.
 Version: 0.1.0
 Maintainer: Tristan Mahr <tristan.mahr@wisc.edu>
 Author: Tristan Mahr <tristan.mahr@wisc.edu>
