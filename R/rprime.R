@@ -6,7 +6,3 @@
 #' @import plyr
 #' @import assertthat
 NULL
-
-require("plyr")
-require("stringr")
-require("assertthat")
