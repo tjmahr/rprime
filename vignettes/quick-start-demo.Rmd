@@ -56,6 +56,7 @@ Examples
 Load the file with `read_eprime` and parse its contents with `FrameList`.
 
 ```{r}
+library("rprime")
 # Read in an Eprime text file
 experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
 
