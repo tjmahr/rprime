@@ -19,6 +19,7 @@ rprime
 
 [![Build Status](https://travis-ci.org/tjmahr/rprime.svg)](https://travis-ci.org/tjmahr/rprime) 
 [![Coverage Status](https://coveralls.io/repos/tjmahr/rprime/badge.svg)](https://coveralls.io/r/tjmahr/rprime)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rprime)](http://cran.r-project.org/web/packages/rprime)
 
 ```{r, child="vignettes/quick-start-demo.Rmd"}
 ```
