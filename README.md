@@ -9,7 +9,7 @@ rprime
 Overview
 --------
 
-The main workflow for working with rprime involves:
+The main workflow for rprime involves:
 
 1.  `read_eprime`: reliably read in data from an Eprime log (`.txt`) file.
 2.  `FrameList`: extract the text in each `"LogFrame"` in the file, storing each log-frame as an R list.
@@ -301,7 +301,7 @@ Convert to a dataframe with `to_dataframe`. Attribute names in the log-frames be
 ``` r
 # Export to dataframe
 sue_trials_df <- to_data_frame(sue_trials)
-str(sue_trials_df, vec.len = 2)
+str(sue_trials_df)
 #> 'data.frame':    30 obs. of  27 variables:
 #>  $ Eprime.Level            : num  3 3 3 3 3 ...
 #>  $ Eprime.LevelName        : chr  "TrialLists_5" "TrialLists_5" ...
@@ -343,4 +343,28 @@ head(sue_trials_df)
 #> 4 SAILS_001X00XS1    SUE     44    Word     Word
 #> 5 SAILS_001X00XS1    SUE     45 NotWord  NotWord
 #> 6 SAILS_001X00XS1    SUE     46    Word     Word
+```
+
+**Note**: rprime thinks that all the values in the final dataframe are character values. You can use `type_convert` in the readr package to correct the column types:
+
+``` r
+# Right now the sample numbers are stored as character values
+str(sue_trials_df)
+#> 'data.frame':    30 obs. of  5 variables:
+#>  $ Eprime.Basename: chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...
+#>  $ Module         : chr  "SUE" "SUE" ...
+#>  $ Sample         : chr  "41" "42" ...
+#>  $ Correct        : chr  "Word" "NotWord" ...
+#>  $ Response       : chr  "Word" "NotWord" ...
+
+library("readr")
+sue_trials_df <- type_convert(sue_trials_df)
+# Now, they are stored as integers...
+str(sue_trials_df)
+#> 'data.frame':    30 obs. of  5 variables:
+#>  $ Eprime.Basename: chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...
+#>  $ Module         : chr  "SUE" "SUE" ...
+#>  $ Sample         : int  41 42 43 44 45 ...
+#>  $ Correct        : chr  "Word" "NotWord" ...
+#>  $ Response       : chr  "Word" "NotWord" ...
 ```
