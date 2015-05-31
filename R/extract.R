@@ -12,8 +12,8 @@
 #' the source file). The header log-frame also gets dummy lines:
 #' \code{Procedure: Header} and \code{Running: Header}.
 #'
-#' These chunks of colon-separated lines are converted into lists by
-#' \code{FrameList(...)}.
+#' These character vectors of colon-separated lines are converted into proper
+#' lists by \code{FrameList(...)}.
 #'
 #' @param eprime_log a character vector containing the lines of text from Eprime
 #'   txt file
@@ -71,9 +71,9 @@ insert_line <- function(xs, ys) {
 #' @param eprime_log a character vector of lines from an Eprime log file
 #' @return a list of character vectors, where each vector contains the lines of
 #'   a log-frame
-#' @keywords internal
+#' @noRd
 parse_chunks <- function(eprime_log) {
-  # Find all the texts between LogFrame boundaries
+  # Find all the texts between log-frame boundaries
   starts <- str_which(eprime_log, patterns$bracket_start)
   ends <- str_which(eprime_log, patterns$bracket_end)
   ranges <- make_ranges(starts, ends, eprime_log)
@@ -93,7 +93,7 @@ parse_chunks <- function(eprime_log) {
 #'   an Eprime log-frame. If there is a log frame without an end-line, that
 #'   partial frame is excluded and its contents are previed in a warning
 #'   message.
-#' @keywords internal
+#' @noRd
 make_ranges <- function(starts, ends, eprime_log) {
   # There should be the same number of starts and ends
   min_chunks <- min(length(starts), length(ends))

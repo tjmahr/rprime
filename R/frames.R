@@ -193,7 +193,7 @@ print.EprimeFrame <- function(...) str(...)
 #'   Sample: [Sample]
 #' }
 #'
-#' @keywords internal
+#' @noRd
 tidy <- function(x) {
   eprime_frame <- x
   level_depth <- eprime_frame[[rprime_cols$level]]
@@ -245,11 +245,10 @@ listify <- function(colon_sep_xs) {
 }
 
 
-#' Infer level of nesting (for a log-frame) by counting tabs
-#'
-#' The number of tabs before the "key: value" information in a log-frame tells
-#' where the frame is nested in the experiment's structure.
-#' @keywords internal
+# Infer level of nesting (for a log-frame) by counting tabs
+#
+# The number of tabs before the "key: value" information in a log-frame tells
+# where the frame is nested in the experiment's structure.
 count_tabs <- function(colon_sep_xs) {
   colon_sep_xs <- ifelse(length_zero(colon_sep_xs), "", colon_sep_xs)
   # Add one because there is no level 0

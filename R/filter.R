@@ -1,5 +1,4 @@
-#' Make a filtering predicate
-#' @keywords internal
+# Make a filtering predicate
 make_filter <- function(key, values) {
   assert_that(length(key) == 1)
   function(frame_list) {
