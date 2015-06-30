@@ -4,7 +4,7 @@ Description: 'Eprime' is a set of programs for administering psychological
     experiments by computer. This package provides functions for loading,
     parsing, filtering and exporting data in the text files produced by
     'Eprime' experiments.
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Maintainer: Tristan Mahr <tristan.mahr@wisc.edu>
 Author: Tristan Mahr <tristan.mahr@wisc.edu>
 License: GPL-2 | file LICENSE
@@ -19,7 +19,8 @@ Imports:
     stringi,
     plyr,
     tools,
-    assertthat
+    assertthat,
+    utils
 Suggests:
     knitr,
     rmarkdown,

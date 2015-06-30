@@ -5,4 +5,5 @@
 #' @import stringr
 #' @import plyr
 #' @import assertthat
+#' @importFrom utils str tail head
 NULL
