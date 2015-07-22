@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>EprimeFrame. rprime 0.1.0.9001</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rprime 0.1.0.9001</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Create an EprimeFrame object</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>EprimeFrame(keys_values)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>keys_values</dt>
+      <dd>a character vector of containing some <code>"key: value"</code>
+strings.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+a list with the class <code>EprimeFrame</code> and with special
+  <code>Eprime.</code> metadata, <code>Running</code> and <code>Procedure</code> values, all
+  set to NA by default.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>This constructor function converts a character vector into an
+<code>EprimeFrame</code> object, which is just a list with some special metadata
+values. Strings with the format <code>"key: value"</code> are parsed into <code>key
+= value</code> list items (via <code>listify</code>).</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'># Default metadata values
+lines &lt;- c(
+  &quot;key: value&quot;,
+  &quot;question: answer&quot;,
+  &quot;garbage text&quot;)
+
+EprimeFrame(lines)
+</div>
+<div class='output'>List of 8
+ $ Eprime.Level      : num 1
+ $ Eprime.LevelName  : logi NA
+ $ Eprime.Basename   : logi NA
+ $ Eprime.FrameNumber: logi NA
+ $ Procedure         : logi NA
+ $ Running           : logi NA
+ $ key               : chr &quot;value&quot;
+ $ question          : chr &quot;answer&quot;
+ - attr(*, &quot;class&quot;)= chr [1:2] &quot;EprimeFrame&quot; &quot;list&quot;
+</div>
+<div class='input'># List of 8
+# $ Eprime.Level      : num 1
+# $ Eprime.LevelName  : logi NA
+# $ Eprime.Basename   : logi NA
+# $ Eprime.FrameNumber: logi NA
+# $ Procedure         : logi NA
+# $ Running           : logi NA
+# $ key               : chr &quot;value&quot;
+# $ question          : chr &quot;answer&quot;
+
+# Normalize [Running] related lines
+keys_values &lt;- c(
+  &quot;Running: Demo&quot;,
+  &quot;Demo: ExampleCode&quot;,
+  &quot;Demo.Cycle: 1&quot;,
+  &quot;Demo.Sample: 1&quot;,
+  &quot;Key: Value&quot;)
+
+EprimeFrame(keys_values)
+</div>
+<div class='output'>List of 9
+ $ Eprime.Level      : num 1
+ $ Eprime.LevelName  : chr &quot;Demo_ExampleCode&quot;
+ $ Eprime.Basename   : logi NA
+ $ Eprime.FrameNumber: logi NA
+ $ Procedure         : logi NA
+ $ Running           : chr &quot;Demo&quot;
+ $ Cycle             : chr &quot;1&quot;
+ $ Sample            : chr &quot;1&quot;
+ $ Key               : chr &quot;Value&quot;
+ - attr(*, &quot;class&quot;)= chr [1:2] &quot;EprimeFrame&quot; &quot;list&quot;
+</div>
+<div class='input'># List of 9
+# $ Eprime.Level      : num 1
+# $ Eprime.LevelName  : chr &quot;Demo_ExampleCode&quot;
+# $ Eprime.Basename   : logi NA
+# $ Eprime.FrameNumber: logi NA
+# $ Procedure         : logi NA
+# $ Running           : chr &quot;Demo&quot;
+# $ Cycle             : chr &quot;1&quot;
+# $ Sample            : chr &quot;1&quot;
+# $ Key               : chr &quot;Value&quot;
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>EprimeFrame</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

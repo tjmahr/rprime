@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>list_functions. rprime 0.1.0.9001</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rprime 0.1.0.9001</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Higher-order functions for dealing with lists</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>pluck(key)</div>
+<div>pluck_apply(key, xss)</div>
+<div>pick(keys)</div>
+<div>pick_apply(keys, xss)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>key</dt>
+      <dd>the name of a value in a list</dd>
+      <dt>xss</dt>
+      <dd>a list of lists</dd>
+      <dt>keys</dt>
+      <dd>a character vector of names in a list</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+<code>pluck</code> returns an unnamed value and <code>pluck_apply</code> returns
+  a list of unnamed values. <code>pick</code> returns a simplified version of the
+  original list. <code>pick_apply</code> returns a list of simplified lists.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>These functions were inspired by underscore.js.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p><ul>
+<li> <code>pluck</code>: Pluck a named value from a list </li>
+<li>
+  <code>pick</code>: Simplify a list by picking out whitelisted names</li>
+</ul></p>
+  
+      <p>The simple versions of <code>pluck</code> and <code>pick</code> are curried functions,
+  meaning that they return a function which can be applied to a list. See the
+  syntax in the usage section.</p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>list_functions</li><li>pick</li><li>pick_apply</li><li>pluck</li><li>pluck_apply</li>
+    </ul>
+    <ul>
+      <li>internal</li>
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

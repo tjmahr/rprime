@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>FrameList. rprime 0.1.0.9001</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rprime 0.1.0.9001</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Convert lines from an Eprime file into EprimeFrame objects</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>FrameList(x)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a character vector with lines of the form <code>"key: value"</code>, or a
+list of vectors of colon-separated text</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+When passed a list of character vectors of <code>"key: value"</code> lines,
+  a FrameList object (a list of EprimeFrames) is returned. when passed a
+  single vector vector of <code>"key: value"</code> lines, a single EprimeFrame
+  object is returned inside of a FrameList object.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Convert character vectors of implicit key-value pairs (e.g., <code>c("key1:
+value1", "key2: value2")</code>), into  lists of explicit key-value pairs,
+<code>list(key1 = "value1", key2 = "value2")</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>During the conversion, if <code>Running: x</code>, then the
+  <code>x.Sample</code> and <code>x.Cycle</code> lines are simplified into <code>Sample</code>
+  and <code>Cycle</code> lines. The <code>x: value</code> line is recoded as
+  <code>Eprime.LevelName: x_value</code>. The purpose of this tidying is to force
+  the same set of key names (eventually, column names) onto frames with
+  different values for "Running".</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>lines &lt;- c(&quot;\t*** LogFrame Start ***&quot;,
+           &quot;\tProcedure: FamTask&quot;,
+           &quot;\titem1: bear&quot;,
+           &quot;\titem2: chair&quot;,
+           &quot;\tCorrectResponse: bear&quot;,
+           &quot;\tImageSide: Left&quot;,
+           &quot;\tDuration: 885&quot;,
+           &quot;\tFamiliarization: 1&quot;,
+           &quot;\tFamInforcer: 1&quot;,
+           &quot;\tReinforcerImage: Bicycle1&quot;,
+           &quot;\tFamiliarization.Cycle: 1&quot;,
+           &quot;\tFamiliarization.Sample: 1&quot;,
+           &quot;\tRunning: Familiarization&quot;,
+           &quot;\tFamTarget.RESP: &quot;,
+           &quot;\tCorrect: True&quot;,
+           &quot;\t*** LogFrame End ***&quot;)
+# List of 1
+# $ :List of 17
+# ..$ Eprime.Level      : num 2
+# ..$ Eprime.LevelName  : chr &quot;Familiarization_1&quot;
+# ..$ Eprime.Basename   : chr &quot;NA&quot;
+# ..$ Eprime.FrameNumber: chr &quot;1&quot;
+# ..$ Procedure         : chr &quot;FamTask&quot;
+# ..$ Running           : chr &quot;Familiarization&quot;
+# ..$ item1             : chr &quot;bear&quot;
+# ..$ item2             : chr &quot;chair&quot;
+# ..$ CorrectResponse   : chr &quot;bear&quot;
+# ..$ ImageSide         : chr &quot;Left&quot;
+# ..$ Duration          : chr &quot;885&quot;
+# ..$ FamInforcer       : chr &quot;1&quot;
+# ..$ ReinforcerImage   : chr &quot;Bicycle1&quot;
+# ..$ Cycle             : chr &quot;1&quot;
+# ..$ Sample            : chr &quot;1&quot;
+# ..$ FamTarget.RESP    : chr &quot;&quot;
+# ..$ Correct           : chr &quot;True&quot;
+# ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;EprimeFrame&quot; &quot;list&quot;
+# - attr(*, &quot;class&quot;)= chr [1:2] &quot;list&quot; &quot;FrameList&quot;
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>FrameList</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
