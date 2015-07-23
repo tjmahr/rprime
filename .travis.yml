@@ -15,7 +15,7 @@ env:
   global:
     - CRAN: http://cran.rstudio.com
     - GH_REF: tjmahr/rprime
-    - secure: "RvEPhfZErOAtFJAaSwgHgMrHYaUVVL1RiISwXH498hw2o/rBnCrg24WVN1oLOQZZQkcYdW+EDfCl6J/OhT7hRKSPCD8Yz+Rhj1zEHrQXSNAi8c3JETUwJirZUe2H2bkC0YUfMQ3sQaDipX/uIeXmk0BVUkETgeWb1UBzG8wNg28="
+    - secure: "fBiv698/8W8FSHodugT1xSfXDjSyJJCEwRcNrVnuRiCoc67t0E3am3gGywq2tbxnMN5yArNEjRtAwfffSyaIdlA13LenQGx+b4JS5e1ZswQloPnNATRI+rz6TT9FB2Q0++3SnhXZtxPw5GvQnYm1Krxy41WNpahtzZOtWwWtshY="
 
 notifications:
   email:
