@@ -107,7 +107,7 @@ reduce_sails &lt;-<span class="st"> </span>function(sails_path) {
 <p>Now that the function works on one file, I can use <code>ldply</code> to apply the function to several files, returning results in a single dataframe. (For <code>dplyr</code>, I would <code>lapply</code> the function to each path to get a list of dataframes, then use <code>bind_rows</code> to combine into a single dataframe.)</p>
 <pre class="sourceCode r"><code class="sourceCode r">sails_paths &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/SAILS/&quot;</span>, <span class="dt">pattern =</span> <span class="st">&quot;.txt&quot;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
 sails_paths
-<span class="co">#&gt; [1] &quot;data/SAILS/SAILS_001X00XS1.txt&quot; &quot;data/SAILS/SAILS_002X00XS1.txt&quot;</span>
+<span class="co">#&gt; [1] &quot;data/SAILS//SAILS_001X00XS1.txt&quot; &quot;data/SAILS//SAILS_002X00XS1.txt&quot;</span>
 ensemble &lt;-<span class="st"> </span><span class="kw">ldply</span>(sails_paths, reduce_sails)</code></pre>
 <p>Finally, with all of the subjects’ data contained in a single dataframe, I can use <code>ddply</code> plus <code>summarise</code> and compute summary scores at different levels of aggregation within each subject.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Score trials within subjects</span>
