@@ -4,6 +4,13 @@ language: r
 warnings_are_errors: true
 sudo: required
 
+branches:
+  only:
+    - master
+
+before_install:
+  - chmod 755 ./deploy-pages.sh
+  
 env:
   global:
     - CRAN: http://cran.rstudio.com
