@@ -7,6 +7,8 @@ sudo: required
 env:
  global:
    - CRAN: http://cran.rstudio.com
+   - GH_REF: tjmahr/rprime
+   - secure: "PIoZe3t59W1CUuUNxMlA/VyAoRfI4C0JtnH/7I53ksALb83Y0rGnfqpFlN8Xgro9rLPv/Mz1gY373fWRCb1ugb5A7x84uXjJQ8Ht45rwPgwCagN/kbYsA/EZiRSksfhUGhzMH6gO/razkZURavakr6ClWegHcxVJ05u1bNf71Ac="
 
 notifications:
   email:
@@ -16,6 +18,13 @@ notifications:
 r_github_packages:
   - jimhester/covr
   - Rexamine/stringi
+  - hadley/staticdocs
+
+r_binary_packages:
+  - roxygen2
 
 after_success:
   - Rscript -e 'library(covr);coveralls()'
+  - mkdir -p ./inst/staticdocs
+  - Rscript -e 'staticdocs::build_site()'
+  - ./deploy-pages.sh
