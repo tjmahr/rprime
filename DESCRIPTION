@@ -5,8 +5,8 @@ Description: 'Eprime' is a set of programs for administering psychological
     parsing, filtering and exporting data in the text files produced by
     'Eprime' experiments.
 Version: 0.1.0.9001
-Maintainer: Tristan Mahr <tristan.mahr@wisc.edu>
 Author: Tristan Mahr <tristan.mahr@wisc.edu>
+Maintainer: Tristan Mahr <tristan.mahr@wisc.edu>
 License: GPL-2 | file LICENSE
 URL: http://github.com/tjmahr/rprime
 BugReports: http://github.com/tjmahr/rprime/issues

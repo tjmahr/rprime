@@ -5,10 +5,10 @@ warnings_are_errors: true
 sudo: required
 
 env:
- global:
-   - CRAN: http://cran.rstudio.com
-   - GH_REF: tjmahr/rprime
-   - secure: "PIoZe3t59W1CUuUNxMlA/VyAoRfI4C0JtnH/7I53ksALb83Y0rGnfqpFlN8Xgro9rLPv/Mz1gY373fWRCb1ugb5A7x84uXjJQ8Ht45rwPgwCagN/kbYsA/EZiRSksfhUGhzMH6gO/razkZURavakr6ClWegHcxVJ05u1bNf71Ac="
+  global:
+    - CRAN: http://cran.rstudio.com
+    - GH_REF: tjmahr/rprime
+    - secure: "RvEPhfZErOAtFJAaSwgHgMrHYaUVVL1RiISwXH498hw2o/rBnCrg24WVN1oLOQZZQkcYdW+EDfCl6J/OhT7hRKSPCD8Yz+Rhj1zEHrQXSNAi8c3JETUwJirZUe2H2bkC0YUfMQ3sQaDipX/uIeXmk0BVUkETgeWb1UBzG8wNg28="
 
 notifications:
   email:
