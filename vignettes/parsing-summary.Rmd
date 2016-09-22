@@ -79,7 +79,7 @@ Display.RefreshRate: 60.003
 ```
 
 The other frames in the text file are **LogFrames**. These record data about
-individual the procedures or trials are executed during the experiment. The
+the individual procedures or trials are executed during the experiment. The
 following lines immediately follow the header from the previous example:
 
 ```
