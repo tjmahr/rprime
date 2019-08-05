@@ -11,3 +11,4 @@ tests/testthat/data/NonWordRep_001X00XS1.txt
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^codecov\.yml$

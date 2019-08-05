@@ -25,5 +25,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    readr
+    readr,
+    covr
 RoxygenNote: 6.1.1

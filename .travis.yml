@@ -1,37 +1,7 @@
-# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: r
-warnings_are_errors: true
-sudo: required
-
-branches:
-  only:
-    - master
-
-before_install:
-  - chmod 755 ./deploy-pages.sh
-  
-env:
-  global:
-    - CRAN: http://cran.rstudio.com
-    - GH_REF: tjmahr/rprime
-    - secure: "fBiv698/8W8FSHodugT1xSfXDjSyJJCEwRcNrVnuRiCoc67t0E3am3gGywq2tbxnMN5yArNEjRtAwfffSyaIdlA13LenQGx+b4JS5e1ZswQloPnNATRI+rz6TT9FB2Q0++3SnhXZtxPw5GvQnYm1Krxy41WNpahtzZOtWwWtshY="
-
-notifications:
-  email:
-    on_success: mahr@wisc.edu
-    on_failure: mahr@wisc.edu
-
-r_github_packages:
-  - jimhester/covr
-  - Rexamine/stringi
-  - hadley/staticdocs
-
-r_binary_packages:
-  - roxygen2
+language: R
+cache: packages
 
 after_success:
-  - Rscript -e 'library(covr);coveralls()'
-  - mkdir -p ./inst/staticdocs
-  - Rscript -e 'staticdocs::build_site()'
-  - ./deploy-pages.sh
+  - Rscript -e 'covr::coveralls()'
