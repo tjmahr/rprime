@@ -37,7 +37,7 @@ test_that("load file with unexpected encoding", {
   # first line header and no blank lines
   bad_encoding_lines <- read_eprime(bad_encoding)
   expect_true(first_line_header(bad_encoding_lines))
-  expect_less_than(count_blanks(bad_encoding_lines), 1)
+  expect_lt(count_blanks(bad_encoding_lines), 1)
 })
 
 test_that("load file from a crashed experiment", {
@@ -48,7 +48,7 @@ test_that("load file from a crashed experiment", {
   # first line header and no blank lines
   crashed_experiment_lines <- read_eprime(crashed_experiment)
   expect_true(first_line_header(crashed_experiment_lines))
-  expect_less_than(count_blanks(crashed_experiment_lines), 1)
+  expect_lt(count_blanks(crashed_experiment_lines), 1)
 })
 
 test_that("non-eprime file raises warning", {
