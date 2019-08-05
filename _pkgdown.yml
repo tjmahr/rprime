@@ -4,6 +4,7 @@ reference:
     desc: ~
     contents:
       - '`read_eprime`'
+      - '`FrameList`'
       - '`filter_in`'
       - '`keep_levels`'
       - '`to_data_frame`'
@@ -18,6 +19,4 @@ reference:
     contents:
       - '`EprimeFrame`'
       - '`as.EprimeFrame`'
-      - '`FrameList`'
       - '`as.FrameList`'
-
