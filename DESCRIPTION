@@ -1,31 +1,36 @@
 Package: rprime
 Title: Functions for Working with 'Eprime' Text Files
-Description: 'Eprime' is a set of programs for administering psychological
-    experiments by computer. This package provides functions for loading,
-    parsing, filtering and exporting data in the text files produced by
-    'Eprime' experiments.
 Version: 0.1.0.9001
-Author: Tristan Mahr <tristan.mahr@wisc.edu>
-Maintainer: Tristan Mahr <tristan.mahr@wisc.edu>
+Authors@R: 
+    person(given = "Tristan",
+           family = "Mahr",
+           role = c("aut", "cre"),
+           email = "tristan.mahr@wisc.edu",
+           comment = c(ORCID = "0000-0002-8890-5116"))
+Description: 'Eprime' is a set of programs for administering
+    psychological experiments by computer. This package provides functions
+    for loading, parsing, filtering and exporting data in the text files
+    produced by 'Eprime' experiments.
 License: GPL-2 | file LICENSE
 URL: http://github.com/tjmahr/rprime
 BugReports: http://github.com/tjmahr/rprime/issues
 Depends:
     R (>= 3.0.1)
-VignetteBuilder: knitr
-LazyData: true
 Imports:
-    stringr (>= 1.0.0),
-    stringi,
-    plyr,
-    tools,
     assertthat,
+    plyr,
+    stringi,
+    stringr (>= 1.0.0),
+    tools,
     utils
 Suggests:
+    covr,
     knitr,
-    rmarkdown,
-    testthat,
     readr,
-    covr
-RoxygenNote: 6.1.1
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
