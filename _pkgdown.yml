@@ -1,0 +1,23 @@
+destination: docs
+reference:
+  - title: Most important functions
+    desc: ~
+    contents:
+      - '`read_eprime`'
+      - '`filter_in`'
+      - '`keep_levels`'
+      - '`to_data_frame`'
+  - title: Supporting functions
+    desc: These help with the parsing of the text file.
+    contents:
+      - '`listify`'
+      - '`extract_chunks`'
+      - '`preview_eprime`'
+  - title: Objects
+    desc: These objects represent chunks of data.
+    contents:
+      - '`EprimeFrame`'
+      - '`as.EprimeFrame`'
+      - '`FrameList`'
+      - '`as.FrameList`'
+
