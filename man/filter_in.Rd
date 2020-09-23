@@ -19,7 +19,7 @@ filter_out(frame_list, key, values)
 \value{
 for \code{filter_in}, only log-frames where \code{key} is one of the
   \code{values} are kept. for \code{filter_out}, log-frames where \code{key}
-  is one of the \code{values} are omitteed.
+  is one of the \code{values} are omitted.
 }
 \description{
 Filter levels in or out of a FrameList based on attribute values

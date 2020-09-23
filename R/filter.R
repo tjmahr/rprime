@@ -18,7 +18,7 @@ make_filter <- function(key, values) {
 #' @param values the whitelisted or blacklisted values of the attribute
 #' @return for \code{filter_in}, only log-frames where \code{key} is one of the
 #'   \code{values} are kept. for \code{filter_out}, log-frames where \code{key}
-#'   is one of the \code{values} are omitteed.
+#'   is one of the \code{values} are omitted.
 #' @export
 filter_in <- function(frame_list, key, values) {
   has_key_value <- make_filter(key, values)
