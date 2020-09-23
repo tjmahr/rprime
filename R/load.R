@@ -14,11 +14,13 @@
 #'   \code{*** Header Start ***} and \code{*** Header End ***}--a warning is
 #'   raised and the lines of text are replaced by a dummy header.
 #' @export
-#' @importFrom stringi stri_read_lines
-#' @importFrom tools file_path_sans_ext
 read_eprime <- function(filename, remove_clock = TRUE) {
-  basename <- file_path_sans_ext(basename(filename))
-  eprime_log <- stri_read_lines(filename)
+  basename <- tools::file_path_sans_ext(basename(filename))
+
+  raw <- stringi::stri_read_raw(filename)
+  top_enc <- stringi::stri_enc_detect(raw)[[1]][1, 1]
+  eprime_log <- stringi::stri_read_lines(filename, encoding = top_enc)
+
 
   if (!has_header(eprime_log)) {
     warning(filename, " is not an Eprime txt file. Dummy text will be used instead.")
