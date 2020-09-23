@@ -12,3 +12,4 @@ tests/testthat/data/NonWordRep_001X00XS1.txt
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^LICENSE$
