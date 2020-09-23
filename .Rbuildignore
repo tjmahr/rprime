@@ -5,7 +5,6 @@
 ^README\.md$
 ^README-.*\.png$
 ^cran-comments\.md$
-^NEWS\.md$
 tests/testthat/data/NonWordRep_001X00XS1.txt
 ^deploy-pages.sh$
 ^_pkgdown\.yml$
