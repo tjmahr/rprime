@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parsing summary • rprime</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Parsing summary">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="rprime">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rprime</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -63,11 +64,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/tjmahr/rprime">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/tjmahr/rprime/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -80,13 +84,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Parsing summary</h1>
+      <h1 data-toc-skip>Parsing summary</h1>
                         <h4 class="author">Tristan Mahr</h4>
             
-            <h4 class="date">2019-08-05</h4>
+            <h4 class="date">2020-09-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tjmahr/rprime/blob/master/vignettes/parsing-summary.Rmd"><code>vignettes/parsing-summary.Rmd</code></a></small>
       <div class="hidden name"><code>parsing-summary.Rmd</code></div>
@@ -95,7 +100,7 @@
 
     
     
-<p>Eprime, or more officially E-Prime® 2.0, is a set of programs by <a href="http://www.pstnet.com/">Psychology Software Tools, Inc.</a> used for running psychological experiments. Data from experiment sessions are saved into two files: 1) a proprietary <a href="http://www.pstnet.com/support/kb.asp?TopicID=3149">binary <code>.edat2</code> file</a>, and 2) a plain-text <code>.txt</code> file. The rprime package provides a set of functions for parsing these <code>.txt</code> files inside R.</p>
+<p>Eprime, or more officially E-Prime® 2.0, is a set of programs by <a href="https://www.pstnet.com/">Psychology Software Tools, Inc.</a> used for running psychological experiments. Data from experiment sessions are saved into two files: 1) a proprietary <a href="https://support.pstnet.com/hc/en-us/articles/229354727">binary <code>.edat2</code> file</a>, and 2) a plain-text <code>.txt</code> file. The rprime package provides a set of functions for parsing these <code>.txt</code> files inside R.</p>
 <p>This vignette documents how rprime parses an Eprime text file and the changes it makes during that process. <strong>See the quick-start vignette for examples of how to use this package.</strong></p>
 <p><strong>Disclaimer</strong>: I write this documentation as someone who has spent little time creating and designing experiments in Eprime but has spent a lot of time parsing Eprime text files in R. Therefore, this vignette is not documentation for Eprime software or its data format. Instead, this vignette just outlines this package’s approach to extracting data from Eprime text files.</p>
 <div id="background" class="section level2">
@@ -165,7 +170,7 @@ Display.RefreshRate: 60.003
 <li>Create <code>EprimeFrame</code> objects.
 <ol style="list-style-type: lower-alpha">
 <li>Extract the frames.</li>
-<li>Create key-value pairs inside the frame by splitting text lines at <code>:</code> characters.</li>
+<li>Create key-value pairs inside the frame by splitting text lines at <code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> characters.</li>
 <li>Add some helpful metadata inside each frame.</li>
 <li>Bundle up the key-value pairs into an R <code>list</code> object with an added <code>EprimeFrame</code> class.</li>
 </ol>
@@ -173,67 +178,75 @@ Display.RefreshRate: 60.003
 <li>Bundle the frames from an experiment together inside of a <code>FrameList</code> object.</li>
 </ol>
 <p>Each of these steps is handled by some lower level functions. <strong>In practice, only two high-level functions are necessary to transform from a text file to a list of <code>Eprime.Frame objects</code>: <code>read_eprime</code> and <code>FrameList</code>.</strong> Here’s how these two functions can be used to get us the header frame from a text file.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"rprime"</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2">eprime_lists &lt;-<span class="st"> </span><span class="kw"><a href="../reference/FrameList.html">FrameList</a></span>(<span class="kw"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/MINP_001L00XS1.txt"</span>))</a>
-<a class="sourceLine" id="cb4-3" title="3">eprime_lists[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; List of 21</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;  $ Eprime.Level       : num 1</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;  $ Eprime.LevelName   : chr "Header_"</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  $ Eprime.Basename    : chr "MINP_001L00XS1"</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  $ Eprime.FrameNumber : chr "1"</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  $ Procedure          : chr "Header"</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  $ Running            : chr "Header"</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  $ VersionPersist     : chr "1"</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  $ LevelName          : chr "LogLevel10"</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  $ Experiment         : chr "SAE_MinimalPairDiscrim"</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  $ SessionDate        : chr "07-10-2013"</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  $ SessionTime        : chr "10:46:22"</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt;  $ SessionTimeUtc     : chr "3:46:22 PM"</span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt;  $ Dialect            : chr "Yes"</span></a>
-<a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt;  $ Subject            : chr "001"</span></a>
-<a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt;  $ ExpTyp             : chr "L"</span></a>
-<a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt;  $ Age                : chr "00"</span></a>
-<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt;  $ Gender             : chr "X"</span></a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt;  $ Session            : chr "1"</span></a>
-<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt;  $ RandomSeed         : chr "-261296366"</span></a>
-<a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt;  $ Group              : chr "1"</span></a>
-<a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt;  $ Display.RefreshRate: chr "60.003"</span></a>
-<a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://github.com/tjmahr/rprime">"rprime"</a></span>)
+<span class="kw">eprime_lists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/FrameList.html">FrameList</a></span>(<span class="fu"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/MINP_001L00XS1.txt"</span>))
+<span class="kw">eprime_lists</span>[[<span class="fl">1</span>]]
+<span class="co">#&gt; List of 21</span>
+<span class="co">#&gt;  $ Eprime.Level       : num 1</span>
+<span class="co">#&gt;  $ Eprime.LevelName   : chr "Header_"</span>
+<span class="co">#&gt;  $ Eprime.Basename    : chr "MINP_001L00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber : chr "1"</span>
+<span class="co">#&gt;  $ Procedure          : chr "Header"</span>
+<span class="co">#&gt;  $ Running            : chr "Header"</span>
+<span class="co">#&gt;  $ VersionPersist     : chr "1"</span>
+<span class="co">#&gt;  $ LevelName          : chr "LogLevel10"</span>
+<span class="co">#&gt;  $ Experiment         : chr "SAE_MinimalPairDiscrim"</span>
+<span class="co">#&gt;  $ SessionDate        : chr "07-10-2013"</span>
+<span class="co">#&gt;  $ SessionTime        : chr "10:46:22"</span>
+<span class="co">#&gt;  $ SessionTimeUtc     : chr "3:46:22 PM"</span>
+<span class="co">#&gt;  $ Dialect            : chr "Yes"</span>
+<span class="co">#&gt;  $ Subject            : chr "001"</span>
+<span class="co">#&gt;  $ ExpTyp             : chr "L"</span>
+<span class="co">#&gt;  $ Age                : chr "00"</span>
+<span class="co">#&gt;  $ Gender             : chr "X"</span>
+<span class="co">#&gt;  $ Session            : chr "1"</span>
+<span class="co">#&gt;  $ RandomSeed         : chr "-261296366"</span>
+<span class="co">#&gt;  $ Group              : chr "1"</span>
+<span class="co">#&gt;  $ Display.RefreshRate: chr "60.003"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+</pre></div>
 <div id="file-reading" class="section level3">
 <h3 class="hasAnchor">
 <a href="#file-reading" class="anchor"></a>File reading</h3>
 <p>Lines from the text file are read into R and stored into a character vector. Here are the first few lines from the example file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">exp_lines &lt;-<span class="st"> </span><span class="kw"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/MINP_001L00XS1.txt"</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(exp_lines)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt; [1] "*** Header Start ***" "VersionPersist: 1"    "LevelName: Session"  </span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; [4] "LevelName: Block"     "LevelName: Trial"     "LevelName: SubTrial"</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">exp_lines</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/MINP_001L00XS1.txt"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">exp_lines</span>)
+<span class="co">#&gt; [1] "*** Header Start ***" "VersionPersist: 1"    "LevelName: Session"  </span>
+<span class="co">#&gt; [4] "LevelName: Block"     "LevelName: Trial"     "LevelName: SubTrial"</span>
+</pre></div>
 <p>Some things to note about file reading. By default, the enormous <code>Clock.Information</code> lines are omitted. Also, if the file is not an Eprime <code>.txt</code> file, a <strong>dummy header</strong> is created so that the file may be treated like any other like Eprime. The user is warned as this happens.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">bad_lines &lt;-<span class="st"> </span><span class="kw"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/not_an_eprime_file.txt"</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; Warning in read_eprime("data/not_an_eprime_file.txt"): data/</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; not_an_eprime_file.txt is not an Eprime txt file. Dummy text will be used</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; instead.</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(bad_lines)</a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; [1] "*** Header Start ***" "*** Header End ***"</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">bad_lines</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/not_an_eprime_file.txt"</span>)
+<span class="co">#&gt; Warning in read_eprime("data/not_an_eprime_file.txt"): data/</span>
+<span class="co">#&gt; not_an_eprime_file.txt is not an Eprime txt file. Dummy text will be used</span>
+<span class="co">#&gt; instead.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">bad_lines</span>)
+<span class="co">#&gt; [1] "*** Header Start ***" "*** Header End ***"</span>
+</pre></div>
 <p>I chose to use a dummy header instead of raising an error so that code which loads multiple files at once will not fail outright when it encounters a bad file.</p>
 </div>
 <div id="chunking" class="section level3">
 <h3 class="hasAnchor">
 <a href="#chunking" class="anchor"></a>Chunking</h3>
 <p>The next step in parsing the file is to extract all the frames. This is accomplished by pulling out lines of text that fall between a pair of bracketing lines. When there is no closing bracket, as when an experiment is aborted, a warning is raised and the partial frame is skipped.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Experiment aborted on trial 3</span></a>
-<a class="sourceLine" id="cb7-2" title="2">aborted &lt;-<span class="st"> </span><span class="kw"><a href="../reference/FrameList.html">FrameList</a></span>(<span class="kw"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/MP_Block1_001P00XA1.txt"</span>))</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; Warning in make_ranges(starts, ends, eprime_log): Incomplete Log Frame found on line 72</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;      *** LogFrame Start ***</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt;      TrialList: 3</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;      Procedure: TrialProcedure</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;      ImageL: marmoset1</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;      ImageR: girl1</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;      Carrier: fin</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;      Target: ImageR</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;      AudioStim: AAE_Fin_girl_312_10</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;      Attention: AAE_check2_10</span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;      CarrierDur: 1858</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;      AttentionDur: 914</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="co"># Experiment aborted on trial 3</span>
+<span class="kw">aborted</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/FrameList.html">FrameList</a></span>(<span class="fu"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/MP_Block1_001P00XA1.txt"</span>))
+<span class="co">#&gt; Warning in make_ranges(starts, ends, eprime_log): Incomplete Log Frame found on line 72</span>
+<span class="co">#&gt;      *** LogFrame Start ***</span>
+<span class="co">#&gt;      TrialList: 3</span>
+<span class="co">#&gt;      Procedure: TrialProcedure</span>
+<span class="co">#&gt;      ImageL: marmoset1</span>
+<span class="co">#&gt;      ImageR: girl1</span>
+<span class="co">#&gt;      Carrier: fin</span>
+<span class="co">#&gt;      Target: ImageR</span>
+<span class="co">#&gt;      AudioStim: AAE_Fin_girl_312_10</span>
+<span class="co">#&gt;      Attention: AAE_check2_10</span>
+<span class="co">#&gt;      CarrierDur: 1858</span>
+<span class="co">#&gt;      AttentionDur: 914</span>
+</pre></div>
 <p>The low-level function for chunking the lines of text is <code>extract_chunks</code>. During the chunking, some metadata is inserted into the frames as additional <code>Key: Value</code> lines. These fields are:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -243,19 +256,21 @@ Display.RefreshRate: 60.003
 <li>The header frame also gets the lines <code>Procedure: Header</code> and <code>Running: Header</code>.</li>
 </ol>
 <p>The result of chunking is a list of character vectors. Here’s how the second frame looks after chunking.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">chunks &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_chunks.html">extract_chunks</a></span>(exp_lines)</a>
-<a class="sourceLine" id="cb8-2" title="2">chunks[[<span class="dv">2</span>]]</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt;  [1] "\t*** LogFrame Start ***"         "\tProcedure: FamTask"            </span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt;  [3] "\titem1: bear"                    "\titem2: chair"                  </span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt;  [5] "\tCorrectResponse: bear"          "\tImageSide: Left"               </span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt;  [7] "\tDuration: 885"                  "\tFamiliarization: 1"            </span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;  [9] "\tFamInforcer: 1"                 "\tReinforcerImage: Bicycle1"     </span></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt; [11] "\tFamiliarization.Cycle: 1"       "\tFamiliarization.Sample: 1"     </span></a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt; [13] "\tRunning: Familiarization"       "\tFamTarget.RESP: "              </span></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt; [15] "\tCorrect: True"                  "Eprime.FrameNumber: 2"          </span></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt; [17] "Eprime.Basename: MINP_001L00XS1" "\t*** LogFrame End ***"          </span></a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt; attr(,"class")</span></a>
-<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt; [1] "EprimeChunk" "character"</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="kw">chunks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_chunks.html">extract_chunks</a></span>(<span class="kw">exp_lines</span>)
+<span class="kw">chunks</span>[[<span class="fl">2</span>]]
+<span class="co">#&gt;  [1] "\t*** LogFrame Start ***"         "\tProcedure: FamTask"            </span>
+<span class="co">#&gt;  [3] "\titem1: bear"                    "\titem2: chair"                  </span>
+<span class="co">#&gt;  [5] "\tCorrectResponse: bear"          "\tImageSide: Left"               </span>
+<span class="co">#&gt;  [7] "\tDuration: 885"                  "\tFamiliarization: 1"            </span>
+<span class="co">#&gt;  [9] "\tFamInforcer: 1"                 "\tReinforcerImage: Bicycle1"     </span>
+<span class="co">#&gt; [11] "\tFamiliarization.Cycle: 1"       "\tFamiliarization.Sample: 1"     </span>
+<span class="co">#&gt; [13] "\tRunning: Familiarization"       "\tFamTarget.RESP: "              </span>
+<span class="co">#&gt; [15] "\tCorrect: True"                  "Eprime.FrameNumber: 2"          </span>
+<span class="co">#&gt; [17] "Eprime.Basename: MINP_001L00XS1" "\t*** LogFrame End ***"          </span>
+<span class="co">#&gt; attr(,"class")</span>
+<span class="co">#&gt; [1] "EprimeChunk" "character"</span>
+</pre></div>
 </div>
 <div id="building-lists-from-key-value-strings" class="section level3">
 <h3 class="hasAnchor">
@@ -275,42 +290,40 @@ Display.RefreshRate: 60.003
 </ol>
 <p>One additional field is added, <code>Eprime.Level</code>, to record the depth of nesting (equal to the number of tabs plus one).</p>
 <p>Here is how the second frame appears after this stage of parsing:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/EprimeFrame.html">EprimeFrame</a></span>(chunks[[<span class="dv">2</span>]])</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&gt; List of 17</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt;  $ Eprime.Level      : num 2</span></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="co">#&gt;  $ Eprime.LevelName  : chr "Familiarization_1"</span></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="co">#&gt;  $ Eprime.Basename   : chr "MINP_001L00XS1"</span></a>
-<a class="sourceLine" id="cb10-6" title="6"><span class="co">#&gt;  $ Eprime.FrameNumber: chr "2"</span></a>
-<a class="sourceLine" id="cb10-7" title="7"><span class="co">#&gt;  $ Procedure         : chr "FamTask"</span></a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="co">#&gt;  $ Running           : chr "Familiarization"</span></a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="co">#&gt;  $ item1             : chr "bear"</span></a>
-<a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt;  $ item2             : chr "chair"</span></a>
-<a class="sourceLine" id="cb10-11" title="11"><span class="co">#&gt;  $ CorrectResponse   : chr "bear"</span></a>
-<a class="sourceLine" id="cb10-12" title="12"><span class="co">#&gt;  $ ImageSide         : chr "Left"</span></a>
-<a class="sourceLine" id="cb10-13" title="13"><span class="co">#&gt;  $ Duration          : chr "885"</span></a>
-<a class="sourceLine" id="cb10-14" title="14"><span class="co">#&gt;  $ FamInforcer       : chr "1"</span></a>
-<a class="sourceLine" id="cb10-15" title="15"><span class="co">#&gt;  $ ReinforcerImage   : chr "Bicycle1"</span></a>
-<a class="sourceLine" id="cb10-16" title="16"><span class="co">#&gt;  $ Cycle             : chr "1"</span></a>
-<a class="sourceLine" id="cb10-17" title="17"><span class="co">#&gt;  $ Sample            : chr "1"</span></a>
-<a class="sourceLine" id="cb10-18" title="18"><span class="co">#&gt;  $ FamTarget.RESP    : chr ""</span></a>
-<a class="sourceLine" id="cb10-19" title="19"><span class="co">#&gt;  $ Correct           : chr "True"</span></a>
-<a class="sourceLine" id="cb10-20" title="20"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/EprimeFrame.html">EprimeFrame</a></span>(<span class="kw">chunks</span>[[<span class="fl">2</span>]])
+<span class="co">#&gt; List of 17</span>
+<span class="co">#&gt;  $ Eprime.Level      : num 2</span>
+<span class="co">#&gt;  $ Eprime.LevelName  : chr "Familiarization_1"</span>
+<span class="co">#&gt;  $ Eprime.Basename   : chr "MINP_001L00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber: chr "2"</span>
+<span class="co">#&gt;  $ Procedure         : chr "FamTask"</span>
+<span class="co">#&gt;  $ Running           : chr "Familiarization"</span>
+<span class="co">#&gt;  $ item1             : chr "bear"</span>
+<span class="co">#&gt;  $ item2             : chr "chair"</span>
+<span class="co">#&gt;  $ CorrectResponse   : chr "bear"</span>
+<span class="co">#&gt;  $ ImageSide         : chr "Left"</span>
+<span class="co">#&gt;  $ Duration          : chr "885"</span>
+<span class="co">#&gt;  $ FamInforcer       : chr "1"</span>
+<span class="co">#&gt;  $ ReinforcerImage   : chr "Bicycle1"</span>
+<span class="co">#&gt;  $ Cycle             : chr "1"</span>
+<span class="co">#&gt;  $ Sample            : chr "1"</span>
+<span class="co">#&gt;  $ FamTarget.RESP    : chr ""</span>
+<span class="co">#&gt;  $ Correct           : chr "True"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+</pre></div>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#background">Background</a></li>
-      <li><a href="#strategy">Strategy</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -318,12 +331,14 @@ Display.RefreshRate: 60.003
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

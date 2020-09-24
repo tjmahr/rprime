@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quick start demonstration • rprime</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Quick start demonstration">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="rprime">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rprime</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -63,11 +64,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/tjmahr/rprime">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/tjmahr/rprime/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -80,13 +84,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Quick start demonstration</h1>
+      <h1 data-toc-skip>Quick start demonstration</h1>
                         <h4 class="author">Tristan Mahr</h4>
             
-            <h4 class="date">2019-08-05</h4>
+            <h4 class="date">2020-09-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tjmahr/rprime/blob/master/vignettes/quick-start-demo.Rmd"><code>vignettes/quick-start-demo.Rmd</code></a></small>
       <div class="hidden name"><code>quick-start-demo.Rmd</code></div>
@@ -117,7 +122,9 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>To get the current, released version from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"rprime"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"rprime"</span>)
+</pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -126,345 +133,354 @@
 <h3 class="hasAnchor">
 <a href="#getting-data-into-r" class="anchor"></a>Getting data into R</h3>
 <p>Load the file with <code>read_eprime</code> and parse its contents with <code>FrameList</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"rprime"</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co"># Read in an Eprime text file</span></a>
-<a class="sourceLine" id="cb2-3" title="3">experiment_lines &lt;-<span class="st"> </span><span class="kw"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/SAILS/SAILS_001X00XS1.txt"</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4"></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co"># Extract and parse the log-frames from the file</span></a>
-<a class="sourceLine" id="cb2-6" title="6">experiment_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/FrameList.html">FrameList</a></span>(experiment_lines)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://github.com/tjmahr/rprime">"rprime"</a></span>)
+<span class="co"># Read in an Eprime text file</span>
+<span class="kw">experiment_lines</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_eprime.html">read_eprime</a></span>(<span class="st">"data/SAILS/SAILS_001X00XS1.txt"</span>)
+
+<span class="co"># Extract and parse the log-frames from the file</span>
+<span class="kw">experiment_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/FrameList.html">FrameList</a></span>(<span class="kw">experiment_lines</span>)
+</pre></div>
 </div>
 <div id="exploring" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exploring" class="anchor"></a>Exploring</h3>
 <p>In the text file, frames were distinguished by the procedure they are running as well as the their level of nesting. Get an overview of the different types of frames with <code>preview_levels</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># There are six different kinds of frames in this file</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/preview_eprime.html">preview_levels</a></span>(experiment_data)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; Level Counts: </span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;             1        Header            Header    1</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;             2  PracticeList      PracticeProc    1</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;             3    TrialLists         TrialProc   70</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;             2     BlockList         BlockProc    7</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;             1          &lt;NA&gt;              &lt;NA&gt;    1</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># There are six different kinds of frames in this file</span>
+<span class="fu"><a href="../reference/preview_eprime.html">preview_levels</a></span>(<span class="kw">experiment_data</span>)
+<span class="co">#&gt; Level Counts: </span>
+<span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span>
+<span class="co">#&gt;             1        Header            Header    1</span>
+<span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span>
+<span class="co">#&gt;             2  PracticeList      PracticeProc    1</span>
+<span class="co">#&gt;             3    TrialLists         TrialProc   70</span>
+<span class="co">#&gt;             2     BlockList         BlockProc    7</span>
+<span class="co">#&gt;             1          &lt;NA&gt;              &lt;NA&gt;    1</span>
+</pre></div>
 <p>Get a preview of the data in each kind of frame with <code>preview_frames</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="../reference/preview_eprime.html">preview_frames</a></span>(experiment_data)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;  Eprime.Level Running Procedure</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;             1  Header    Header</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; List of 22</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;  $ Eprime.Level       : num 1</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  $ Eprime.LevelName   : chr "Header_"</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  $ Eprime.Basename    : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  $ Eprime.FrameNumber : chr "1"</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  $ Procedure          : chr "Header"</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  $ Running            : chr "Header"</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  $ VersionPersist     : chr "1"</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  $ LevelName          : chr "LogLevel10"</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  $ Experiment         : chr "SAILS"</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  $ SessionDate        : chr "12-01-2013"</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt;  $ SessionTime        : chr "11:00:00"</span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt;  $ SessionTimeUtc     : chr "5:00:00 PM"</span></a>
-<a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt;  $ Dilaect            : chr "Yes"</span></a>
-<a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt;  $ Subject            : chr "001"</span></a>
-<a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt;  $ ExpTyp             : chr "X"</span></a>
-<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt;  $ Age                : chr "00"</span></a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt;  $ Gender             : chr "X"</span></a>
-<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt;  $ Session            : chr "1"</span></a>
-<a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt;  $ ChildNativeDialect : chr "S"</span></a>
-<a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt;  $ RandomSeed         : chr "-676084859"</span></a>
-<a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt;  $ Group              : chr "1"</span></a>
-<a class="sourceLine" id="cb4-27" title="27"><span class="co">#&gt;  $ Display.RefreshRate: chr "60.004"</span></a>
-<a class="sourceLine" id="cb4-28" title="28"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a>
-<a class="sourceLine" id="cb4-29" title="29"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-30" title="30"><span class="co">#&gt;  Eprime.Level       Running         Procedure</span></a>
-<a class="sourceLine" id="cb4-31" title="31"><span class="co">#&gt;             3 PracticeBlock PracticeTrialProc</span></a>
-<a class="sourceLine" id="cb4-32" title="32"><span class="co">#&gt; List of 25</span></a>
-<a class="sourceLine" id="cb4-33" title="33"><span class="co">#&gt;  $ Eprime.Level            : num 3</span></a>
-<a class="sourceLine" id="cb4-34" title="34"><span class="co">#&gt;  $ Eprime.LevelName        : chr "PracticeBlock_1"</span></a>
-<a class="sourceLine" id="cb4-35" title="35"><span class="co">#&gt;  $ Eprime.Basename         : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb4-36" title="36"><span class="co">#&gt;  $ Eprime.FrameNumber      : chr "2"</span></a>
-<a class="sourceLine" id="cb4-37" title="37"><span class="co">#&gt;  $ Procedure               : chr "PracticeTrialProc"</span></a>
-<a class="sourceLine" id="cb4-38" title="38"><span class="co">#&gt;  $ Running                 : chr "PracticeBlock"</span></a>
-<a class="sourceLine" id="cb4-39" title="39"><span class="co">#&gt;  $ Practice                : chr "1"</span></a>
-<a class="sourceLine" id="cb4-40" title="40"><span class="co">#&gt;  $ Sound                   : chr "LAKE1.WAV"</span></a>
-<a class="sourceLine" id="cb4-41" title="41"><span class="co">#&gt;  $ Correct                 : chr "Word"</span></a>
-<a class="sourceLine" id="cb4-42" title="42"><span class="co">#&gt;  $ Module                  : chr "LAKE"</span></a>
-<a class="sourceLine" id="cb4-43" title="43"><span class="co">#&gt;  $ Color                   : chr "red"</span></a>
-<a class="sourceLine" id="cb4-44" title="44"><span class="co">#&gt;  $ WordImage               : chr "lake"</span></a>
-<a class="sourceLine" id="cb4-45" title="45"><span class="co">#&gt;  $ NonWordImage            : chr "notlake"</span></a>
-<a class="sourceLine" id="cb4-46" title="46"><span class="co">#&gt;  $ PuzzleImage             : chr "up"</span></a>
-<a class="sourceLine" id="cb4-47" title="47"><span class="co">#&gt;  $ Cycle                   : chr "1"</span></a>
-<a class="sourceLine" id="cb4-48" title="48"><span class="co">#&gt;  $ Sample                  : chr "1"</span></a>
-<a class="sourceLine" id="cb4-49" title="49"><span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr "197"</span></a>
-<a class="sourceLine" id="cb4-50" title="50"><span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr "899413"</span></a>
-<a class="sourceLine" id="cb4-51" title="51"><span class="co">#&gt;  $ TrialSlide.DurationError: chr "-999999"</span></a>
-<a class="sourceLine" id="cb4-52" title="52"><span class="co">#&gt;  $ TrialSlide.RTTime       : chr "0"</span></a>
-<a class="sourceLine" id="cb4-53" title="53"><span class="co">#&gt;  $ TrialSlide.ACC          : chr "0"</span></a>
-<a class="sourceLine" id="cb4-54" title="54"><span class="co">#&gt;  $ TrialSlide.RT           : chr "0"</span></a>
-<a class="sourceLine" id="cb4-55" title="55"><span class="co">#&gt;  $ TrialSlide.RESP         : chr ""</span></a>
-<a class="sourceLine" id="cb4-56" title="56"><span class="co">#&gt;  $ TrialSlide.CRESP        : chr ""</span></a>
-<a class="sourceLine" id="cb4-57" title="57"><span class="co">#&gt;  $ Response                : chr "Word"</span></a>
-<a class="sourceLine" id="cb4-58" title="58"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a>
-<a class="sourceLine" id="cb4-59" title="59"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-60" title="60"><span class="co">#&gt;  Eprime.Level      Running    Procedure</span></a>
-<a class="sourceLine" id="cb4-61" title="61"><span class="co">#&gt;             2 PracticeList PracticeProc</span></a>
-<a class="sourceLine" id="cb4-62" title="62"><span class="co">#&gt; List of 11</span></a>
-<a class="sourceLine" id="cb4-63" title="63"><span class="co">#&gt;  $ Eprime.Level      : num 2</span></a>
-<a class="sourceLine" id="cb4-64" title="64"><span class="co">#&gt;  $ Eprime.LevelName  : chr "PracticeList_1"</span></a>
-<a class="sourceLine" id="cb4-65" title="65"><span class="co">#&gt;  $ Eprime.Basename   : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb4-66" title="66"><span class="co">#&gt;  $ Eprime.FrameNumber: chr "12"</span></a>
-<a class="sourceLine" id="cb4-67" title="67"><span class="co">#&gt;  $ Procedure         : chr "PracticeProc"</span></a>
-<a class="sourceLine" id="cb4-68" title="68"><span class="co">#&gt;  $ Running           : chr "PracticeList"</span></a>
-<a class="sourceLine" id="cb4-69" title="69"><span class="co">#&gt;  $ Cycle             : chr "1"</span></a>
-<a class="sourceLine" id="cb4-70" title="70"><span class="co">#&gt;  $ Sample            : chr "1"</span></a>
-<a class="sourceLine" id="cb4-71" title="71"><span class="co">#&gt;  $ PuzzleMovie       : chr "up"</span></a>
-<a class="sourceLine" id="cb4-72" title="72"><span class="co">#&gt;  $ TrainingNonWord   : chr "notlake"</span></a>
-<a class="sourceLine" id="cb4-73" title="73"><span class="co">#&gt;  $ TrainingWord      : chr "lake"</span></a>
-<a class="sourceLine" id="cb4-74" title="74"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a>
-<a class="sourceLine" id="cb4-75" title="75"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-76" title="76"><span class="co">#&gt;  Eprime.Level    Running Procedure</span></a>
-<a class="sourceLine" id="cb4-77" title="77"><span class="co">#&gt;             3 TrialLists TrialProc</span></a>
-<a class="sourceLine" id="cb4-78" title="78"><span class="co">#&gt; List of 25</span></a>
-<a class="sourceLine" id="cb4-79" title="79"><span class="co">#&gt;  $ Eprime.Level            : num 3</span></a>
-<a class="sourceLine" id="cb4-80" title="80"><span class="co">#&gt;  $ Eprime.LevelName        : chr "TrialLists_1"</span></a>
-<a class="sourceLine" id="cb4-81" title="81"><span class="co">#&gt;  $ Eprime.Basename         : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb4-82" title="82"><span class="co">#&gt;  $ Eprime.FrameNumber      : chr "13"</span></a>
-<a class="sourceLine" id="cb4-83" title="83"><span class="co">#&gt;  $ Procedure               : chr "TrialProc"</span></a>
-<a class="sourceLine" id="cb4-84" title="84"><span class="co">#&gt;  $ Running                 : chr "TrialLists"</span></a>
-<a class="sourceLine" id="cb4-85" title="85"><span class="co">#&gt;  $ Sound                   : chr "LAKE23B.WAV"</span></a>
-<a class="sourceLine" id="cb4-86" title="86"><span class="co">#&gt;  $ Correct                 : chr "Word"</span></a>
-<a class="sourceLine" id="cb4-87" title="87"><span class="co">#&gt;  $ LakeLevel1              : chr "8"</span></a>
-<a class="sourceLine" id="cb4-88" title="88"><span class="co">#&gt;  $ Module                  : chr "LAKE"</span></a>
-<a class="sourceLine" id="cb4-89" title="89"><span class="co">#&gt;  $ Color                   : chr "blue"</span></a>
-<a class="sourceLine" id="cb4-90" title="90"><span class="co">#&gt;  $ WordImage               : chr "lake"</span></a>
-<a class="sourceLine" id="cb4-91" title="91"><span class="co">#&gt;  $ NonWordImage            : chr "notlake"</span></a>
-<a class="sourceLine" id="cb4-92" title="92"><span class="co">#&gt;  $ PuzzleImage             : chr "butterfly"</span></a>
-<a class="sourceLine" id="cb4-93" title="93"><span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr "119"</span></a>
-<a class="sourceLine" id="cb4-94" title="94"><span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr "1023939"</span></a>
-<a class="sourceLine" id="cb4-95" title="95"><span class="co">#&gt;  $ TrialSlide.DurationError: chr "-999999"</span></a>
-<a class="sourceLine" id="cb4-96" title="96"><span class="co">#&gt;  $ TrialSlide.RTTime       : chr "0"</span></a>
-<a class="sourceLine" id="cb4-97" title="97"><span class="co">#&gt;  $ TrialSlide.ACC          : chr "0"</span></a>
-<a class="sourceLine" id="cb4-98" title="98"><span class="co">#&gt;  $ TrialSlide.RT           : chr "0"</span></a>
-<a class="sourceLine" id="cb4-99" title="99"><span class="co">#&gt;  $ TrialSlide.RESP         : chr ""</span></a>
-<a class="sourceLine" id="cb4-100" title="100"><span class="co">#&gt;  $ TrialSlide.CRESP        : chr ""</span></a>
-<a class="sourceLine" id="cb4-101" title="101"><span class="co">#&gt;  $ Response                : chr "Word"</span></a>
-<a class="sourceLine" id="cb4-102" title="102"><span class="co">#&gt;  $ Cycle                   : chr "1"</span></a>
-<a class="sourceLine" id="cb4-103" title="103"><span class="co">#&gt;  $ Sample                  : chr "1"</span></a>
-<a class="sourceLine" id="cb4-104" title="104"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a>
-<a class="sourceLine" id="cb4-105" title="105"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-106" title="106"><span class="co">#&gt;  Eprime.Level   Running Procedure</span></a>
-<a class="sourceLine" id="cb4-107" title="107"><span class="co">#&gt;             2 BlockList BlockProc</span></a>
-<a class="sourceLine" id="cb4-108" title="108"><span class="co">#&gt; List of 11</span></a>
-<a class="sourceLine" id="cb4-109" title="109"><span class="co">#&gt;  $ Eprime.Level      : num 2</span></a>
-<a class="sourceLine" id="cb4-110" title="110"><span class="co">#&gt;  $ Eprime.LevelName  : chr "BlockList_1"</span></a>
-<a class="sourceLine" id="cb4-111" title="111"><span class="co">#&gt;  $ Eprime.Basename   : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb4-112" title="112"><span class="co">#&gt;  $ Eprime.FrameNumber: chr "23"</span></a>
-<a class="sourceLine" id="cb4-113" title="113"><span class="co">#&gt;  $ Procedure         : chr "BlockProc"</span></a>
-<a class="sourceLine" id="cb4-114" title="114"><span class="co">#&gt;  $ Running           : chr "BlockList"</span></a>
-<a class="sourceLine" id="cb4-115" title="115"><span class="co">#&gt;  $ PuzzleMovie       : chr "butterfly"</span></a>
-<a class="sourceLine" id="cb4-116" title="116"><span class="co">#&gt;  $ TrainingNonWord   : chr "notlake"</span></a>
-<a class="sourceLine" id="cb4-117" title="117"><span class="co">#&gt;  $ TrainingWord      : chr "lake"</span></a>
-<a class="sourceLine" id="cb4-118" title="118"><span class="co">#&gt;  $ Cycle             : chr "1"</span></a>
-<a class="sourceLine" id="cb4-119" title="119"><span class="co">#&gt;  $ Sample            : chr "1"</span></a>
-<a class="sourceLine" id="cb4-120" title="120"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a>
-<a class="sourceLine" id="cb4-121" title="121"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-122" title="122"><span class="co">#&gt;  Eprime.Level Running Procedure</span></a>
-<a class="sourceLine" id="cb4-123" title="123"><span class="co">#&gt;             1    &lt;NA&gt;      &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-124" title="124"><span class="co">#&gt; List of 20</span></a>
-<a class="sourceLine" id="cb4-125" title="125"><span class="co">#&gt;  $ Eprime.Level       : num 1</span></a>
-<a class="sourceLine" id="cb4-126" title="126"><span class="co">#&gt;  $ Eprime.LevelName   : logi NA</span></a>
-<a class="sourceLine" id="cb4-127" title="127"><span class="co">#&gt;  $ Eprime.Basename    : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb4-128" title="128"><span class="co">#&gt;  $ Eprime.FrameNumber : chr "90"</span></a>
-<a class="sourceLine" id="cb4-129" title="129"><span class="co">#&gt;  $ Procedure          : logi NA</span></a>
-<a class="sourceLine" id="cb4-130" title="130"><span class="co">#&gt;  $ Running            : logi NA</span></a>
-<a class="sourceLine" id="cb4-131" title="131"><span class="co">#&gt;  $ Experiment         : chr "SAILS"</span></a>
-<a class="sourceLine" id="cb4-132" title="132"><span class="co">#&gt;  $ SessionDate        : chr "12-01-2013"</span></a>
-<a class="sourceLine" id="cb4-133" title="133"><span class="co">#&gt;  $ SessionTime        : chr "11:00:00"</span></a>
-<a class="sourceLine" id="cb4-134" title="134"><span class="co">#&gt;  $ SessionTimeUtc     : chr "5:00:00 PM"</span></a>
-<a class="sourceLine" id="cb4-135" title="135"><span class="co">#&gt;  $ Dilaect            : chr "Yes"</span></a>
-<a class="sourceLine" id="cb4-136" title="136"><span class="co">#&gt;  $ Subject            : chr "001"</span></a>
-<a class="sourceLine" id="cb4-137" title="137"><span class="co">#&gt;  $ ExpTyp             : chr "X"</span></a>
-<a class="sourceLine" id="cb4-138" title="138"><span class="co">#&gt;  $ Age                : chr "00"</span></a>
-<a class="sourceLine" id="cb4-139" title="139"><span class="co">#&gt;  $ Gender             : chr "X"</span></a>
-<a class="sourceLine" id="cb4-140" title="140"><span class="co">#&gt;  $ Session            : chr "1"</span></a>
-<a class="sourceLine" id="cb4-141" title="141"><span class="co">#&gt;  $ ChildNativeDialect : chr "S"</span></a>
-<a class="sourceLine" id="cb4-142" title="142"><span class="co">#&gt;  $ RandomSeed         : chr "-676084859"</span></a>
-<a class="sourceLine" id="cb4-143" title="143"><span class="co">#&gt;  $ Group              : chr "1"</span></a>
-<a class="sourceLine" id="cb4-144" title="144"><span class="co">#&gt;  $ Display.RefreshRate: chr "60.004"</span></a>
-<a class="sourceLine" id="cb4-145" title="145"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/preview_eprime.html">preview_frames</a></span>(<span class="kw">experiment_data</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level Running Procedure</span>
+<span class="co">#&gt;             1  Header    Header</span>
+<span class="co">#&gt; List of 22</span>
+<span class="co">#&gt;  $ Eprime.Level       : num 1</span>
+<span class="co">#&gt;  $ Eprime.LevelName   : chr "Header_"</span>
+<span class="co">#&gt;  $ Eprime.Basename    : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber : chr "1"</span>
+<span class="co">#&gt;  $ Procedure          : chr "Header"</span>
+<span class="co">#&gt;  $ Running            : chr "Header"</span>
+<span class="co">#&gt;  $ VersionPersist     : chr "1"</span>
+<span class="co">#&gt;  $ LevelName          : chr "LogLevel10"</span>
+<span class="co">#&gt;  $ Experiment         : chr "SAILS"</span>
+<span class="co">#&gt;  $ SessionDate        : chr "12-01-2013"</span>
+<span class="co">#&gt;  $ SessionTime        : chr "11:00:00"</span>
+<span class="co">#&gt;  $ SessionTimeUtc     : chr "5:00:00 PM"</span>
+<span class="co">#&gt;  $ Dilaect            : chr "Yes"</span>
+<span class="co">#&gt;  $ Subject            : chr "001"</span>
+<span class="co">#&gt;  $ ExpTyp             : chr "X"</span>
+<span class="co">#&gt;  $ Age                : chr "00"</span>
+<span class="co">#&gt;  $ Gender             : chr "X"</span>
+<span class="co">#&gt;  $ Session            : chr "1"</span>
+<span class="co">#&gt;  $ ChildNativeDialect : chr "S"</span>
+<span class="co">#&gt;  $ RandomSeed         : chr "-676084859"</span>
+<span class="co">#&gt;  $ Group              : chr "1"</span>
+<span class="co">#&gt;  $ Display.RefreshRate: chr "60.004"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level       Running         Procedure</span>
+<span class="co">#&gt;             3 PracticeBlock PracticeTrialProc</span>
+<span class="co">#&gt; List of 25</span>
+<span class="co">#&gt;  $ Eprime.Level            : num 3</span>
+<span class="co">#&gt;  $ Eprime.LevelName        : chr "PracticeBlock_1"</span>
+<span class="co">#&gt;  $ Eprime.Basename         : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber      : chr "2"</span>
+<span class="co">#&gt;  $ Procedure               : chr "PracticeTrialProc"</span>
+<span class="co">#&gt;  $ Running                 : chr "PracticeBlock"</span>
+<span class="co">#&gt;  $ Practice                : chr "1"</span>
+<span class="co">#&gt;  $ Sound                   : chr "LAKE1.WAV"</span>
+<span class="co">#&gt;  $ Correct                 : chr "Word"</span>
+<span class="co">#&gt;  $ Module                  : chr "LAKE"</span>
+<span class="co">#&gt;  $ Color                   : chr "red"</span>
+<span class="co">#&gt;  $ WordImage               : chr "lake"</span>
+<span class="co">#&gt;  $ NonWordImage            : chr "notlake"</span>
+<span class="co">#&gt;  $ PuzzleImage             : chr "up"</span>
+<span class="co">#&gt;  $ Cycle                   : chr "1"</span>
+<span class="co">#&gt;  $ Sample                  : chr "1"</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr "197"</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr "899413"</span>
+<span class="co">#&gt;  $ TrialSlide.DurationError: chr "-999999"</span>
+<span class="co">#&gt;  $ TrialSlide.RTTime       : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.ACC          : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.RT           : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.RESP         : chr ""</span>
+<span class="co">#&gt;  $ TrialSlide.CRESP        : chr ""</span>
+<span class="co">#&gt;  $ Response                : chr "Word"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level      Running    Procedure</span>
+<span class="co">#&gt;             2 PracticeList PracticeProc</span>
+<span class="co">#&gt; List of 11</span>
+<span class="co">#&gt;  $ Eprime.Level      : num 2</span>
+<span class="co">#&gt;  $ Eprime.LevelName  : chr "PracticeList_1"</span>
+<span class="co">#&gt;  $ Eprime.Basename   : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber: chr "12"</span>
+<span class="co">#&gt;  $ Procedure         : chr "PracticeProc"</span>
+<span class="co">#&gt;  $ Running           : chr "PracticeList"</span>
+<span class="co">#&gt;  $ Cycle             : chr "1"</span>
+<span class="co">#&gt;  $ Sample            : chr "1"</span>
+<span class="co">#&gt;  $ PuzzleMovie       : chr "up"</span>
+<span class="co">#&gt;  $ TrainingNonWord   : chr "notlake"</span>
+<span class="co">#&gt;  $ TrainingWord      : chr "lake"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level    Running Procedure</span>
+<span class="co">#&gt;             3 TrialLists TrialProc</span>
+<span class="co">#&gt; List of 25</span>
+<span class="co">#&gt;  $ Eprime.Level            : num 3</span>
+<span class="co">#&gt;  $ Eprime.LevelName        : chr "TrialLists_1"</span>
+<span class="co">#&gt;  $ Eprime.Basename         : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber      : chr "13"</span>
+<span class="co">#&gt;  $ Procedure               : chr "TrialProc"</span>
+<span class="co">#&gt;  $ Running                 : chr "TrialLists"</span>
+<span class="co">#&gt;  $ Sound                   : chr "LAKE23B.WAV"</span>
+<span class="co">#&gt;  $ Correct                 : chr "Word"</span>
+<span class="co">#&gt;  $ LakeLevel1              : chr "8"</span>
+<span class="co">#&gt;  $ Module                  : chr "LAKE"</span>
+<span class="co">#&gt;  $ Color                   : chr "blue"</span>
+<span class="co">#&gt;  $ WordImage               : chr "lake"</span>
+<span class="co">#&gt;  $ NonWordImage            : chr "notlake"</span>
+<span class="co">#&gt;  $ PuzzleImage             : chr "butterfly"</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr "119"</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr "1023939"</span>
+<span class="co">#&gt;  $ TrialSlide.DurationError: chr "-999999"</span>
+<span class="co">#&gt;  $ TrialSlide.RTTime       : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.ACC          : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.RT           : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.RESP         : chr ""</span>
+<span class="co">#&gt;  $ TrialSlide.CRESP        : chr ""</span>
+<span class="co">#&gt;  $ Response                : chr "Word"</span>
+<span class="co">#&gt;  $ Cycle                   : chr "1"</span>
+<span class="co">#&gt;  $ Sample                  : chr "1"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level   Running Procedure</span>
+<span class="co">#&gt;             2 BlockList BlockProc</span>
+<span class="co">#&gt; List of 11</span>
+<span class="co">#&gt;  $ Eprime.Level      : num 2</span>
+<span class="co">#&gt;  $ Eprime.LevelName  : chr "BlockList_1"</span>
+<span class="co">#&gt;  $ Eprime.Basename   : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber: chr "23"</span>
+<span class="co">#&gt;  $ Procedure         : chr "BlockProc"</span>
+<span class="co">#&gt;  $ Running           : chr "BlockList"</span>
+<span class="co">#&gt;  $ PuzzleMovie       : chr "butterfly"</span>
+<span class="co">#&gt;  $ TrainingNonWord   : chr "notlake"</span>
+<span class="co">#&gt;  $ TrainingWord      : chr "lake"</span>
+<span class="co">#&gt;  $ Cycle             : chr "1"</span>
+<span class="co">#&gt;  $ Sample            : chr "1"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level Running Procedure</span>
+<span class="co">#&gt;             1    &lt;NA&gt;      &lt;NA&gt;</span>
+<span class="co">#&gt; List of 20</span>
+<span class="co">#&gt;  $ Eprime.Level       : num 1</span>
+<span class="co">#&gt;  $ Eprime.LevelName   : logi NA</span>
+<span class="co">#&gt;  $ Eprime.Basename    : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber : chr "90"</span>
+<span class="co">#&gt;  $ Procedure          : logi NA</span>
+<span class="co">#&gt;  $ Running            : logi NA</span>
+<span class="co">#&gt;  $ Experiment         : chr "SAILS"</span>
+<span class="co">#&gt;  $ SessionDate        : chr "12-01-2013"</span>
+<span class="co">#&gt;  $ SessionTime        : chr "11:00:00"</span>
+<span class="co">#&gt;  $ SessionTimeUtc     : chr "5:00:00 PM"</span>
+<span class="co">#&gt;  $ Dilaect            : chr "Yes"</span>
+<span class="co">#&gt;  $ Subject            : chr "001"</span>
+<span class="co">#&gt;  $ ExpTyp             : chr "X"</span>
+<span class="co">#&gt;  $ Age                : chr "00"</span>
+<span class="co">#&gt;  $ Gender             : chr "X"</span>
+<span class="co">#&gt;  $ Session            : chr "1"</span>
+<span class="co">#&gt;  $ ChildNativeDialect : chr "S"</span>
+<span class="co">#&gt;  $ RandomSeed         : chr "-676084859"</span>
+<span class="co">#&gt;  $ Group              : chr "1"</span>
+<span class="co">#&gt;  $ Display.RefreshRate: chr "60.004"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+</pre></div>
 <p><code>preview_eprime</code> (not demonstrated here) does both kinds of previews (levels and frames).</p>
 </div>
 <div id="filtering" class="section level3">
 <h3 class="hasAnchor">
 <a href="#filtering" class="anchor"></a>Filtering</h3>
 <p>Use <code>keep_levels</code> and <code>drop_levels</code> to filter frames according to nesting level.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Filter (out) by depth of nesting</span></a>
-<a class="sourceLine" id="cb5-2" title="2">not_level_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/keep_levels.html">drop_levels</a></span>(experiment_data, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="../reference/preview_eprime.html">preview_levels</a></span>(not_level_<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; Level Counts: </span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt;             2  PracticeList      PracticeProc    1</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;             3    TrialLists         TrialProc   70</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;             2     BlockList         BlockProc    7</span></a>
-<a class="sourceLine" id="cb5-10" title="10"></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co"># Filter (in) by depth of nesting</span></a>
-<a class="sourceLine" id="cb5-12" title="12">just_level_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/keep_levels.html">keep_levels</a></span>(experiment_data, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="kw"><a href="../reference/preview_eprime.html">preview_levels</a></span>(just_level_<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; Level Counts: </span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt;             3    TrialLists         TrialProc   70</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># Filter (out) by depth of nesting</span>
+<span class="kw">not_level_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/keep_levels.html">drop_levels</a></span>(<span class="kw">experiment_data</span>, <span class="fl">1</span>)
+<span class="fu"><a href="../reference/preview_eprime.html">preview_levels</a></span>(<span class="kw">not_level_1</span>)
+<span class="co">#&gt; Level Counts: </span>
+<span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span>
+<span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span>
+<span class="co">#&gt;             2  PracticeList      PracticeProc    1</span>
+<span class="co">#&gt;             3    TrialLists         TrialProc   70</span>
+<span class="co">#&gt;             2     BlockList         BlockProc    7</span>
+
+<span class="co"># Filter (in) by depth of nesting</span>
+<span class="kw">just_level_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/keep_levels.html">keep_levels</a></span>(<span class="kw">experiment_data</span>, <span class="fl">3</span>)
+<span class="fu"><a href="../reference/preview_eprime.html">preview_levels</a></span>(<span class="kw">just_level_3</span>)
+<span class="co">#&gt; Level Counts: </span>
+<span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span>
+<span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span>
+<span class="co">#&gt;             3    TrialLists         TrialProc   70</span>
+</pre></div>
 <p>Use <code>filter_in</code> and <code>filter_out</code> to filter frames using attribute values. Use repeated filtering statements to drill down into the list of frames.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Filter (out) by attribute values</span></a>
-<a class="sourceLine" id="cb6-2" title="2">no_header &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_in.html">filter_out</a></span>(experiment_data, <span class="st">"Running"</span>, <span class="dt">values =</span> <span class="st">"Header"</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw"><a href="../reference/preview_eprime.html">preview_levels</a></span>(no_header)</a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; Level Counts: </span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;             2  PracticeList      PracticeProc    1</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;             3    TrialLists         TrialProc   70</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;             2     BlockList         BlockProc    7</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;             1          &lt;NA&gt;              &lt;NA&gt;    1</span></a>
-<a class="sourceLine" id="cb6-11" title="11"></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co"># Filter (in) by attribute values</span></a>
-<a class="sourceLine" id="cb6-13" title="13">not_practice &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_in.html">filter_in</a></span>(experiment_data, <span class="st">"Running"</span>, <span class="st">"TrialLists"</span>)</a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="kw"><a href="../reference/preview_eprime.html">preview_levels</a></span>(not_practice)</a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; Level Counts: </span></a>
-<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt;  Eprime.Level    Running Procedure freq</span></a>
-<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt;             3 TrialLists TrialProc   70</span></a>
-<a class="sourceLine" id="cb6-18" title="18"></a>
-<a class="sourceLine" id="cb6-19" title="19"><span class="co"># Drill down further into the trials by filtering again</span></a>
-<a class="sourceLine" id="cb6-20" title="20">sue_trials &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_in.html">filter_in</a></span>(not_practice, <span class="st">"Module"</span>, <span class="st">"SUE"</span>)</a>
-<a class="sourceLine" id="cb6-21" title="21"><span class="kw"><a href="../reference/preview_eprime.html">preview_eprime</a></span>(sue_trials)</a>
-<a class="sourceLine" id="cb6-22" title="22"><span class="co">#&gt; Level Counts: </span></a>
-<a class="sourceLine" id="cb6-23" title="23"><span class="co">#&gt;  Eprime.Level    Running Procedure freq</span></a>
-<a class="sourceLine" id="cb6-24" title="24"><span class="co">#&gt;             3 TrialLists TrialProc   30</span></a>
-<a class="sourceLine" id="cb6-25" title="25"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-26" title="26"><span class="co">#&gt;  Eprime.Level    Running Procedure</span></a>
-<a class="sourceLine" id="cb6-27" title="27"><span class="co">#&gt;             3 TrialLists TrialProc</span></a>
-<a class="sourceLine" id="cb6-28" title="28"><span class="co">#&gt; List of 25</span></a>
-<a class="sourceLine" id="cb6-29" title="29"><span class="co">#&gt;  $ Eprime.Level            : num 3</span></a>
-<a class="sourceLine" id="cb6-30" title="30"><span class="co">#&gt;  $ Eprime.LevelName        : chr "TrialLists_5"</span></a>
-<a class="sourceLine" id="cb6-31" title="31"><span class="co">#&gt;  $ Eprime.Basename         : chr "SAILS_001X00XS1"</span></a>
-<a class="sourceLine" id="cb6-32" title="32"><span class="co">#&gt;  $ Eprime.FrameNumber      : chr "57"</span></a>
-<a class="sourceLine" id="cb6-33" title="33"><span class="co">#&gt;  $ Procedure               : chr "TrialProc"</span></a>
-<a class="sourceLine" id="cb6-34" title="34"><span class="co">#&gt;  $ Running                 : chr "TrialLists"</span></a>
-<a class="sourceLine" id="cb6-35" title="35"><span class="co">#&gt;  $ Sound                   : chr "SUE4.WAV"</span></a>
-<a class="sourceLine" id="cb6-36" title="36"><span class="co">#&gt;  $ Correct                 : chr "Word"</span></a>
-<a class="sourceLine" id="cb6-37" title="37"><span class="co">#&gt;  $ SueLevel1               : chr "10"</span></a>
-<a class="sourceLine" id="cb6-38" title="38"><span class="co">#&gt;  $ Module                  : chr "SUE"</span></a>
-<a class="sourceLine" id="cb6-39" title="39"><span class="co">#&gt;  $ Color                   : chr "blue"</span></a>
-<a class="sourceLine" id="cb6-40" title="40"><span class="co">#&gt;  $ WordImage               : chr "sue"</span></a>
-<a class="sourceLine" id="cb6-41" title="41"><span class="co">#&gt;  $ NonWordImage            : chr "notsue"</span></a>
-<a class="sourceLine" id="cb6-42" title="42"><span class="co">#&gt;  $ PuzzleImage             : chr "madagascar"</span></a>
-<a class="sourceLine" id="cb6-43" title="43"><span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr "127"</span></a>
-<a class="sourceLine" id="cb6-44" title="44"><span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr "1360767"</span></a>
-<a class="sourceLine" id="cb6-45" title="45"><span class="co">#&gt;  $ TrialSlide.DurationError: chr "-999999"</span></a>
-<a class="sourceLine" id="cb6-46" title="46"><span class="co">#&gt;  $ TrialSlide.RTTime       : chr "0"</span></a>
-<a class="sourceLine" id="cb6-47" title="47"><span class="co">#&gt;  $ TrialSlide.ACC          : chr "0"</span></a>
-<a class="sourceLine" id="cb6-48" title="48"><span class="co">#&gt;  $ TrialSlide.RT           : chr "0"</span></a>
-<a class="sourceLine" id="cb6-49" title="49"><span class="co">#&gt;  $ TrialSlide.RESP         : chr ""</span></a>
-<a class="sourceLine" id="cb6-50" title="50"><span class="co">#&gt;  $ TrialSlide.CRESP        : chr ""</span></a>
-<a class="sourceLine" id="cb6-51" title="51"><span class="co">#&gt;  $ Response                : chr "Word"</span></a>
-<a class="sourceLine" id="cb6-52" title="52"><span class="co">#&gt;  $ Cycle                   : chr "1"</span></a>
-<a class="sourceLine" id="cb6-53" title="53"><span class="co">#&gt;  $ Sample                  : chr "41"</span></a>
-<a class="sourceLine" id="cb6-54" title="54"><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># Filter (out) by attribute values</span>
+<span class="kw">no_header</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_in.html">filter_out</a></span>(<span class="kw">experiment_data</span>, <span class="st">"Running"</span>, values = <span class="st">"Header"</span>)
+<span class="fu"><a href="../reference/preview_eprime.html">preview_levels</a></span>(<span class="kw">no_header</span>)
+<span class="co">#&gt; Level Counts: </span>
+<span class="co">#&gt;  Eprime.Level       Running         Procedure freq</span>
+<span class="co">#&gt;             3 PracticeBlock PracticeTrialProc   10</span>
+<span class="co">#&gt;             2  PracticeList      PracticeProc    1</span>
+<span class="co">#&gt;             3    TrialLists         TrialProc   70</span>
+<span class="co">#&gt;             2     BlockList         BlockProc    7</span>
+<span class="co">#&gt;             1          &lt;NA&gt;              &lt;NA&gt;    1</span>
+
+<span class="co"># Filter (in) by attribute values</span>
+<span class="kw">not_practice</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_in.html">filter_in</a></span>(<span class="kw">experiment_data</span>, <span class="st">"Running"</span>, <span class="st">"TrialLists"</span>)
+<span class="fu"><a href="../reference/preview_eprime.html">preview_levels</a></span>(<span class="kw">not_practice</span>)
+<span class="co">#&gt; Level Counts: </span>
+<span class="co">#&gt;  Eprime.Level    Running Procedure freq</span>
+<span class="co">#&gt;             3 TrialLists TrialProc   70</span>
+
+<span class="co"># Drill down further into the trials by filtering again</span>
+<span class="kw">sue_trials</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_in.html">filter_in</a></span>(<span class="kw">not_practice</span>, <span class="st">"Module"</span>, <span class="st">"SUE"</span>)
+<span class="fu"><a href="../reference/preview_eprime.html">preview_eprime</a></span>(<span class="kw">sue_trials</span>)
+<span class="co">#&gt; Level Counts: </span>
+<span class="co">#&gt;  Eprime.Level    Running Procedure freq</span>
+<span class="co">#&gt;             3 TrialLists TrialProc   30</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Eprime.Level    Running Procedure</span>
+<span class="co">#&gt;             3 TrialLists TrialProc</span>
+<span class="co">#&gt; List of 25</span>
+<span class="co">#&gt;  $ Eprime.Level            : num 3</span>
+<span class="co">#&gt;  $ Eprime.LevelName        : chr "TrialLists_5"</span>
+<span class="co">#&gt;  $ Eprime.Basename         : chr "SAILS_001X00XS1"</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber      : chr "57"</span>
+<span class="co">#&gt;  $ Procedure               : chr "TrialProc"</span>
+<span class="co">#&gt;  $ Running                 : chr "TrialLists"</span>
+<span class="co">#&gt;  $ Sound                   : chr "SUE4.WAV"</span>
+<span class="co">#&gt;  $ Correct                 : chr "Word"</span>
+<span class="co">#&gt;  $ SueLevel1               : chr "10"</span>
+<span class="co">#&gt;  $ Module                  : chr "SUE"</span>
+<span class="co">#&gt;  $ Color                   : chr "blue"</span>
+<span class="co">#&gt;  $ WordImage               : chr "sue"</span>
+<span class="co">#&gt;  $ NonWordImage            : chr "notsue"</span>
+<span class="co">#&gt;  $ PuzzleImage             : chr "madagascar"</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr "127"</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr "1360767"</span>
+<span class="co">#&gt;  $ TrialSlide.DurationError: chr "-999999"</span>
+<span class="co">#&gt;  $ TrialSlide.RTTime       : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.ACC          : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.RT           : chr "0"</span>
+<span class="co">#&gt;  $ TrialSlide.RESP         : chr ""</span>
+<span class="co">#&gt;  $ TrialSlide.CRESP        : chr ""</span>
+<span class="co">#&gt;  $ Response                : chr "Word"</span>
+<span class="co">#&gt;  $ Cycle                   : chr "1"</span>
+<span class="co">#&gt;  $ Sample                  : chr "41"</span>
+<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "EprimeFrame" "list"</span>
+</pre></div>
 </div>
 <div id="exporting" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exporting" class="anchor"></a>Exporting</h3>
 <p>Convert to a dataframe with <code>to_dataframe</code>. Attribute names in the log-frames become column names in the dataframe.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Export to dataframe</span></a>
-<a class="sourceLine" id="cb7-2" title="2">sue_trials_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/to_data_frame.html">to_data_frame</a></span>(sue_trials)</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(sue_trials_df)</a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; 'data.frame':    30 obs. of  27 variables:</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt;  $ Eprime.Level            : num  3 3 3 3 3 ...</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;  $ Eprime.LevelName        : chr  "TrialLists_5" "TrialLists_5" ...</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;  $ Eprime.Basename         : chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;  $ Eprime.FrameNumber      : chr  "57" "58" ...</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;  $ Procedure               : chr  "TrialProc" "TrialProc" ...</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  $ Running                 : chr  "TrialLists" "TrialLists" ...</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;  $ Sound                   : chr  "SUE4.WAV" "SUE15.WAV" ...</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  $ Correct                 : chr  "Word" "NotWord" ...</span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  $ SueLevel1               : chr  "10" "2" ...</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;  $ Module                  : chr  "SUE" "SUE" ...</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt;  $ Color                   : chr  "blue" "blue" ...</span></a>
-<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;  $ WordImage               : chr  "sue" "sue" ...</span></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt;  $ NonWordImage            : chr  "notsue" "notsue" ...</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt;  $ PuzzleImage             : chr  "madagascar" "madagascar" ...</span></a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr  "127" "98" ...</span></a>
-<a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr  "1360767" "1364450" ...</span></a>
-<a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt;  $ TrialSlide.DurationError: chr  "-999999" "-999999" ...</span></a>
-<a class="sourceLine" id="cb7-22" title="22"><span class="co">#&gt;  $ TrialSlide.RTTime       : chr  "0" "0" ...</span></a>
-<a class="sourceLine" id="cb7-23" title="23"><span class="co">#&gt;  $ TrialSlide.ACC          : chr  "0" "0" ...</span></a>
-<a class="sourceLine" id="cb7-24" title="24"><span class="co">#&gt;  $ TrialSlide.RT           : chr  "0" "0" ...</span></a>
-<a class="sourceLine" id="cb7-25" title="25"><span class="co">#&gt;  $ TrialSlide.RESP         : chr  "" "" ...</span></a>
-<a class="sourceLine" id="cb7-26" title="26"><span class="co">#&gt;  $ TrialSlide.CRESP        : chr  "" "" ...</span></a>
-<a class="sourceLine" id="cb7-27" title="27"><span class="co">#&gt;  $ Response                : chr  "Word" "NotWord" ...</span></a>
-<a class="sourceLine" id="cb7-28" title="28"><span class="co">#&gt;  $ Cycle                   : chr  "1" "1" ...</span></a>
-<a class="sourceLine" id="cb7-29" title="29"><span class="co">#&gt;  $ Sample                  : chr  "41" "42" ...</span></a>
-<a class="sourceLine" id="cb7-30" title="30"><span class="co">#&gt;  $ SueLevel2               : chr  NA NA ...</span></a>
-<a class="sourceLine" id="cb7-31" title="31"><span class="co">#&gt;  $ SueLevel3               : chr  NA NA ...</span></a>
-<a class="sourceLine" id="cb7-32" title="32"></a>
-<a class="sourceLine" id="cb7-33" title="33"><span class="co"># Don't need every column</span></a>
-<a class="sourceLine" id="cb7-34" title="34">columns_to_keep &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Eprime.Basename"</span>, <span class="st">"Module"</span>, <span class="st">"Sample"</span>, </a>
-<a class="sourceLine" id="cb7-35" title="35">                     <span class="st">"Correct"</span>, <span class="st">"Response"</span>)</a>
-<a class="sourceLine" id="cb7-36" title="36">sue_trials_df &lt;-<span class="st"> </span>sue_trials_df[columns_to_keep]</a>
-<a class="sourceLine" id="cb7-37" title="37"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sue_trials_df)</a>
-<a class="sourceLine" id="cb7-38" title="38"><span class="co">#&gt;   Eprime.Basename Module Sample Correct Response</span></a>
-<a class="sourceLine" id="cb7-39" title="39"><span class="co">#&gt; 1 SAILS_001X00XS1    SUE     41    Word     Word</span></a>
-<a class="sourceLine" id="cb7-40" title="40"><span class="co">#&gt; 2 SAILS_001X00XS1    SUE     42 NotWord  NotWord</span></a>
-<a class="sourceLine" id="cb7-41" title="41"><span class="co">#&gt; 3 SAILS_001X00XS1    SUE     43 NotWord     Word</span></a>
-<a class="sourceLine" id="cb7-42" title="42"><span class="co">#&gt; 4 SAILS_001X00XS1    SUE     44    Word     Word</span></a>
-<a class="sourceLine" id="cb7-43" title="43"><span class="co">#&gt; 5 SAILS_001X00XS1    SUE     45 NotWord  NotWord</span></a>
-<a class="sourceLine" id="cb7-44" title="44"><span class="co">#&gt; 6 SAILS_001X00XS1    SUE     46    Word     Word</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="co"># Export to dataframe</span>
+<span class="kw">sue_trials_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to_data_frame.html">to_data_frame</a></span>(<span class="kw">sue_trials</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sue_trials_df</span>)
+<span class="co">#&gt; 'data.frame':    30 obs. of  27 variables:</span>
+<span class="co">#&gt;  $ Eprime.Level            : num  3 3 3 3 3 ...</span>
+<span class="co">#&gt;  $ Eprime.LevelName        : chr  "TrialLists_5" "TrialLists_5" ...</span>
+<span class="co">#&gt;  $ Eprime.Basename         : chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...</span>
+<span class="co">#&gt;  $ Eprime.FrameNumber      : chr  "57" "58" ...</span>
+<span class="co">#&gt;  $ Procedure               : chr  "TrialProc" "TrialProc" ...</span>
+<span class="co">#&gt;  $ Running                 : chr  "TrialLists" "TrialLists" ...</span>
+<span class="co">#&gt;  $ Sound                   : chr  "SUE4.WAV" "SUE15.WAV" ...</span>
+<span class="co">#&gt;  $ Correct                 : chr  "Word" "NotWord" ...</span>
+<span class="co">#&gt;  $ SueLevel1               : chr  "10" "2" ...</span>
+<span class="co">#&gt;  $ Module                  : chr  "SUE" "SUE" ...</span>
+<span class="co">#&gt;  $ Color                   : chr  "blue" "blue" ...</span>
+<span class="co">#&gt;  $ WordImage               : chr  "sue" "sue" ...</span>
+<span class="co">#&gt;  $ NonWordImage            : chr  "notsue" "notsue" ...</span>
+<span class="co">#&gt;  $ PuzzleImage             : chr  "madagascar" "madagascar" ...</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetDelay   : chr  "127" "98" ...</span>
+<span class="co">#&gt;  $ TrialSlide.OnsetTime    : chr  "1360767" "1364450" ...</span>
+<span class="co">#&gt;  $ TrialSlide.DurationError: chr  "-999999" "-999999" ...</span>
+<span class="co">#&gt;  $ TrialSlide.RTTime       : chr  "0" "0" ...</span>
+<span class="co">#&gt;  $ TrialSlide.ACC          : chr  "0" "0" ...</span>
+<span class="co">#&gt;  $ TrialSlide.RT           : chr  "0" "0" ...</span>
+<span class="co">#&gt;  $ TrialSlide.RESP         : chr  "" "" ...</span>
+<span class="co">#&gt;  $ TrialSlide.CRESP        : chr  "" "" ...</span>
+<span class="co">#&gt;  $ Response                : chr  "Word" "NotWord" ...</span>
+<span class="co">#&gt;  $ Cycle                   : chr  "1" "1" ...</span>
+<span class="co">#&gt;  $ Sample                  : chr  "41" "42" ...</span>
+<span class="co">#&gt;  $ SueLevel2               : chr  NA NA ...</span>
+<span class="co">#&gt;  $ SueLevel3               : chr  NA NA ...</span>
+
+<span class="co"># Don't need every column</span>
+<span class="kw">columns_to_keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Eprime.Basename"</span>, <span class="st">"Module"</span>, <span class="st">"Sample"</span>, 
+                     <span class="st">"Correct"</span>, <span class="st">"Response"</span>)
+<span class="kw">sue_trials_df</span> <span class="op">&lt;-</span> <span class="kw">sue_trials_df</span>[<span class="kw">columns_to_keep</span>]
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">sue_trials_df</span>)
+<span class="co">#&gt;   Eprime.Basename Module Sample Correct Response</span>
+<span class="co">#&gt; 1 SAILS_001X00XS1    SUE     41    Word     Word</span>
+<span class="co">#&gt; 2 SAILS_001X00XS1    SUE     42 NotWord  NotWord</span>
+<span class="co">#&gt; 3 SAILS_001X00XS1    SUE     43 NotWord     Word</span>
+<span class="co">#&gt; 4 SAILS_001X00XS1    SUE     44    Word     Word</span>
+<span class="co">#&gt; 5 SAILS_001X00XS1    SUE     45 NotWord  NotWord</span>
+<span class="co">#&gt; 6 SAILS_001X00XS1    SUE     46    Word     Word</span>
+</pre></div>
 <p><strong>Note</strong>: rprime thinks that all the values in the final dataframe are character values. You can use <code>type_convert</code> in the readr package to correct the column types:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Right now the sample numbers are stored as character values</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(sue_trials_df)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt; 'data.frame':    30 obs. of  5 variables:</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt;  $ Eprime.Basename: chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt;  $ Module         : chr  "SUE" "SUE" ...</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt;  $ Sample         : chr  "41" "42" ...</span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;  $ Correct        : chr  "Word" "NotWord" ...</span></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt;  $ Response       : chr  "Word" "NotWord" ...</span></a>
-<a class="sourceLine" id="cb8-9" title="9"></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"readr"</span>)</a>
-<a class="sourceLine" id="cb8-11" title="11">sue_trials_df &lt;-<span class="st"> </span><span class="kw">type_convert</span>(sue_trials_df)</a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt; Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt; cols(</span></a>
-<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt;   Eprime.Basename = col_character(),</span></a>
-<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt;   Module = col_character(),</span></a>
-<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt;   Sample = col_double(),</span></a>
-<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt;   Correct = col_character(),</span></a>
-<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt;   Response = col_character()</span></a>
-<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt; )</span></a>
-<a class="sourceLine" id="cb8-20" title="20"><span class="co"># Now, they are stored as integers...</span></a>
-<a class="sourceLine" id="cb8-21" title="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(sue_trials_df)</a>
-<a class="sourceLine" id="cb8-22" title="22"><span class="co">#&gt; 'data.frame':    30 obs. of  5 variables:</span></a>
-<a class="sourceLine" id="cb8-23" title="23"><span class="co">#&gt;  $ Eprime.Basename: chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...</span></a>
-<a class="sourceLine" id="cb8-24" title="24"><span class="co">#&gt;  $ Module         : chr  "SUE" "SUE" ...</span></a>
-<a class="sourceLine" id="cb8-25" title="25"><span class="co">#&gt;  $ Sample         : num  41 42 43 44 45 ...</span></a>
-<a class="sourceLine" id="cb8-26" title="26"><span class="co">#&gt;  $ Correct        : chr  "Word" "NotWord" ...</span></a>
-<a class="sourceLine" id="cb8-27" title="27"><span class="co">#&gt;  $ Response       : chr  "Word" "NotWord" ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co"># Right now the sample numbers are stored as character values</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sue_trials_df</span>)
+<span class="co">#&gt; 'data.frame':    30 obs. of  5 variables:</span>
+<span class="co">#&gt;  $ Eprime.Basename: chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...</span>
+<span class="co">#&gt;  $ Module         : chr  "SUE" "SUE" ...</span>
+<span class="co">#&gt;  $ Sample         : chr  "41" "42" ...</span>
+<span class="co">#&gt;  $ Correct        : chr  "Word" "NotWord" ...</span>
+<span class="co">#&gt;  $ Response       : chr  "Word" "NotWord" ...</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://readr.tidyverse.org">"readr"</a></span>)
+<span class="kw">sue_trials_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/type_convert.html">type_convert</a></span>(<span class="kw">sue_trials_df</span>)
+<span class="co">#&gt; Parsed with column specification:</span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   Eprime.Basename = col_character(),</span>
+<span class="co">#&gt;   Module = col_character(),</span>
+<span class="co">#&gt;   Sample = col_double(),</span>
+<span class="co">#&gt;   Correct = col_character(),</span>
+<span class="co">#&gt;   Response = col_character()</span>
+<span class="co">#&gt; )</span>
+<span class="co"># Now, they are stored as integers...</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">sue_trials_df</span>)
+<span class="co">#&gt; 'data.frame':    30 obs. of  5 variables:</span>
+<span class="co">#&gt;  $ Eprime.Basename: chr  "SAILS_001X00XS1" "SAILS_001X00XS1" ...</span>
+<span class="co">#&gt;  $ Module         : chr  "SUE" "SUE" ...</span>
+<span class="co">#&gt;  $ Sample         : num  41 42 43 44 45 ...</span>
+<span class="co">#&gt;  $ Correct        : chr  "Word" "NotWord" ...</span>
+<span class="co">#&gt;  $ Response       : chr  "Word" "NotWord" ...</span>
+</pre></div>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#overview">Overview</a></li>
-      <li><a href="#installation">Installation</a></li>
-      <li><a href="#examples">Examples</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -472,12 +488,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
