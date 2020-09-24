@@ -13,3 +13,5 @@ tests/testthat/data/NonWordRep_001X00XS1.txt
 ^codecov\.yml$
 ^LICENSE$
 ^CRAN-RELEASE$
+^doc$
+^Meta$

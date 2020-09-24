@@ -14,8 +14,8 @@
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/tjmahr/rprime}
-  \item Report bugs at \url{http://github.com/tjmahr/rprime/issues}
+  \item \url{https://github.com/tjmahr/rprime}
+  \item Report bugs at \url{https://github.com/tjmahr/rprime/issues}
 }
 
 }

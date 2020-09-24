@@ -12,8 +12,8 @@ Description: 'Eprime' is a set of programs for administering
     for loading, parsing, filtering and exporting data in the text files
     produced by 'Eprime' experiments.
 License: GPL-2
-URL: http://github.com/tjmahr/rprime
-BugReports: http://github.com/tjmahr/rprime/issues
+URL: https://github.com/tjmahr/rprime
+BugReports: https://github.com/tjmahr/rprime/issues
 Depends:
     R (>= 3.0.1)
 Imports:
