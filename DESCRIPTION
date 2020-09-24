@@ -1,6 +1,6 @@
 Package: rprime
 Title: Functions for Working with 'Eprime' Text Files
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person(given = "Tristan",
            family = "Mahr",

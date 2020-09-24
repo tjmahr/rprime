@@ -2,7 +2,8 @@
 ## Resubmission
 
 This is a resubmission. The only changes are fixes to URLs in the documentation
-that now use https instead of https or redirect to a new URL.
+that now use https instead of https or redirect to a new URL, and an increment 
+in version number.
 
 Local CRAN checks pass (Windows 10, R 3.6.3:)
 
