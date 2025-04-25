@@ -22,11 +22,11 @@ opts_chunk$set(
 Eprime, or more officially E-Prime® 2.0, is a set of programs by [Psychology
 Software Tools, Inc.](https://www.pstnet.com/) used for running psychological
 experiments. Data from experiment sessions are saved into two files: 1) a
-proprietary [binary `.edat2` file][eprime-exts], and 2) a plain-text `.txt`
-file. The rprime package provides a set of functions for parsing these `.txt`
-files inside R.
-
-[eprime-exts]: https://support.pstnet.com/hc/en-us/articles/229354727-INFO-E-Prime-file-extensions-18091 "Document about E-Prime file extensions"
+proprietary binary `.edat2` file, and 2) a plain-text `.txt` file. (File formats
+used by Eprime are documented on the site at this URL:
+`https://support.pstnet.com/hc/en-us/articles/229354727-INFO-E-Prime-file-extensions-18091`.)
+The rprime package provides a set of functions for parsing these `.txt` files
+inside R.
 
 This vignette documents how rprime parses an Eprime text file and the changes 
 it makes during that process. **See the quick-start vignette for examples of 
