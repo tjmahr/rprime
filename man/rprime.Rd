@@ -2,14 +2,11 @@
 % Please edit documentation in R/rprime-package.R
 \docType{package}
 \name{rprime}
-\alias{rprime}
 \alias{rprime-package}
+\alias{rprime}
 \title{Functions for dealing with Eprime txt files}
 \description{
-'Eprime' is a set of programs for administering
-    psychological experiments by computer. This package provides functions
-    for loading, parsing, filtering and exporting data in the text files
-    produced by 'Eprime' experiments.
+'Eprime' is a set of programs for administering psychological experiments by computer. This package provides functions for loading, parsing, filtering and exporting data in the text files produced by 'Eprime' experiments.
 }
 \seealso{
 Useful links:

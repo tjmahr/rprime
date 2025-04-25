@@ -17,9 +17,10 @@ knitr::opts_chunk$set(
 rprime
 ===============================================================================
 
-[![Build Status](https://travis-ci.org/tjmahr/rprime.svg)](https://travis-ci.org/tjmahr/rprime) 
-[![Coverage Status](https://coveralls.io/repos/tjmahr/rprime/badge.svg)](https://coveralls.io/r/tjmahr/rprime)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/tjmahr/rprime/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tjmahr/rprime/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rprime)](http://cran.r-project.org/web/packages/rprime)
+<!-- badges: end -->
 
 ```{r, child="vignettes/quick-start-demo.Rmd"}
 ```

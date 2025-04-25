@@ -18,11 +18,11 @@ Convert Eprime Frames into data-frames
 }
 \details{
 Individual EprimeFrames are converted to a data-frame using
-  \code{as.data.frame}. (Strings are not converted to factors.)
+\code{as.data.frame()}. (Strings are not converted to factors.)
 
-  Each of the individual data-frames are then \code{rbind}ed together, with
-  missing columns being filled with NA.
+Each of the individual data-frames are then \code{rbind()}-ed together, with
+missing columns being filled with NA.
 }
 \seealso{
-\link{rbind.fill}
+\code{\link[plyr:rbind.fill]{plyr::rbind.fill()}}
 }
