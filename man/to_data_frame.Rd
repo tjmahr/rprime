@@ -2,7 +2,7 @@
 % Please edit documentation in R/to_data_frame.R
 \name{to_data_frame}
 \alias{to_data_frame}
-\title{Convert \code{EprimeFrame} objects into data-frames}
+\title{Convert \code{EprimeFrame} objects into dataframes}
 \usage{
 to_data_frame(x)
 }
@@ -11,16 +11,16 @@ to_data_frame(x)
 \code{\link[=EprimeFrame]{EprimeFrame()}} objects)}
 }
 \value{
-all of the \code{\link[=EprimeFrame]{EprimeFrame()}} objects combined into a single data-frame.
+all of the \code{\link[=EprimeFrame]{EprimeFrame()}} objects combined into a single dataframe.
 }
 \description{
-Convert \code{EprimeFrame} objects into data-frames
+Convert \code{EprimeFrame} objects into dataframes
 }
 \details{
-Individual \code{\link[=EprimeFrame]{EprimeFrame()}} objects are converted to a data-frame
+Individual \code{\link[=EprimeFrame]{EprimeFrame()}} objects are converted to a dataframe
 using \code{as.data.frame()}. (Strings are not converted to factors.)
 
-The individual data-frames are then \code{\link[=rbind]{rbind()}}-ed together, with
+The individual dataframes are then \code{\link[=rbind]{rbind()}}-ed together, with
 missing columns being filled with \code{NA}.
 }
 \seealso{

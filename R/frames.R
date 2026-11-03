@@ -181,7 +181,7 @@ print.EprimeFrame <- function(...) str(...)
 #' [Key].Sample: [Sample]
 #' ```
 #'
-#' These `[Key]` values make it harder to merge together data-frames later
+#' These `[Key]` values make it harder to merge together dataframes later
 #' on, since each unique `[Key]` gets its own column name. Therefore, we
 #' normalize these field names early on. The end result has the structure:
 #'

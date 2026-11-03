@@ -12,13 +12,14 @@ vignette: >
 ```{r}
 #| echo: false
 #| message: false
-library("rprime")
-library("knitr")
+library(rprime)
+library(knitr)
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
   tidy = FALSE,
-  collapse = TRUE)
+  collapse = TRUE
+)
 ```
 
 Eprime, or more officially E-Prime® 2.0, is a set of programs by [Psychology
@@ -47,10 +48,10 @@ An Eprime `txt` file is a series of **frames**. Each frame is a list of
 key-value pairs. Frames are bracketed by special start and stop lines.
 
 Each file begins with a special **Header** frame. The header is set off by the
-brackets `*** Header Start***` and `*** Header End***`. The fields in the header
+brackets `*** Header Start ***` and `*** Header End ***`. The fields in the header
 describe the basic settings of the experiment. A header frame looks like
-something this (the several-hundred character-long `Clock.Information` line has
-been omitted):
+something like this (the `Clock.Information` line, several hundred characters
+long, has been omitted):
 
 ```
 *** Header Start ***
@@ -82,7 +83,7 @@ Display.RefreshRate: 60.003
 ```
 
 The other frames in the text file are **LogFrames**. These record data about the
-individual procedures or trials are executed during the experiment. The
+individual procedures or trials that are executed during the experiment. The
 following lines immediately follow the header from the previous example:
 
 ```
@@ -109,7 +110,7 @@ Trials and procedures can be **nested** inside of higher-order sections of the
 experiment. For example, practice trials may be nested inside of a practice
 block of an experiment. The level of nesting in the above frame is indicated by
 the number of tabs before each line as well as the `Level` line. The only Level
-1 frames in an experiment appear to the header frame and the final frame of an
+1 frames in an experiment appear to be the header frame and the final frame of an
 experiment (which largely duplicates the header frame).
 
 Some **special fields** appear in every log-frame. These fields are `Procedure`,
@@ -144,13 +145,13 @@ The basic strategy for parsing the Eprime file:
 3.  Bundle the frames from an experiment together inside of a `FrameList`
     object.
 
-Each of these steps is handled by some lower level functions. **In practice,
+Each of these steps is handled by some lower-level functions. **In practice,
 only two high-level functions are necessary to transform from a text file to a
-list of `Eprime.Frame` objects: `read_eprime()` and `FrameList()`.** Here's how
+list of `EprimeFrame` objects: `read_eprime()` and `FrameList()`.** Here's how
 these two functions can be used to get us the header frame from a text file.
 
 ```{r}
-library("rprime")
+library(rprime)
 eprime_lists <- FrameList(read_eprime("data/MINP_001L00XS1.txt"))
 eprime_lists[[1]]
 ```
@@ -168,7 +169,7 @@ head(exp_lines)
 Some things to note about file reading. By default, the enormous
 `Clock.Information` lines are omitted. Also, if the file is not an Eprime
 `.txt` file, a **dummy header** is created so that the file may be treated like
-any other like Eprime. The user is warned as this happens.
+any other Eprime file. The user is warned as this happens.
 
 ```{r}
 bad_lines <- read_eprime("data/not_an_eprime_file.txt")
@@ -197,7 +198,7 @@ During the chunking, some metadata is inserted into the frames as additional
 `Key: Value` lines. These fields are:
 
 1. `Eprime.FrameNumber`, the number of the log frame in the file 
-2. `Eprime.Basename`, the `basename` of the source file 
+2. `Eprime.Basename`, the `basename()` of the source file, without its extension
 3. The header frame also gets the lines `Procedure: Header` and 
    `Running: Header`.
 
@@ -211,7 +212,7 @@ chunks[[2]]
 
 ### Building lists from "Key: Value" strings
 
-The data from each log-frame have been stored as character vector in a list.
+The data from each log-frame have been stored as a character vector in a list.
 Next, we convert each vector of `"Key: Value"` strings into a list of named
 elements. `EprimeFrame()` carries out this task.
 
@@ -225,14 +226,14 @@ form of the special fields is:
    [Key].Sample: [Sample]
 ```
 
-These `[Key]` values make it harder to merge together data-frames later on,
+These `[Key]` values make it harder to merge together dataframes later on,
 since each unique `[Key]` gets its own column name. Therefore, we normalize
 these fields like so:
 
-1. `[Key]: [Value]` line is deleted and stored in the `Eprime.LevelName` field
+1. The `[Key]: [Value]` line is deleted and stored in the `Eprime.LevelName` field
    instead as `"[Key]_[Value]"`. 
 2. `[Key].Sample` and `[Key].Cycle` are renamed
-   to just `Cycle` and `Sample`.
+   to just `Sample` and `Cycle`, respectively.
 
 One additional field is added, `Eprime.Level`, to record the depth of nesting
 (equal to the number of tabs plus one).

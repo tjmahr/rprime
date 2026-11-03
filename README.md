@@ -24,7 +24,7 @@ The main workflow for rprime involves:
     parsed data.
 4.  `keep_levels`, `drop_levels`, `filter_in`, `filter_out`: select and
     filter particular levels from the txt-file.
-5.  `to_data_frame`: make a data-frame from the parsed data.
+5.  `to_data_frame`: make a dataframe from the parsed data.
 
 ## Installation
 
@@ -42,7 +42,7 @@ Load the file with `read_eprime` and parse its contents with
 `FrameList`.
 
 ``` r
-library("rprime")
+library(rprime)
 # Read in an Eprime text file
 experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
 
@@ -374,7 +374,7 @@ str(sue_trials_df)
 #>  $ Correct        : chr  "Word" "NotWord" ...
 #>  $ Response       : chr  "Word" "NotWord" ...
 
-library("readr")
+library(readr)
 sue_trials_df <- type_convert(sue_trials_df)
 #> 
 #> ── Column specification ────────────────────────────────────────────────────────

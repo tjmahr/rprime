@@ -12,8 +12,8 @@ vignette: >
 ```{r}
 #| echo: false
 #| message: false
-library("rprime")
-library("knitr")
+library(rprime)
+library(knitr)
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
@@ -22,15 +22,15 @@ opts_chunk$set(
 ```
 
 Suppose we want to load all the Eprime files in a directory and combine the 
-results in dataframe. 
+results in a dataframe.
 
 My strategy in this scenario is to figure out what I need to do for a single 
-file and then wrap those steps in a function that takes a filepath to a txt 
-file and returns a dataframe. After some exploration and interactive 
+file and then wrap those steps in a function that takes a filepath to a text
+file and returns a dataframe. After some exploration and interactive
 programming, I come up with the following function.
 
 ```{r}
-library("plyr")
+library(plyr)
 reduce_sails <- function(sails_path) {
   sails_lines <- read_eprime(sails_path)
   sails_frames <- FrameList(sails_lines)
@@ -66,10 +66,10 @@ Here's a preview of what the function returns when given a filepath.
 head(reduce_sails("data/SAILS/SAILS_001X00XS1.txt"))
 ```
 
-Now that the function works on one file, I can use `ldply` to apply the 
-function to several files, returning results in a single dataframe. (For 
-`dplyr`, I would `lapply` the function to each path to get a list of 
-dataframes, then use `bind_rows` to combine into a single dataframe.)
+Now that the function works on one file, I can use `ldply()` to apply the
+function to several files, returning results in a single dataframe. (For
+`dplyr`, I would use `lapply()` to apply the function to each path to get a list of
+dataframes, then use `bind_rows()` to combine into a single dataframe.)
 
 ```{r}
 sails_paths <- list.files("data/SAILS/", pattern = ".txt", full.names = TRUE)
@@ -77,8 +77,8 @@ sails_paths
 ensemble <- ldply(sails_paths, reduce_sails)
 ```
 
-Finally, with all of the subjects' data contained in a single dataframe, I can 
-use `ddply` plus `summarise` and compute summary scores at different levels of 
+Finally, with all of the subjects' data contained in a single dataframe, I can
+use `ddply()` with `summarise()` to compute summary scores at different levels of
 aggregation within each subject. 
 
 ```{r}
