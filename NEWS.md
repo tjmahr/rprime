@@ -1,6 +1,11 @@
 # rprime 0.1.4
 
-* Fix a failing test because of how `str()` works. (#17)
+* [ ] Fix a failing test because of how `str()` works. (#17)
+
+* `preview_eprime()`, `preview_frames()`, and `preview_levels()` now return
+  their input invisibly, allowing previews within a data-processing pipeline.
+* `to_data_frame()` now has tests covering its methods, metadata, missing
+  columns, column types, and empty inputs (#3).
 * Package upkeep. (#16)
 
 # rprime 0.1.3

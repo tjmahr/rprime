@@ -5,16 +5,15 @@ first_line_header <- function(x) first(x) == "*** Header Start ***"
 count_blanks <- function(xs) sum(stringr::str_detect(xs, "^$"))
 
 # Test files
-good_file <- "data/MINP_001L00XS1.txt"
-bad_encoding <- "data/Blending_001L00XS4.txt"
-crashed_experiment <- "data/MP_Block1_001P00XA1.txt"
-no_footer <- "data/Coartic_Block1_001P00XS1.txt"
-not_an_eprime_file <- "data/not_an_eprime_file.txt"
+good_file <- testthat::test_path("data", "MINP_001L00XS1.txt")
+bad_encoding <- testthat::test_path("data", "Blending_001L00XS4.txt")
+crashed_experiment <- testthat::test_path("data", "MP_Block1_001P00XA1.txt")
+no_footer <- testthat::test_path("data", "Coartic_Block1_001P00XS1.txt")
+not_an_eprime_file <- testthat::test_path("data", "not_an_eprime_file.txt")
 
 
-context("Reading standard files")
 
-test_that("Load well-formed data", {
+test_that("read_eprime() preserves frame boundaries and optionally removes clock lines", {
   eprime_log <- read_eprime(good_file, remove_clock = FALSE)
   expect_equal(first(eprime_log), "*** Header Start ***")
   expect_equal(eprime_log[29], "\t*** LogFrame Start ***")
@@ -26,10 +25,7 @@ test_that("Load well-formed data", {
   expect_equal(length(no_clock) + 2, length(eprime_log))
 })
 
-
-context("Reading non-standard files")
-
-test_that("load file with unexpected encoding", {
+test_that("read_eprime() reads unexpected encoding without warnings or blank lines", {
   # no warnings
   warnings <- evaluate_promise(read_eprime(bad_encoding))$warnings
   expect_equal(length(warnings), 0)
@@ -40,7 +36,7 @@ test_that("load file with unexpected encoding", {
   expect_lt(count_blanks(bad_encoding_lines), 1)
 })
 
-test_that("load file from a crashed experiment", {
+test_that("read_eprime() reads a crashed experiment without warnings or blank lines", {
   # no warnings
   warnings <- evaluate_promise(read_eprime(crashed_experiment))$warnings
   expect_equal(length(warnings), 0)
@@ -51,11 +47,11 @@ test_that("load file from a crashed experiment", {
   expect_lt(count_blanks(crashed_experiment_lines), 1)
 })
 
-test_that("non-eprime file raises warning", {
+test_that("read_eprime() warns when the file is not an Eprime text file", {
   expect_warning(read_eprime(not_an_eprime_file), "not an Eprime txt file")
 })
 
-test_that("non-eprime file uses dummy text", {
+test_that("read_eprime() supplies a header when the file is not an Eprime text file", {
   # first line header
   not_an_eprime_file_lines <- suppressWarnings(read_eprime(not_an_eprime_file))
   expect_true(first_line_header(not_an_eprime_file_lines))

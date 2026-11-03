@@ -6,10 +6,12 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Working with multiple files}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r}
+#| echo: false
+#| message: false
 library("rprime")
 library("knitr")
 opts_chunk$set(

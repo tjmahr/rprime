@@ -16,7 +16,8 @@ preview_frames(frame_list)
 \item{frame_list}{a \code{\link[=FrameList]{FrameList()}} object (a list of \code{\link[=EprimeFrame]{EprimeFrame()}} objects)}
 }
 \value{
-Nothing. Preview text is printed to the console.
+The input \code{\link[=FrameList]{FrameList()}} object, invisibly. Preview text is printed
+to the console.
 }
 \description{
 Preview the levels in a parsed Eprime file

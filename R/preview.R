@@ -6,12 +6,13 @@
 #' levels. `preview_eprime()` does both.
 #'
 #' @param frame_list a [FrameList()] object (a list of [EprimeFrame()] objects)
-#' @return Nothing. Preview text is printed to the console.
+#' @return The input [FrameList()] object, invisibly. Preview text is printed
+#'   to the console.
 #' @export
 preview_eprime <- function(frame_list) {
   preview_levels(frame_list)
   preview_frames(frame_list)
-  invisible(NULL)
+  invisible(frame_list)
 }
 
 #' @rdname preview_eprime
@@ -20,7 +21,7 @@ preview_levels <- function(frame_list) {
   prep <- preview_prep(frame_list)
   cat("Level Counts: \n")
   print(prep$row_counts, row.names = FALSE)
-  invisible(NULL)
+  invisible(frame_list)
 }
 
 #' @rdname preview_eprime
@@ -37,7 +38,7 @@ preview_frames <- function(frame_list) {
     str(curr_chunk)
   }
 
-  invisible(NULL)
+  invisible(frame_list)
 }
 
 preview_prep <- function(frame_list) {

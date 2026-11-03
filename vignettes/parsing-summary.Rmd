@@ -6,10 +6,12 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Parsing summary}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r}
+#| echo: false
+#| message: false
 library("rprime")
 library("knitr")
 opts_chunk$set(
@@ -28,15 +30,15 @@ used by Eprime are documented on the site at this URL:
 The rprime package provides a set of functions for parsing these `.txt` files
 inside R.
 
-This vignette documents how rprime parses an Eprime text file and the changes 
-it makes during that process. **See the quick-start vignette for examples of 
-how to use this package.**
+This vignette documents how rprime parses an Eprime text file and the changes it
+makes during that process. **See the quick-start vignette for examples of how to
+use this package.**
 
 **Disclaimer**: I write this documentation as someone who has spent little time
-creating and designing experiments in Eprime but has spent a lot of time
-parsing Eprime text files in R. Therefore, this vignette is not documentation
-for Eprime software or its data format. Instead, this vignette just outlines
-this package's approach to extracting data from Eprime text files.
+creating and designing experiments in Eprime but has spent a lot of time parsing
+Eprime text files in R. Therefore, this vignette is not documentation for Eprime
+software or its data format. Instead, this vignette just outlines this package's
+approach to extracting data from Eprime text files.
 
 
 ## Background
@@ -45,9 +47,9 @@ An Eprime `txt` file is a series of **frames**. Each frame is a list of
 key-value pairs. Frames are bracketed by special start and stop lines.
 
 Each file begins with a special **Header** frame. The header is set off by the
-brackets `*** Header Start***` and `*** Header End***`. The fields in the
-header describe the basic settings of the experiment. A header frame looks like
-something this (the several-hundred character-long `Clock.Information` line has 
+brackets `*** Header Start***` and `*** Header End***`. The fields in the header
+describe the basic settings of the experiment. A header frame looks like
+something this (the several-hundred character-long `Clock.Information` line has
 been omitted):
 
 ```
@@ -79,8 +81,8 @@ Display.RefreshRate: 60.003
 *** Header End ***
 ```
 
-The other frames in the text file are **LogFrames**. These record data about
-the individual procedures or trials are executed during the experiment. The
+The other frames in the text file are **LogFrames**. These record data about the
+individual procedures or trials are executed during the experiment. The
 following lines immediately follow the header from the previous example:
 
 ```
@@ -110,10 +112,10 @@ the number of tabs before each line as well as the `Level` line. The only Level
 1 frames in an experiment appear to the header frame and the final frame of an
 experiment (which largely duplicates the header frame).
 
-Some **special fields** appear in every log-frame. These fields are
-`Procedure`, `Running`, `[Running].Sample`, `[Running].Cycle` and `[Running]`
-where `[Running]` is the value of the running field. In the previous example,
-these were:
+Some **special fields** appear in every log-frame. These fields are `Procedure`,
+`Running`, `[Running].Sample`, `[Running].Cycle` and `[Running]` where
+`[Running]` is the value of the running field. In the previous example, these
+were:
 
 ```
 	Procedure: FamTask
@@ -131,20 +133,20 @@ records the sequential trial number.
 
 The basic strategy for parsing the Eprime file:
 
-1. Read in the Eprime file. 
-2. Create `EprimeFrame` objects.
-    a. Extract the frames.
-    b. Create key-value pairs inside the frame by splitting text lines at `:` 
-       characters.
-    c. Add some helpful metadata inside each frame.
-    d. Bundle up the key-value pairs into an R `list` object with an added
-       `EprimeFrame` class.
-3. Bundle the frames from an experiment together inside of a `FrameList`
-object.
+1.  Read in the Eprime file.
+2.  Create `EprimeFrame` objects.
+    1.  Extract the frames.
+    2.  Create key-value pairs inside the frame by splitting text lines at `:`
+        characters.
+    3.  Add some helpful metadata inside each frame.
+    4.  Bundle up the key-value pairs into an R `list` object with an added
+        `EprimeFrame` class.
+3.  Bundle the frames from an experiment together inside of a `FrameList`
+    object.
 
 Each of these steps is handled by some lower level functions. **In practice,
 only two high-level functions are necessary to transform from a text file to a
-list of `Eprime.Frame objects`: `read_eprime` and `FrameList`.** Here's how
+list of `Eprime.Frame` objects: `read_eprime()` and `FrameList()`.** Here's how
 these two functions can be used to get us the header frame from a text file.
 
 ```{r}
@@ -190,7 +192,7 @@ aborted, a warning is raised and the partial frame is skipped.
 aborted <- FrameList(read_eprime("data/MP_Block1_001P00XA1.txt"))
 ```
 
-The low-level function for chunking the lines of text is `extract_chunks`.
+The low-level function for chunking the lines of text is `extract_chunks()`.
 During the chunking, some metadata is inserted into the frames as additional
 `Key: Value` lines. These fields are:
 
@@ -211,7 +213,7 @@ chunks[[2]]
 
 The data from each log-frame have been stored as character vector in a list.
 Next, we convert each vector of `"Key: Value"` strings into a list of named
-elements. `EprimeFrame` carries out this task.
+elements. `EprimeFrame()` carries out this task.
 
 During this stage, the special fields (noted above) are parsed. The original 
 form of the special fields is:

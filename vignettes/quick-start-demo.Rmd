@@ -6,17 +6,20 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Quick start demonstration}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r}
+#| echo: false
+#| message: false
 library("rprime")
 library("knitr")
 opts_chunk$set(
   comment = "#>",
   error = FALSE,
   tidy = FALSE,
-  collapse = TRUE)
+  collapse = TRUE
+)
 options(str = strOptions(vec.len = 2))
 ```
 
@@ -29,14 +32,14 @@ Overview
 
 The main workflow for rprime involves:
 
-1. `read_eprime`: reliably read in data from an Eprime log (`.txt`) file.
-2. `FrameList`: extract the text in each `"LogFrame"` in the file, storing each 
-   log-frame as an R list.
-3. `preview_levels`, `preview_eprime`: explore the structure of the parsed 
-   data.
-4. `keep_levels`, `drop_levels`, `filter_in`, `filter_out`: select and filter 
-   particular levels from the txt-file.
-5.  `to_data_frame`: make a data-frame from the parsed data.
+1.  `read_eprime()`: reliably read in data from an Eprime log (`.txt`) file.
+2.  `FrameList()`: extract the text in each `"LogFrame"` in the file, storing
+    each log-frame as an R list.
+3.  `preview_levels()`, `preview_eprime()`: explore the structure of the parsed
+    data.
+4.  `keep_levels()`, `drop_levels()`, `filter_in()`, `filter_out()`: select and
+    filter particular levels from the txt-file.
+5.  `to_data_frame()`: make a data-frame from the parsed data.
 
 
 Installation
@@ -44,7 +47,8 @@ Installation
 
 To get the current, released version from CRAN:
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 install.packages("rprime")
 ```
 
@@ -54,7 +58,7 @@ Examples
 
 ### Getting data into R
 
-Load the file with `read_eprime` and parse its contents with `FrameList`.
+Load the file with `read_eprime()` and parse its contents with `FrameList()`.
 
 ```{r}
 library("rprime")
@@ -69,25 +73,31 @@ experiment_data <- FrameList(experiment_lines)
 
 In the text file, frames were distinguished by the procedure they are running as 
 well as the their level of nesting. Get an overview of the different types of 
-frames with `preview_levels`.
+frames with `preview_levels()`.
 
 ```{r}
 # There are six different kinds of frames in this file
 preview_levels(experiment_data)
 ```
 
-Get a preview of the data in each kind of frame with `preview_frames`.
+`preview_levels()`, `preview_frames()`, and `preview_eprime()` return the input
+object invisibly while printing their previews. The assignment above retains the
+original frames for further processing. These functions can also be used within
+a pipeline without interrupting the flow of data.
+
+Get a preview of the data in each kind of frame with `preview_frames()`.
 
 ```{r}
 preview_frames(experiment_data)
 ```
 
-`preview_eprime` (not demonstrated here) does both kinds of previews (levels 
+`preview_eprime()` (not demonstrated here) does both kinds of previews (levels 
 and frames).
 
 ### Filtering
 
-Use `keep_levels` and `drop_levels` to filter frames according to nesting level.
+Use `keep_levels()` and `drop_levels()` to filter frames according to nesting
+level.
 
 ```{r}
 # Filter (out) by depth of nesting
@@ -99,8 +109,8 @@ just_level_3 <- keep_levels(experiment_data, 3)
 preview_levels(just_level_3)
 ```
 
-Use `filter_in` and `filter_out` to filter frames using attribute values. Use 
-repeated filtering statements to drill down into the list of frames.
+Use `filter_in()` and `filter_out()` to filter frames using attribute values.
+Use repeated filtering statements to drill down into the list of frames.
 
 ```{r}
 # Filter (out) by attribute values
@@ -118,7 +128,7 @@ preview_eprime(sue_trials)
 
 ### Exporting
 
-Convert to a dataframe with `to_dataframe`. Attribute names in the log-frames 
+Convert to a dataframe with `to_data_frame()`. Attribute names in the log-frames
 become column names in the dataframe.
 
 ```{r}
@@ -133,9 +143,8 @@ sue_trials_df <- sue_trials_df[columns_to_keep]
 head(sue_trials_df)
 ```
 
-**Note**: rprime thinks that all the values in the final dataframe are 
-character values. You can use `type_convert` in the readr package to correct 
-the column types:
+**Note**: rprime thinks that all the values in the final dataframe are character
+values. You can use `readr::type_convert()` to correct the column types:
 
 ```{r}
 # Right now the sample numbers are stored as character values

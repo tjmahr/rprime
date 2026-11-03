@@ -1,9 +1,7 @@
 # Test files
-good_file <- "data/MINP_001L00XS1.txt"
+good_file <- testthat::test_path("data", "MINP_001L00XS1.txt")
 
-context("Filtering functions")
-
-test_that("filter in/out", {
+test_that("filter_in() and filter_out() select frames by attribute values", {
   eprime_log <- read_eprime(good_file)
   chunked <- FrameList(eprime_log)
 
@@ -35,7 +33,7 @@ test_that("filter in/out", {
   expect_equal(nrow(keys_peas_df), keys_peas_rows)
 })
 
-test_that("keep/drop levels", {
+test_that("keep_levels() and drop_levels() select complementary levels", {
   eprime_log <- read_eprime(good_file)
   chunked <- FrameList(eprime_log)
   df_full <- to_data_frame(chunked)
