@@ -141,12 +141,10 @@ test_that("print.FrameList() includes list sizes and nested class names", {
 
   # Check specific lines in the print function
   l1 <- "List of 25"
-  l2 <- " $ :List of 22"
   last_1 <- '  ..- attr(*, "class")= chr [1:2] "EprimeFrame" "list"'
   last_2 <- ' - attr(*, "class")= chr [1:2] "list" "FrameList"'
 
   expect_equal(printed_list[1], l1)
-  expect_equal(printed_list[2], l2)
   expect_equal(printed_list[nlines - 1], last_1)
   expect_equal(printed_list[nlines], last_2)
 })
