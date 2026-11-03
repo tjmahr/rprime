@@ -4,7 +4,7 @@ make_filter <- function(key, values) {
   function(frame_list) {
     # Convert NULLs to NA
     plucked <- pluck_apply(key, frame_list)
-    plucked[sapply(plucked, is.null)] <- NA
+    plucked[vapply(plucked, is.null, logical(1))] <- NA
     is.element(unlist(plucked), values)
   }
 }

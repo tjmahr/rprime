@@ -1,6 +1,24 @@
 # Test files
 good_file <- testthat::test_path("data", "MINP_001L00XS1.txt")
 
+test_that("filter_in() and filter_out() handle empty FrameList objects", {
+  empty <- as.FrameList(list())
+
+  expect_identical(filter_in(empty, "Running", "Header"), empty)
+  expect_identical(filter_out(empty, "Running", "Header"), empty)
+  expect_identical(keep_levels(empty, 1), empty)
+  expect_identical(drop_levels(empty, 1), empty)
+})
+
+test_that("filter_in() and filter_out() can filter again after no matches", {
+  frames <- as.FrameList(list(as.EprimeFrame(list(Running = "Trial"))))
+  empty <- filter_in(frames, "Running", "Missing")
+
+  expect_identical(empty, as.FrameList(list()))
+  expect_identical(filter_in(empty, "Running", "Trial"), empty)
+  expect_identical(filter_out(empty, "Running", "Trial"), empty)
+})
+
 test_that("filter_in() and filter_out() select frames by attribute values", {
   eprime_log <- read_eprime(good_file)
   chunked <- FrameList(eprime_log)

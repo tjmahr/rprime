@@ -2,14 +2,14 @@
 
 * `example_eprime_file()` provides filepaths to bundled example files by short
   name or full filename. Call it without arguments to list available files.
-
-* [ ] Fix a failing test because of how `str()` works. (#17)
-
+* `filter_in()`, `filter_out()`, `keep_levels()`, and `drop_levels()` now handle
+  empty inputs, including results from earlier filters with no matches.
+* Fix a failing CRAN check following changes to `str()`. (#16)
 * `preview_eprime()`, `preview_frames()`, and `preview_levels()` now return
   their input invisibly, allowing previews within a data-processing pipeline.
 * `to_data_frame()` now has tests covering its methods, metadata, missing
   columns, column types, and empty inputs (#3).
-* Package upkeep. (#16)
+* Package upkeep. (#17)
 
 # rprime 0.1.3
 
