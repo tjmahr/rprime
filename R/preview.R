@@ -33,7 +33,7 @@ preview_levels <- function(frame_list) {
 preview_frames <- function(frame_list) {
   prep <- preview_prep(frame_list)
 
-  for(chunk_num in seq_along(prep$unique_frames)) {
+  for (chunk_num in seq_along(prep$unique_frames)) {
     curr_row <- prep$unique_rows[chunk_num, ]
     curr_chunk <- prep$unique_frames[[chunk_num]]
 

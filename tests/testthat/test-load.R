@@ -12,7 +12,6 @@ no_footer <- testthat::test_path("data", "Coartic_Block1_001P00XS1.txt")
 not_an_eprime_file <- testthat::test_path("data", "not_an_eprime_file.txt")
 
 
-
 test_that("read_eprime() preserves frame boundaries and optionally removes clock lines", {
   eprime_log <- read_eprime(good_file, remove_clock = FALSE)
   expect_equal(first(eprime_log), "*** Header Start ***")

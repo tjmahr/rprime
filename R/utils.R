@@ -65,5 +65,3 @@ pick_apply <- function(keys, xss) {
   class(xss) <- classes
   xss
 }
-
-

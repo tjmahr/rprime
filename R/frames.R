@@ -19,22 +19,24 @@
 #'   [EprimeFrame()] object is returned inside of a [FrameList()] object.
 #' @export
 #' @examples
-#' lines <- c("\t*** LogFrame Start ***",
-#'            "\tProcedure: FamTask",
-#'            "\titem1: bear",
-#'            "\titem2: chair",
-#'            "\tCorrectResponse: bear",
-#'            "\tImageSide: Left",
-#'            "\tDuration: 885",
-#'            "\tFamiliarization: 1",
-#'            "\tFamInforcer: 1",
-#'            "\tReinforcerImage: Bicycle1",
-#'            "\tFamiliarization.Cycle: 1",
-#'            "\tFamiliarization.Sample: 1",
-#'            "\tRunning: Familiarization",
-#'            "\tFamTarget.RESP: ",
-#'            "\tCorrect: True",
-#'            "\t*** LogFrame End ***")
+#' lines <- c(
+#'   "\t*** LogFrame Start ***",
+#'   "\tProcedure: FamTask",
+#'   "\titem1: bear",
+#'   "\titem2: chair",
+#'   "\tCorrectResponse: bear",
+#'   "\tImageSide: Left",
+#'   "\tDuration: 885",
+#'   "\tFamiliarization: 1",
+#'   "\tFamInforcer: 1",
+#'   "\tReinforcerImage: Bicycle1",
+#'   "\tFamiliarization.Cycle: 1",
+#'   "\tFamiliarization.Sample: 1",
+#'   "\tRunning: Familiarization",
+#'   "\tFamTarget.RESP: ",
+#'   "\tCorrect: True",
+#'   "\t*** LogFrame End ***"
+#' )
 #' #> List of 1
 #' #> $ :List of 17
 #' #> ..$ Eprime.Level      : num 2
@@ -70,7 +72,6 @@ FrameList.list <- function(x) {
 }
 
 
-
 #' Create an `EprimeFrame` object
 #'
 #' This constructor function converts a character vector into an
@@ -89,7 +90,8 @@ FrameList.list <- function(x) {
 #' lines <- c(
 #'   "key: value",
 #'   "question: answer",
-#'   "garbage text")
+#'   "garbage text"
+#' )
 #'
 #' EprimeFrame(lines)
 #' #> List of 8
@@ -108,7 +110,8 @@ FrameList.list <- function(x) {
 #'   "Demo: ExampleCode",
 #'   "Demo.Cycle: 1",
 #'   "Demo.Sample: 1",
-#'   "Key: Value")
+#'   "Key: Value"
+#' )
 #'
 #' EprimeFrame(keys_values)
 #' #> List of 9
@@ -136,7 +139,6 @@ EprimeFrame.character <- function(keys_values = character(0)) {
 }
 
 
-
 #' Convert a list of `EprimeFrame` objects into a `FrameList` object
 #' @param xs a list of [EprimeFrame()] objects
 #' @return the original list as a [FrameList()] object
@@ -159,13 +161,11 @@ as.EprimeFrame <- function(xs) {
 }
 
 
-
 #' @export
 print.FrameList <- function(...) str(...)
 
 #' @export
 print.EprimeFrame <- function(...) str(...)
-
 
 
 #' Clean up `Running`-related attributes
@@ -198,7 +198,7 @@ tidy <- function(x) {
   eprime_frame <- x
   level_depth <- eprime_frame[[rprime_cols$level]]
   level_label <- eprime_frame[[rprime_cols$running]]
-  level_name  <- eprime_frame[[rprime_cols$level_name]]
+  level_name <- eprime_frame[[rprime_cols$level_name]]
 
   # Tidy if Running field is used and level name is still NA
   has_level_label <- !is.na(level_label)
@@ -207,7 +207,7 @@ tidy <- function(x) {
   if (needs_level_name & has_level_label) {
     # Store [Key]_[Value] as "Eprime.LevelName"
     level_index <- eprime_frame[[level_label]]
-    level_name  <- paste0(level_label, "_", level_index)
+    level_name <- paste0(level_label, "_", level_index)
     new_list <- structure(as.list(level_name), names = rprime_cols$level_name)
 
     # Remove "[Key]: [Value]" item and then remove "[Key]." from names
@@ -255,4 +255,3 @@ count_tabs <- function(colon_sep_xs) {
   level <- str_count(first(colon_sep_xs), "\\t") + 1
   structure(list(level), names = rprime_cols$level)
 }
-

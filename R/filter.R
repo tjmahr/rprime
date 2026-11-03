@@ -10,7 +10,6 @@ make_filter <- function(key, values) {
 }
 
 
-
 #' Filter levels in or out of a `FrameList` based on attribute values
 #'
 #' @param frame_list a list of [EprimeFrame()] objects

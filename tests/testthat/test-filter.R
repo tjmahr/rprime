@@ -56,5 +56,4 @@ test_that("keep_levels() and drop_levels() select complementary levels", {
   df_level_1 <- remove_na_columns(df_level_1)
   df_not_level_2 <- remove_na_columns(df_not_level_2)
   expect_equal(df_not_level_2, df_level_1)
-
 })

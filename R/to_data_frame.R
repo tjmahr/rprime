@@ -32,4 +32,3 @@ to_data_frame.FrameList <- function(x) {
 to_data_frame.EprimeFrame <- function(x) {
   as.data.frame.list(x, stringsAsFactors = FALSE)
 }
-

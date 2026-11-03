@@ -22,11 +22,11 @@ rprime_cols <- list(
 # Make a list of the metadata fields initialized to NAs
 default_metadata <- structure(
   .Data = as.list(rep(NA, length(rprime_cols))),
-  names = unlist(unname(rprime_cols)))
+  names = unlist(unname(rprime_cols))
+)
 
 str_which <- function(string, pattern) which(str_detect(string, pattern))
 new_line <- function(key, value) sprintf("%s: %s", key, value)
 is_header <- function(xs) any(str_detect(xs, patterns$header_start))
 is_row <- function(xs) any(str_detect(xs, patterns$row))
 has_header <- function(xs) any(sapply(xs, is_header))
-
