@@ -12,6 +12,7 @@
 Useful links:
 \itemize{
   \item \url{https://github.com/tjmahr/rprime}
+  \item \url{https://www.tjmahr.com/rprime/}
   \item Report bugs at \url{https://github.com/tjmahr/rprime/issues}
 }
 
