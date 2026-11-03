@@ -13,17 +13,23 @@ preview_levels(frame_list)
 preview_frames(frame_list)
 }
 \arguments{
-\item{frame_list}{a FrameList (a list of EprimeFrames)}
+\item{frame_list}{a \code{\link[=FrameList]{FrameList()}} object (a list of \code{\link[=EprimeFrame]{EprimeFrame()}} objects)}
 }
 \value{
-Nothing. Preview text is printed to the console.
+The input \code{\link[=FrameList]{FrameList()}} object, invisibly. Preview text is printed
+to the console.
 }
 \description{
 Preview the levels in a parsed Eprime file
 }
 \details{
-\code{preview_levels} prints out the unique combinations of
-Eprime.Level number, Procedure, and Running in the frame list.
-\code{preview_frames} prints out example frame from each of the unique
-levels. \code{preview_eprime} does both.
+\code{preview_levels()} prints out the unique combinations of
+\code{Eprime.Level} number, \code{Procedure}, and \code{Running} in the frame list.
+\code{preview_frames()} prints out an example frame from each of the unique
+levels. \code{preview_eprime()} does both.
+}
+\examples{
+data <- read_eprime(example_eprime_file("MINP")) |>
+  FrameList() |>
+  preview_eprime()
 }

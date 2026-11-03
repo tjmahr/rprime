@@ -1,9 +1,25 @@
 # Test files
-good_file <- "data/MINP_001L00XS1.txt"
+good_file <- testthat::test_path("data", "MINP_001L00XS1.txt")
 
-context("Filtering functions")
+test_that("filter_in() and filter_out() handle empty FrameList objects", {
+  empty <- as.FrameList(list())
 
-test_that("filter in/out", {
+  expect_identical(filter_in(empty, "Running", "Header"), empty)
+  expect_identical(filter_out(empty, "Running", "Header"), empty)
+  expect_identical(keep_levels(empty, 1), empty)
+  expect_identical(drop_levels(empty, 1), empty)
+})
+
+test_that("filter_in() and filter_out() can filter again after no matches", {
+  frames <- as.FrameList(list(as.EprimeFrame(list(Running = "Trial"))))
+  empty <- filter_in(frames, "Running", "Missing")
+
+  expect_identical(empty, as.FrameList(list()))
+  expect_identical(filter_in(empty, "Running", "Trial"), empty)
+  expect_identical(filter_out(empty, "Running", "Trial"), empty)
+})
+
+test_that("filter_in() and filter_out() select frames by attribute values", {
   eprime_log <- read_eprime(good_file)
   chunked <- FrameList(eprime_log)
 
@@ -35,7 +51,7 @@ test_that("filter in/out", {
   expect_equal(nrow(keys_peas_df), keys_peas_rows)
 })
 
-test_that("keep/drop levels", {
+test_that("keep_levels() and drop_levels() select complementary levels", {
   eprime_log <- read_eprime(good_file)
   chunked <- FrameList(eprime_log)
   df_full <- to_data_frame(chunked)
@@ -58,5 +74,4 @@ test_that("keep/drop levels", {
   df_level_1 <- remove_na_columns(df_level_1)
   df_not_level_2 <- remove_na_columns(df_not_level_2)
   expect_equal(df_not_level_2, df_level_1)
-
 })

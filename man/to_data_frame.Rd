@@ -2,26 +2,26 @@
 % Please edit documentation in R/to_data_frame.R
 \name{to_data_frame}
 \alias{to_data_frame}
-\title{Convert Eprime Frames into data-frames}
+\title{Convert \code{EprimeFrame} objects into dataframes}
 \usage{
 to_data_frame(x)
 }
 \arguments{
-\item{x}{an EprimeFrame object, or a FrameList object (a list of
-EprimeFrames)}
+\item{x}{an \code{\link[=EprimeFrame]{EprimeFrame()}} object, or a \code{\link[=FrameList]{FrameList()}} object (a list of
+\code{\link[=EprimeFrame]{EprimeFrame()}} objects)}
 }
 \value{
-all of the EprimeFrames combined into a single data frame.
+all of the \code{\link[=EprimeFrame]{EprimeFrame()}} objects combined into a single dataframe.
 }
 \description{
-Convert Eprime Frames into data-frames
+Convert \code{EprimeFrame} objects into dataframes
 }
 \details{
-Individual EprimeFrames are converted to a data-frame using
-\code{as.data.frame()}. (Strings are not converted to factors.)
+Individual \code{\link[=EprimeFrame]{EprimeFrame()}} objects are converted to a dataframe
+using \code{as.data.frame()}. (Strings are not converted to factors.)
 
-Each of the individual data-frames are then \code{rbind()}-ed together, with
-missing columns being filled with NA.
+The individual dataframes are then \code{\link[=rbind]{rbind()}}-ed together, with
+missing columns being filled with \code{NA}.
 }
 \seealso{
 \code{\link[plyr:rbind.fill]{plyr::rbind.fill()}}

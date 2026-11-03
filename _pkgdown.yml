@@ -1,9 +1,13 @@
-destination: docs
+url: https://www.tjmahr.com/rprime/
+template:
+  bootstrap: 5
+# destination: docs
 reference:
   - title: Most important functions
     desc: ~
     contents:
       - '`read_eprime`'
+      - '`example_eprime_file`'
       - '`FrameList`'
       - '`filter_in`'
       - '`keep_levels`'
@@ -20,3 +24,4 @@ reference:
       - '`EprimeFrame`'
       - '`as.EprimeFrame`'
       - '`as.FrameList`'
+

@@ -14,6 +14,7 @@ export(FrameList)
 export(as.EprimeFrame)
 export(as.FrameList)
 export(drop_levels)
+export(example_eprime_file)
 export(extract_chunks)
 export(filter_in)
 export(filter_out)
@@ -27,6 +28,8 @@ export(to_data_frame)
 import(assertthat)
 import(plyr)
 import(stringr)
-importFrom(utils,head)
-importFrom(utils,str)
-importFrom(utils,tail)
+importFrom(utils,
+  head,
+  str,
+  tail
+)

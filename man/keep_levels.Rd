@@ -3,27 +3,27 @@
 \name{keep_levels}
 \alias{keep_levels}
 \alias{drop_levels}
-\title{Filter levels in or out of a FrameList based on Eprime.Level values}
+\title{Filter levels in or out of a \code{FrameList} based on \code{Eprime.Level} values}
 \usage{
 keep_levels(frame_list, level_numbers)
 
 drop_levels(frame_list, level_numbers)
 }
 \arguments{
-\item{frame_list}{a list of \code{EprimeFrame} objects}
+\item{frame_list}{a list of \code{\link[=EprimeFrame]{EprimeFrame()}} objects}
 
-\item{level_numbers}{the whitelisted or blacklisted values for Eprime.Level}
+\item{level_numbers}{the included or excluded values for \code{Eprime.Level}}
 }
 \value{
-for \code{keep_levels}, only log-frames where the level matches one
-  of the \code{level_numbers} are kept. for \code{keep_levels}, log-frames
-  where the level matches one of the \code{level_numbers} are omitted.
+for \code{keep_levels()}, only log-frames where the level matches one
+of the \code{level_numbers} are kept. For \code{drop_levels()}, log-frames
+where the level matches one of the \code{level_numbers} are omitted.
 }
 \description{
-These functions are shortcuts for calls to \code{filter_in} or
-\code{filter_out}.
+These functions are shortcuts for calls to \code{\link[=filter_in]{filter_in()}} or
+\code{\link[=filter_out]{filter_out()}}.
 }
 \details{
-Note that the meaning of Eprime.Level value in a log-frame ultimately is
+Note that the meaning of the \code{Eprime.Level} value in a log-frame ultimately is
 equal to one plus the number of tabs before each line in the log-frame.
 }

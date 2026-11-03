@@ -2,7 +2,7 @@
 % Please edit documentation in R/frames.R
 \name{as.EprimeFrame}
 \alias{as.EprimeFrame}
-\title{Convert a list into an EprimeFrame object}
+\title{Convert a list into an \code{EprimeFrame} object}
 \usage{
 as.EprimeFrame(xs)
 }
@@ -10,9 +10,9 @@ as.EprimeFrame(xs)
 \item{xs}{a list}
 }
 \value{
-the original list as an \code{EprimeFrame} object (along with dummy
-  Eprime metadata fields)
+the original list as an \code{\link[=EprimeFrame]{EprimeFrame()}} object (along with dummy
+Eprime metadata fields)
 }
 \description{
-Convert a list into an EprimeFrame object
+Convert a list into an \code{EprimeFrame} object
 }

@@ -2,16 +2,16 @@
 % Please edit documentation in R/frames.R
 \name{as.FrameList}
 \alias{as.FrameList}
-\title{Convert a list of EprimeFrames into a FrameList object}
+\title{Convert a list of \code{EprimeFrame} objects into a \code{FrameList} object}
 \usage{
 as.FrameList(xs)
 }
 \arguments{
-\item{xs}{a list of EprimeFrames}
+\item{xs}{a list of \code{\link[=EprimeFrame]{EprimeFrame()}} objects}
 }
 \value{
-the original list as a \code{FrameList} object
+the original list as a \code{\link[=FrameList]{FrameList()}} object
 }
 \description{
-Convert a list of EprimeFrames into a FrameList object
+Convert a list of \code{EprimeFrame} objects into a \code{FrameList} object
 }

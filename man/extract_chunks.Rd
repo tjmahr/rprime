@@ -7,18 +7,17 @@
 extract_chunks(eprime_log)
 }
 \arguments{
-\item{eprime_log}{a character vector containing the lines of text from Eprime
-txt file}
+\item{eprime_log}{a character vector containing the lines of text from an
+Eprime txt file}
 }
 \value{
 a list of character vectors, where each vector contains the lines of
-  a log-frame
+a log-frame
 }
 \description{
 Almost all of the information in an Eprime file comes in chunks of text
-bracketed by the lines \code{*** LogFrame Start ***} and \code{*** LogFrame
-End ***}. The exception is the header information which is bracketed by
-\code{*** Header Start ***} and \code{*** Header End ***}.
+bracketed by the lines \verb{*** LogFrame Start ***} and \verb{*** LogFrame End ***}. The exception is the header information which is bracketed by
+\verb{*** Header Start ***} and \verb{*** Header End ***}.
 }
 \details{
 \code{extract_chunks} extracts the bracketed text, storing each log-frame of
@@ -28,5 +27,9 @@ the source file). The header log-frame also gets dummy lines:
 \code{Procedure: Header} and \code{Running: Header}.
 
 These character vectors of colon-separated lines are converted into proper
-lists by \code{FrameList(...)}.
+lists by \code{\link[=FrameList]{FrameList()}}.
+}
+\examples{
+lines <- read_eprime(example_eprime_file("MINP"))
+extract_chunks(lines)
 }

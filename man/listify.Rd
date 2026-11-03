@@ -12,15 +12,15 @@ listify(colon_sep_xs)
 }
 \value{
 a named list of the values in the colon-separated lines.
-  \code{"key: value"} yields \code{list(key = "value")}
+\code{"key: value"} yields \code{list(key = "value")}
 }
 \description{
 Convert a vector of colon-separated text lines into a list of named elements
 }
 \details{
 Some minor cleaning of the input is performed:
-  \itemize{
-    \item Lines without a colon-space separator \code{": "} are filtered out.
-    \item Once the strings are split at the separator, white-space on the
-          left and right sides of each half-string is omitted.}
+\itemize{
+\item Lines without a colon-space separator \code{": "} are filtered out.
+\item Once the strings are split at the separator, white-space on the
+left and right sides of each half-string is omitted.}
 }
