@@ -18,8 +18,8 @@ rprime
 ===============================================================================
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/rprime)](https://CRAN.R-project.org/package=rprime)
 [![R-CMD-check](https://github.com/tjmahr/rprime/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tjmahr/rprime/actions/workflows/R-CMD-check.yaml)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rprime)](https://CRAN.R-project.org/package=rprime)
 <!-- badges: end -->
 
 ```{r, child="vignettes/quick-start-demo.Rmd"}

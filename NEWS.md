@@ -1,3 +1,8 @@
+# rprime 0.1.4
+
+* Fix a failing test because of how `str()` works. (#17)
+* Package upkeep. (#16)
+
 # rprime 0.1.3
 
 * Fix link in a documentation.
