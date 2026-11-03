@@ -29,3 +29,7 @@ the source file). The header log-frame also gets dummy lines:
 These character vectors of colon-separated lines are converted into proper
 lists by \code{\link[=FrameList]{FrameList()}}.
 }
+\examples{
+lines <- read_eprime(example_eprime_file("MINP"))
+extract_chunks(lines)
+}

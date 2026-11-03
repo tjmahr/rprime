@@ -25,7 +25,8 @@ values. Strings with the format \code{"key: value"} are parsed into \code{key = 
 lines <- c(
   "key: value",
   "question: answer",
-  "garbage text")
+  "garbage text"
+)
 
 EprimeFrame(lines)
 #> List of 8
@@ -44,7 +45,8 @@ keys_values <- c(
   "Demo: ExampleCode",
   "Demo.Cycle: 1",
   "Demo.Sample: 1",
-  "Key: Value")
+  "Key: Value"
+)
 
 EprimeFrame(keys_values)
 #> List of 9

@@ -29,22 +29,24 @@ the same set of key names (eventually, column names) onto frames with
 different values for \code{Running}.
 }
 \examples{
-lines <- c("\t*** LogFrame Start ***",
-           "\tProcedure: FamTask",
-           "\titem1: bear",
-           "\titem2: chair",
-           "\tCorrectResponse: bear",
-           "\tImageSide: Left",
-           "\tDuration: 885",
-           "\tFamiliarization: 1",
-           "\tFamInforcer: 1",
-           "\tReinforcerImage: Bicycle1",
-           "\tFamiliarization.Cycle: 1",
-           "\tFamiliarization.Sample: 1",
-           "\tRunning: Familiarization",
-           "\tFamTarget.RESP: ",
-           "\tCorrect: True",
-           "\t*** LogFrame End ***")
+lines <- c(
+  "\t*** LogFrame Start ***",
+  "\tProcedure: FamTask",
+  "\titem1: bear",
+  "\titem2: chair",
+  "\tCorrectResponse: bear",
+  "\tImageSide: Left",
+  "\tDuration: 885",
+  "\tFamiliarization: 1",
+  "\tFamInforcer: 1",
+  "\tReinforcerImage: Bicycle1",
+  "\tFamiliarization.Cycle: 1",
+  "\tFamiliarization.Sample: 1",
+  "\tRunning: Familiarization",
+  "\tFamTarget.RESP: ",
+  "\tCorrect: True",
+  "\t*** LogFrame End ***"
+)
 #> List of 1
 #> $ :List of 17
 #> ..$ Eprime.Level      : num 2

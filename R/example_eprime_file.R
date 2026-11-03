@@ -47,8 +47,8 @@ example_eprime_file <- function(which) {
   }
 
   if (filename %in% files[c("SAILS1", "SAILS2")]) {
-    system.file("data", "SAILS", filename, package = "rprime", mustWork = TRUE)
+    system.file("example-data", "SAILS", filename, package = "rprime", mustWork = TRUE)
   } else {
-    system.file("data", filename, package = "rprime", mustWork = TRUE)
+    system.file("example-data", filename, package = "rprime", mustWork = TRUE)
   }
 }

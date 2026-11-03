@@ -28,3 +28,8 @@ Preview the levels in a parsed Eprime file
 \code{preview_frames()} prints out an example frame from each of the unique
 levels. \code{preview_eprime()} does both.
 }
+\examples{
+data <- read_eprime(example_eprime_file("MINP")) |>
+  FrameList() |>
+  preview_eprime()
+}
