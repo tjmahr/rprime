@@ -7,6 +7,7 @@ reference:
     desc: ~
     contents:
       - '`read_eprime`'
+      - '`example_eprime_file`'
       - '`FrameList`'
       - '`filter_in`'
       - '`keep_levels`'

@@ -152,7 +152,7 @@ these two functions can be used to get us the header frame from a text file.
 
 ```{r}
 library(rprime)
-eprime_lists <- FrameList(read_eprime("data/MINP_001L00XS1.txt"))
+eprime_lists <- FrameList(read_eprime(example_eprime_file("MINP")))
 eprime_lists[[1]]
 ```
 
@@ -162,7 +162,7 @@ Lines from the text file are read into R and stored into a character vector.
 Here are the first few lines from the example file:
 
 ```{r}
-exp_lines <- read_eprime("data/MINP_001L00XS1.txt")
+exp_lines <- read_eprime(example_eprime_file("MINP"))
 head(exp_lines)
 ```
 
@@ -172,7 +172,7 @@ Some things to note about file reading. By default, the enormous
 any other Eprime file. The user is warned as this happens.
 
 ```{r}
-bad_lines <- read_eprime("data/not_an_eprime_file.txt")
+bad_lines <- read_eprime(example_eprime_file("not_an_eprime_file"))
 head(bad_lines)
 ```
 
@@ -190,7 +190,7 @@ aborted, a warning is raised and the partial frame is skipped.
 
 ```{r}
 # Experiment aborted on trial 3
-aborted <- FrameList(read_eprime("data/MP_Block1_001P00XA1.txt"))
+aborted <- FrameList(read_eprime(example_eprime_file("MP")))
 ```
 
 The low-level function for chunking the lines of text is `extract_chunks()`.

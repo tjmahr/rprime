@@ -1,5 +1,8 @@
 # rprime 0.1.4
 
+* `example_eprime_file()` provides filepaths to bundled example files by short
+  name or full filename. Call it without arguments to list available files.
+
 * [ ] Fix a failing test because of how `str()` works. (#17)
 
 * `preview_eprime()`, `preview_frames()`, and `preview_levels()` now return

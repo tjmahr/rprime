@@ -9,6 +9,10 @@
 #' @return The input [FrameList()] object, invisibly. Preview text is printed
 #'   to the console.
 #' @export
+#' @examples
+#' data <- read_eprime(example_eprime_file("MINP")) |>
+#'   FrameList() |>
+#'   preview_eprime()
 preview_eprime <- function(frame_list) {
   preview_levels(frame_list)
   preview_frames(frame_list)
@@ -53,10 +57,9 @@ preview_prep <- function(frame_list) {
   row_counts <- plyr::count(full_table)
   row_counts <- plyr::join(unique_rows, row_counts, by = keys)
 
-  list(row_counts = row_counts, unique_rows = unique_rows,
-       unique_frames = unique_frames)
+  list(
+    row_counts = row_counts,
+    unique_rows = unique_rows,
+    unique_frames = unique_frames
+  )
 }
-
-
-
-

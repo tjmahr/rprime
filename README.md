@@ -44,7 +44,7 @@ Load the file with `read_eprime` and parse its contents with
 ``` r
 library(rprime)
 # Read in an Eprime text file
-experiment_lines <- read_eprime("data/SAILS/SAILS_001X00XS1.txt")
+experiment_lines <- read_eprime(example_eprime_file("SAILS1"))
 
 # Extract and parse the log-frames from the file
 experiment_data <- FrameList(experiment_lines)

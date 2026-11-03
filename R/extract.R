@@ -1,4 +1,3 @@
-
 #' Extract log-frames from an Eprime log file
 #'
 #' Almost all of the information in an Eprime file comes in chunks of text
@@ -20,13 +19,20 @@
 #' @return a list of character vectors, where each vector contains the lines of
 #'   a log-frame
 #' @export
+#' @examples
+#' lines <- read_eprime(example_eprime_file("MINP"))
+#' extract_chunks(lines)
 extract_chunks <- function(eprime_log) {
   parsed <- parse_chunks(eprime_log)
-  basename <- ifelse(!has_attr(eprime_log, "basename"), NA,
-                     attr(eprime_log, "basename"))
-  parsed <- parsed %>%
-    update_header %>%
-    insert_frame_numbers %>%
+  basename <- if (!has_attr(eprime_log, "basename")) {
+    NA
+  } else {
+    attr(eprime_log, "basename")
+  }
+
+  parsed <- parsed |>
+    update_header() |>
+    insert_frame_numbers() |>
     insert_basename(basename)
   lapply(parsed, as.EprimeChunk)
 }
@@ -121,4 +127,3 @@ make_ranges <- function(starts, ends, eprime_log) {
 
   Map(seq, starts, ends)
 }
-
