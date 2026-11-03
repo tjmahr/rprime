@@ -24,19 +24,19 @@ pick_apply(keys, xss)
 \item{keys}{a character vector of names in a list}
 }
 \value{
-\code{pluck} returns an unnamed value and \code{pluck_apply} returns
-  a list of unnamed values. \code{pick} returns a simplified version of the
-  original list. \code{pick_apply} returns a list of simplified lists.
+\code{pluck()} returns an unnamed value and \code{pluck_apply()} returns
+a list of unnamed values. \code{pick()} returns a simplified version of the
+original list. \code{pick_apply()} returns a list of simplified lists.
 }
 \description{
 These functions were inspired by underscore.js.
 }
 \details{
-\itemize{ \item \code{pluck}: Pluck a named value from a list \item
-  \code{pick}: Simplify a list by picking out whitelisted names}
+\itemize{ \item \code{pluck()}: Pluck a named value from a list \item
+\code{pick()}: Simplify a list by picking out allowed names}
 
-  The simple versions of \code{pluck} and \code{pick} are curried functions,
-  meaning that they return a function which can be applied to a list. See the
-  syntax in the usage section.
+The simple versions of \code{pluck()} and \code{pick()} are curried functions,
+meaning that they return a function which can be applied to a list. See the
+syntax in the usage section.
 }
 \keyword{internal}

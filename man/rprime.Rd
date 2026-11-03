@@ -19,5 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Tristan Mahr \email{tristan.mahr@wisc.edu} (\href{https://orcid.org/0000-0002-8890-5116}{ORCID})
 
+Authors:
+\itemize{
+  \item Tristan Mahr \email{tristan.mahr@wisc.edu} (\href{https://orcid.org/0000-0002-8890-5116}{ORCID})
+}
+
 }
 \keyword{internal}

@@ -2,24 +2,23 @@
 % Please edit documentation in R/frames.R
 \name{EprimeFrame}
 \alias{EprimeFrame}
-\title{Create an EprimeFrame object}
+\title{Create an \code{EprimeFrame} object}
 \usage{
 EprimeFrame(keys_values)
 }
 \arguments{
-\item{keys_values}{a character vector of containing some \code{"key: value"}
+\item{keys_values}{a character vector containing some \code{"key: value"}
 strings.}
 }
 \value{
 a list with the class \code{EprimeFrame} and with special
-  \code{Eprime.} metadata, \code{Running} and \code{Procedure} values, all
-  set to NA by default.
+\code{Eprime.} metadata, \code{Running} and \code{Procedure} values, all
+set to \code{NA} by default.
 }
 \description{
 This constructor function converts a character vector into an
 \code{EprimeFrame} object, which is just a list with some special metadata
-values. Strings with the format \code{"key: value"} are parsed into \code{key
-= value} list items (via \code{listify}).
+values. Strings with the format \code{"key: value"} are parsed into \code{key = value} list items (via \code{\link[=listify]{listify()}}).
 }
 \examples{
 # Default metadata values
@@ -29,15 +28,15 @@ lines <- c(
   "garbage text")
 
 EprimeFrame(lines)
-# List of 8
-# $ Eprime.Level      : num 1
-# $ Eprime.LevelName  : logi NA
-# $ Eprime.Basename   : logi NA
-# $ Eprime.FrameNumber: logi NA
-# $ Procedure         : logi NA
-# $ Running           : logi NA
-# $ key               : chr "value"
-# $ question          : chr "answer"
+#> List of 8
+#> $ Eprime.Level      : num 1
+#> $ Eprime.LevelName  : logi NA
+#> $ Eprime.Basename   : logi NA
+#> $ Eprime.FrameNumber: logi NA
+#> $ Procedure         : logi NA
+#> $ Running           : logi NA
+#> $ key               : chr "value"
+#> $ question          : chr "answer"
 
 # Normalize [Running] related lines
 keys_values <- c(
@@ -48,14 +47,14 @@ keys_values <- c(
   "Key: Value")
 
 EprimeFrame(keys_values)
-# List of 9
-# $ Eprime.Level      : num 1
-# $ Eprime.LevelName  : chr "Demo_ExampleCode"
-# $ Eprime.Basename   : logi NA
-# $ Eprime.FrameNumber: logi NA
-# $ Procedure         : logi NA
-# $ Running           : chr "Demo"
-# $ Cycle             : chr "1"
-# $ Sample            : chr "1"
-# $ Key               : chr "Value"
+#> List of 9
+#> $ Eprime.Level      : num 1
+#> $ Eprime.LevelName  : chr "Demo_ExampleCode"
+#> $ Eprime.Basename   : logi NA
+#> $ Eprime.FrameNumber: logi NA
+#> $ Procedure         : logi NA
+#> $ Running           : chr "Demo"
+#> $ Cycle             : chr "1"
+#> $ Sample            : chr "1"
+#> $ Key               : chr "Value"
 }

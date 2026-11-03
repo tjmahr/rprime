@@ -2,7 +2,7 @@
 % Please edit documentation in R/frames.R
 \name{FrameList}
 \alias{FrameList}
-\title{Convert lines from an Eprime file into EprimeFrame objects}
+\title{Convert lines from an Eprime file into \code{EprimeFrame} objects}
 \usage{
 FrameList(x)
 }
@@ -11,23 +11,22 @@ FrameList(x)
 list of vectors of colon-separated text}
 }
 \value{
-When passed a list of character vectors of \code{"key: value"} lines,
-  a FrameList object (a list of EprimeFrames) is returned. when passed a
-  single vector vector of \code{"key: value"} lines, a single EprimeFrame
-  object is returned inside of a FrameList object.
+When passed a list of character vectors of \code{"key: value"} lines, a
+\code{\link[=FrameList]{FrameList()}} object (a list of \code{\link[=EprimeFrame]{EprimeFrame()}} objects) is returned. When
+passed a single vector of \code{"key: value"} lines, a single
+\code{\link[=EprimeFrame]{EprimeFrame()}} object is returned inside of a \code{\link[=FrameList]{FrameList()}} object.
 }
 \description{
-Convert character vectors of implicit key-value pairs (e.g., \code{c("key1:
-value1", "key2: value2")}), into  lists of explicit key-value pairs,
+Convert character vectors of implicit key-value pairs (e.g., \code{c("key1: value1", "key2: value2")}) into lists of explicit key-value pairs,
 \code{list(key1 = "value1", key2 = "value2")}.
 }
 \details{
 During the conversion, if \code{Running: x}, then the
-  \code{x.Sample} and \code{x.Cycle} lines are simplified into \code{Sample}
-  and \code{Cycle} lines. The \code{x: value} line is recoded as
-  \code{Eprime.LevelName: x_value}. The purpose of this tidying is to force
-  the same set of key names (eventually, column names) onto frames with
-  different values for "Running".
+\code{x.Sample} and \code{x.Cycle} lines are simplified into \code{Sample}
+and \code{Cycle} lines. The \code{x: value} line is recoded as
+\code{Eprime.LevelName: x_value}. The purpose of this tidying is to force
+the same set of key names (eventually, column names) onto frames with
+different values for \code{Running}.
 }
 \examples{
 lines <- c("\t*** LogFrame Start ***",
@@ -46,25 +45,25 @@ lines <- c("\t*** LogFrame Start ***",
            "\tFamTarget.RESP: ",
            "\tCorrect: True",
            "\t*** LogFrame End ***")
-# List of 1
-# $ :List of 17
-# ..$ Eprime.Level      : num 2
-# ..$ Eprime.LevelName  : chr "Familiarization_1"
-# ..$ Eprime.Basename   : chr "NA"
-# ..$ Eprime.FrameNumber: chr "1"
-# ..$ Procedure         : chr "FamTask"
-# ..$ Running           : chr "Familiarization"
-# ..$ item1             : chr "bear"
-# ..$ item2             : chr "chair"
-# ..$ CorrectResponse   : chr "bear"
-# ..$ ImageSide         : chr "Left"
-# ..$ Duration          : chr "885"
-# ..$ FamInforcer       : chr "1"
-# ..$ ReinforcerImage   : chr "Bicycle1"
-# ..$ Cycle             : chr "1"
-# ..$ Sample            : chr "1"
-# ..$ FamTarget.RESP    : chr ""
-# ..$ Correct           : chr "True"
-# ..- attr(*, "class")= chr [1:2] "EprimeFrame" "list"
-# - attr(*, "class")= chr [1:2] "list" "FrameList"
+#> List of 1
+#> $ :List of 17
+#> ..$ Eprime.Level      : num 2
+#> ..$ Eprime.LevelName  : chr "Familiarization_1"
+#> ..$ Eprime.Basename   : chr "NA"
+#> ..$ Eprime.FrameNumber: chr "1"
+#> ..$ Procedure         : chr "FamTask"
+#> ..$ Running           : chr "Familiarization"
+#> ..$ item1             : chr "bear"
+#> ..$ item2             : chr "chair"
+#> ..$ CorrectResponse   : chr "bear"
+#> ..$ ImageSide         : chr "Left"
+#> ..$ Duration          : chr "885"
+#> ..$ FamInforcer       : chr "1"
+#> ..$ ReinforcerImage   : chr "Bicycle1"
+#> ..$ Cycle             : chr "1"
+#> ..$ Sample            : chr "1"
+#> ..$ FamTarget.RESP    : chr ""
+#> ..$ Correct           : chr "True"
+#> ..- attr(*, "class")= chr [1:2] "EprimeFrame" "list"
+#> - attr(*, "class")= chr [1:2] "list" "FrameList"
 }

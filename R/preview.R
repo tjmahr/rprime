@@ -1,11 +1,11 @@
 #' Preview the levels in a parsed Eprime file
 #'
-#' @details \code{preview_levels} prints out the unique combinations of
-#' Eprime.Level number, Procedure, and Running in the frame list.
-#' \code{preview_frames} prints out example frame from each of the unique
-#' levels. \code{preview_eprime} does both.
+#' @details `preview_levels()` prints out the unique combinations of
+#' `Eprime.Level` number, `Procedure`, and `Running` in the frame list.
+#' `preview_frames()` prints out an example frame from each of the unique
+#' levels. `preview_eprime()` does both.
 #'
-#' @param frame_list a FrameList (a list of EprimeFrames)
+#' @param frame_list a [FrameList()] object (a list of [EprimeFrame()] objects)
 #' @return Nothing. Preview text is printed to the console.
 #' @export
 preview_eprime <- function(frame_list) {

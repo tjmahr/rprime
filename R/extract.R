@@ -2,21 +2,21 @@
 #' Extract log-frames from an Eprime log file
 #'
 #' Almost all of the information in an Eprime file comes in chunks of text
-#' bracketed by the lines \code{*** LogFrame Start ***} and \code{*** LogFrame
-#' End ***}. The exception is the header information which is bracketed by
-#' \code{*** Header Start ***} and \code{*** Header End ***}.
+#' bracketed by the lines `*** LogFrame Start ***` and `*** LogFrame
+#' End ***`. The exception is the header information which is bracketed by
+#' `*** Header Start ***` and `*** Header End ***`.
 #'
-#' \code{extract_chunks} extracts the bracketed text, storing each log-frame of
+#' `extract_chunks` extracts the bracketed text, storing each log-frame of
 #' text in a list. The lists also include some additional lines of text as
-#' metadata: \code{Eprime.FrameNumber} and \code{Eprime.Basename} (the name of
+#' metadata: `Eprime.FrameNumber` and `Eprime.Basename` (the name of
 #' the source file). The header log-frame also gets dummy lines:
-#' \code{Procedure: Header} and \code{Running: Header}.
+#' `Procedure: Header` and `Running: Header`.
 #'
 #' These character vectors of colon-separated lines are converted into proper
-#' lists by \code{FrameList(...)}.
+#' lists by [FrameList()].
 #'
-#' @param eprime_log a character vector containing the lines of text from Eprime
-#'   txt file
+#' @param eprime_log a character vector containing the lines of text from an
+#'   Eprime txt file
 #' @return a list of character vectors, where each vector contains the lines of
 #'   a log-frame
 #' @export
@@ -91,7 +91,7 @@ parse_chunks <- function(eprime_log) {
 #' @param eprime_log a character vector of lines from an Eprime log file
 #' @return a list of sequences. Each list contains the line numbers contained by
 #'   an Eprime log-frame. If there is a log frame without an end-line, that
-#'   partial frame is excluded and its contents are previed in a warning
+#'   partial frame is excluded and its contents are previewed in a warning
 #'   message.
 #' @noRd
 make_ranges <- function(starts, ends, eprime_log) {

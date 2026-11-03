@@ -1,14 +1,14 @@
-#' Convert Eprime Frames into data-frames
+#' Convert `EprimeFrame` objects into data-frames
 #'
-#' @details Individual EprimeFrames are converted to a data-frame using
-#' `as.data.frame()`. (Strings are not converted to factors.)
+#' @details Individual [EprimeFrame()] objects are converted to a data-frame
+#'   using `as.data.frame()`. (Strings are not converted to factors.)
 #'
-#'   Each of the individual data-frames are then `rbind()`-ed together, with
-#'   missing columns being filled with NA.
+#'   The individual data-frames are then [rbind()]-ed together, with
+#'   missing columns being filled with `NA`.
 #'
-#' @param x an EprimeFrame object, or a FrameList object (a list of
-#'   EprimeFrames)
-#' @return all of the EprimeFrames combined into a single data frame.
+#' @param x an [EprimeFrame()] object, or a [FrameList()] object (a list of
+#'   [EprimeFrame()] objects)
+#' @return all of the [EprimeFrame()] objects combined into a single data-frame.
 #' @export
 #' @seealso [plyr::rbind.fill()]
 #' @md

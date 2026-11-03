@@ -31,4 +31,6 @@ Suggests:
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+Config/usethis/last-upkeep: 2026-11-03
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.1

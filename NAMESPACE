@@ -27,6 +27,8 @@ export(to_data_frame)
 import(assertthat)
 import(plyr)
 import(stringr)
-importFrom(utils,head)
-importFrom(utils,str)
-importFrom(utils,tail)
+importFrom(utils,
+  head,
+  str,
+  tail
+)

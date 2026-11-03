@@ -23,14 +23,14 @@ merge_lists <- function(x, y) {
 #' @param key the name of a value in a list
 #' @param keys a character vector of names in a list
 #' @param xss a list of lists
-#' @return \code{pluck} returns an unnamed value and \code{pluck_apply} returns
-#'   a list of unnamed values. \code{pick} returns a simplified version of the
-#'   original list. \code{pick_apply} returns a list of simplified lists.
+#' @return `pluck()` returns an unnamed value and `pluck_apply()` returns
+#'   a list of unnamed values. `pick()` returns a simplified version of the
+#'   original list. `pick_apply()` returns a list of simplified lists.
 #'
-#' @details \itemize{ \item \code{pluck}: Pluck a named value from a list \item
-#'   \code{pick}: Simplify a list by picking out whitelisted names}
+#' @details \itemize{ \item `pluck()`: Pluck a named value from a list \item
+#'   `pick()`: Simplify a list by picking out allowed names}
 #'
-#'   The simple versions of \code{pluck} and \code{pick} are curried functions,
+#'   The simple versions of `pluck()` and `pick()` are curried functions,
 #'   meaning that they return a function which can be applied to a list. See the
 #'   syntax in the usage section.
 #' @keywords internal
